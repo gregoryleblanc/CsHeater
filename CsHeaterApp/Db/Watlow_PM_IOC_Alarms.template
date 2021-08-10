@@ -1,0 +1,56 @@
+####  Macro Definitions  ####
+#  (s) - Beam Line
+# (ta) - Target Area
+# (ss) - Device Name
+
+
+# Top Level conditions for an alarm to display on the Main Page.
+##	1. If the master alarm disable control is set to Enable (0) process next step.
+##	2. Check the status of each of the module alarm states.  Process the Alarm Summary Record accordingly.
+
+# =============   Top Level Alarm Handling   =============
+# Disable top level alarm handling.
+# This is on the Main Page so update the macros accordingly.
+record(bo, "$(s):$(ta):Watlow:AlarmControl")
+{
+	field(DESC,	"Disable Alarms")
+	field(PINI,	"YES")
+	field(VAL,	"1")
+	field(OMSL,	"supervisory")
+	field(ZNAM,	"Alarm Enabled")
+	field(ONAM,	"Alarm Disabled")
+	field(ZSV,	"NO_ALARM")
+	field(OSV,	"MINOR")
+	field(ASG,	"ALWAYS")
+	info(autosaveFields, "VAL")
+}
+
+## Top level alarm summary record.  If enabled check the status of each module.
+## This is where it will need to be determined if only one is in use or 4.  Now its presumed 4.
+record(calcout, "$(s):$(ta):Watlow:AlarmSummaryCalc")
+{
+	field(INPA,	"$(s):$(ta):Watlow:AlarmControl CP")
+	field(INPB,	"$(s):$(ta):$(ss):1:ModAlarmSummary CP")
+#	field(INPC,	"$(s):$(ta):$(ss):2:ModAlarmSummary CP")
+#	field(INPD,	"$(s):$(ta):$(ss):3:ModAlarmSummary CP")
+#	field(INPE,	"$(s):$(ta):$(ss):4:ModAlarmSummary CP")
+#	field(INPF,	"2")
+#	field(CALC,	"(A=1)?0:(B=F||C=F||D=F||E=F)")
+	field(CALC,	"((A=0)&&(B=2))?1:0")
+	field(DOPT,	"Use CALC")
+	field(OOPT,	"Every Time")
+	field(OUT,	"$(s):$(ta):Watlow:AlarmSummary PP")
+}
+
+
+record(bi, "$(s):$(ta):Watlow:AlarmSummary")
+{
+	field(SCAN,	"Passive")
+	field(ZNAM,	"No Alarm")
+	field(ONAM,	"Alarm")
+	field(OSV,	"MAJOR")
+	field(PINI,	"YES")
+}
+
+
+

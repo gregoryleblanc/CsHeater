@@ -1,0 +1,80 @@
+#################################################################
+#
+# Template to write a set of PID parameters and a high and low
+# output power limit when a process variable enters the specified window. 
+# This template originally developed for the Eurotherm NanoDAC application
+# has been modified for the Watlow application.
+#
+# Original developer:	Matt Pearson, May 16
+# Modified for Watlow:	Gary Taufer, Aug 20
+# 
+#
+# Macros:
+# s - Beam Line
+# ta	- Target Area
+# ss	- Device Name
+# i	- Channel or Index
+# W - window number 
+# PV - the process variable to read
+# LOW - lower limit of the window (default 0)
+# HIGH - upper limit of the window (default 0)
+# P - the P value to use (default 0)
+# I - the I value to use (default 0)
+# D - the D value to use (default 0)
+# P_LINK - the PV link to write P to
+# I_LINK - the PV link to write I to
+# D_LINK - the PV link to write D to
+# UNITS - the units of the process variable
+#
+#################################################################
+# ///
+# /// Record for the Boolean Button
+# ///
+record(bi, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update")
+{
+	field(ZNAM,	"Update")
+	field(ONAM,	"Updating")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcUpdate")
+}
+
+
+# ///
+# /// Is this the active PID Set?
+# ///
+record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcUpdate")
+{
+	field(DESC,	"Is this the active PID set")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update.VAL MS")
+	field(CALC,	"A")
+	field(OOPT,	"Transition To Non-zero")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):UpdtSet.PROC")
+	field(DOPT,	"Use CALC")
+}
+
+# ///
+# /// Sequence record to trigger the update to the PID Set. 
+# ///
+record(seq, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):UpdtSet")
+{
+	field(DESC,     "Update PID Set Values")
+	field(DOL1,     "$(P_LINK)RB")
+	field(LNK1,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):PSet.VAL PP")
+	field(DLY1,     "0.1")
+	field(DOL2,     "$(I_LINK)RB")
+	field(LNK2,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):ISet.VAL PP")
+	field(DLY2,     "0.1")
+	field(DOL3,     "$(D_LINK)RB")
+	field(LNK3,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):DSet.VAL PP")
+	field(DLY3,     "0.1")
+	field(DOL4,	"0")
+	field(LNK4,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update PP")
+}
+
+
+
+
+
+
+
+
+

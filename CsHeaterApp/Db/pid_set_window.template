@@ -1,0 +1,205 @@
+#################################################################
+#
+# Template to write a set of PID parameters and a high and low
+# output power limit when a process variable enters the specified window. 
+# This template originally developed for the Eurotherm NanoDAC application
+# has been modified for the Watlow application.
+#
+# Original developer:	Matt Pearson, May 16
+# Modified for Watlow:	Gary Taufer, Aug 20
+# 
+#
+# Macros:
+# s - Beam Line
+# ta	- Target Area
+# ss	- Device Name
+# i	- Channel or Index
+# W - window number 
+# PV - the process variable to read
+# LOW - lower limit of the window (default 0)
+# HIGH - upper limit of the window (default 0)
+# P - the P value to use (default 0)
+# I - the I value to use (default 0)
+# D - the D value to use (default 0)
+# P_LINK - the PV link to write P to
+# I_LINK - the PV link to write I to
+# D_LINK - the PV link to write D to
+# UNITS - the units of the process variable
+#
+#################################################################
+
+# ///
+# /// Disable this template
+# ///
+record(bo, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Disable") {
+	field(DESC,	"Disable this PID window")
+	field(PINI,	"YES")
+	field(VAL,	"1")
+	field(OMSL,	"supervisory")
+	field(ZNAM,	"Enabled")
+	field(ONAM,	"Disabled")
+	field(ZSV,	"NO_ALARM")
+	field(OSV,	"MAJOR")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable")
+	info(autosaveFields, "VAL")
+}
+
+# ///
+# /// Record to hold the current PV value
+# ///
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Value") {
+	field(DESC,	"Current PV Value")
+	field(INP,	"$(PV) CP MS")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcInWindow.PROC")
+	field(EGU,	"$(UNITS)")
+	field(PREC,	"$(PREC=2)")
+}
+
+# ///
+# /// Calculate if $(PV) is in the window.
+# ///
+record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcInWindow") {
+	field(DESC,	"Calc PV in window")
+	field(PINI,	"YES")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Low")
+	field(INPB,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):High")
+	field(INPC,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Value MS")
+	field(CALC,	"((C>=A)&&(C<B))")
+	field(OOPT,	"Every Time")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):InWindow.VAL PP MS")
+	field(DOPT,	"Use CALC")
+	field(PREC,	"$(PREC=2)")
+	field(SCAN,	"10 second")
+}
+
+# ///
+# /// The low boundary for the PV that is used by CalcInWindow
+# ///
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Low") {
+	field(DESC,	"Low PV")
+	field(VAL,	"$(LOW=0)")
+	field(PREC,	"$(PREC=2)")
+	field(PINI,	"YES")
+	info(autosaveFields, "VAL")
+}
+
+# ///
+# /// The high boundary for the PV that is used by CalcInWindow
+# ///
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):High") {
+	field(DESC,	"High PV")
+	field(VAL,	"$(HIGH=0)")
+	field(PREC,	"$(PREC=2)")
+	field(PINI,	"YES")
+	info(autosaveFields, "VAL")
+}
+
+# ///
+# /// Flag to indicate if the $(PV) is in the window
+# ///
+record(bo, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):InWindow") {
+	field(DESC,	"PV in window")
+	field(PINI,	"YES")
+	field(VAL,	"0")
+	field(OMSL,	"supervisory")
+	field(ZNAM,	"Not In Window")
+	field(ONAM,	"In Window")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcPIDWrite.PROC")
+}
+
+# ///
+# /// If the in-window flag does a 0->1 transition, trigger the PID write
+# ///
+record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcPIDWrite") {
+	field(DESC,	"Calc PID Write")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):InWindow.VAL MS")
+	field(CALC,	"A")
+	field(OOPT,	"Transition To Non-zero")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):PIDWrite.PROC")
+	field(DOPT,	"Use CALC")
+}
+
+# ///
+# /// If we enable this template, and the in-window flag is 1, trigger the write.
+# /// This record is processed when we enable or disable the template.
+# /// This is also precessed when a user changes one of the parameters. This fixes the issue
+# /// of a change not being applied if the PV is already inside the window.
+# ///
+record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable") {
+	field(DESC,	"Calc Write Enable")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):InWindow.VAL MS")
+	field(INPB,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Disable.VAL MS")
+#	field(CALC,	"A&&!B")
+	field(CALC,	"A")
+	field(OOPT,	"When Non-zero")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):PIDWrite.PROC")
+	field(DOPT,	"Use CALC")
+}
+
+# ///
+# /// Sequence record to trigger a PID write. 
+# ///
+record(seq, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):PIDWrite") {
+	field(DESC,     "Write PID Values")
+	field(DOL1,     "$(s):$(ta):$(ss):$(mod):PID:Set$(W):PSet")
+	field(LNK1,     "$(P_LINK) PP")
+	field(DLY1,     "0.1")
+	field(DOL2,     "$(s):$(ta):$(ss):$(mod):PID:Set$(W):ISet")
+	field(LNK2,     "$(I_LINK) PP")
+	field(DLY2,     "0.1")
+	field(DOL3,     "$(s):$(ta):$(ss):$(mod):PID:Set$(W):DSet")
+	field(LNK3,     "$(D_LINK) PP")
+	field(DLY3,     "0.1")
+}
+
+# ///
+# /// The P that will be written by the seq record PIDWrite
+# ///
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):PSet") {
+	field(DESC,	"P Set")
+	field(VAL,	"$(P=0)")
+#	field(PREC,	"$(PREC=3)")
+	field(PREC,	"3")
+	field(PINI,	"YES")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable")
+	info(autosaveFields, "VAL")
+}
+
+# ///
+# /// The I that will be written by the seq record PIDWrite
+# ///
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):ISet") {
+	field(DESC,	"I Set")
+	field(VAL,	"$(I=0)")
+#	field(PREC,	"$(PREC=0)")
+	field(PREC,	"0")
+	field(PINI,	"YES")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable")
+	info(autosaveFields, "VAL")
+}
+
+# ///
+# /// The D that will be written by the seq record PIDWrite
+# ///
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):DSet") {
+	field(DESC,	"D Set")
+	field(VAL,	"$(D=0)")
+#	field(PREC,	"$(PREC=0)")
+	field(PREC,	"0")
+	field(PINI,	"YES")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable")
+	info(autosaveFields, "VAL")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

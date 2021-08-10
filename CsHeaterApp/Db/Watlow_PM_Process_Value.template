@@ -1,0 +1,236 @@
+####  Macro Definitions  ####
+# (s)	- Beam Line
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (i)	- Channel or Index
+# (PSvA)- Process Source Value A
+# (PSvB)- Process Source Value B
+# (PoFS)- Process Offset
+# (Pov)	- Process Output Value
+# (PoE)	- Process Output Error
+# (PFn)	- Process Function
+# (Punt)- Pressure Units
+# (Aunt)- Altitude Units
+# (bPr)	- Barometric Pressure
+# (PvF)	- Process Value Filter
+
+
+#=========== Process Value Menu ===========
+# =========== Inputs
+# Process Source Value A
+record(ai, "$(s):$(ta):$(ss):$(mod):PrcsSrcVA$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),0,2000)FLOAT32_BE")
+	field(EGU,	"°")
+	field(PREC,	"3")
+	field(ADEL,	"0.1")
+	field(MDEL,	"0.1")
+}
+
+# Process Source Value B
+record(ai, "$(s):$(ta):$(ss):$(mod):PrcsSrcVB$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),2,2000)FLOAT32_BE")
+	field(EGU,	"°")
+	field(PREC,	"3")
+	field(ADEL,	"0.1")
+	field(MDEL,	"0.1")
+}
+
+# Process Output Value
+record(ai, "$(s):$(ta):$(ss):$(mod):PrcsOutput$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),12,2000)FLOAT32_BE")
+	field(EGU,	"°")
+	field(PREC,	"3")
+	field(ADEL,	"0.1")
+	field(MDEL,	"0.1")
+}
+
+# Process Output Error
+record(mbbi, "$(s):$(ta):$(ss):$(mod):PrcsOutputError$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_Prc_Enum_1.$(mod),12,0xFF,2000)UINT16")
+	field(ZRST,	"None")
+	field(ZRVL,	"61")
+	field(ONST,	"Open")
+	field(ONVL,	"65")
+	field(TWST,	"Measurement Error")
+	field(TWVL,	"140")
+	field(THST,	"Bad Calibration Data")
+	field(THVL,	"139")
+	field(FRST,	"Ambient Error")
+	field(FRVL,	"9")
+	field(FVST,	"RTD Error")
+	field(FVVL,	"141")
+	field(SXST,	"Fail")
+	field(SXVL,	"32")
+	field(SVST,	"Math Error")
+	field(SVVL,	"1423")
+	field(EIST,	"Not Sourced")
+	field(EIVL,	"246")
+	field(NIST,	"Stale")
+	field(NIVL,	"1617")
+	field(TEST,	"Can't Process")
+	field(TEVL,	"1659")
+	field(ELST,	"Shorted")
+	field(ELVL,	"127")
+}
+
+
+# =========== Read Backs
+# Process Offset
+record(ai, "$(s):$(ta):$(ss):$(mod):PrcsOffset$(ch)RB") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),0,2000)FLOAT32_BE")
+	field(EGU,	"°")
+	field(PREC,	"3")
+}
+
+# Process Value Filter
+record(ai, "$(s):$(ta):$(ss):$(mod):PrcsFilter$(ch)RB") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),6,2000)FLOAT32_BE")
+	field(EGU,	"s")
+	field(PREC,	"1")
+}
+
+# Process Function
+record(mbbi, "$(s):$(ta):$(ss):$(mod):PrcsFunction$(ch)RB") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_Prc_Enum_1.$(mod),0,0xFFFF,2000)INT32_BE")
+	field(ZRST,	"Off")
+	field(ZRVL,	"62")
+	field(ONST,	"Sensor Backup")
+	field(ONVL,	"1201")
+	field(TWST,	"Pressure to Altitude")
+	field(TWVL,	"1649")
+}
+
+# Pressure Units
+record(mbbi, "$(s):$(ta):$(ss):$(mod):PressureUnits$(ch)RB") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_Prc_Enum_1.$(mod),14,0xFFFF,2000)INT32_BE")
+	field(ZRST,	"Pounds per Square Inch")
+	field(ZRVL,	"1671")
+	field(ONST,	"Pascal")
+	field(ONVL,	"1674")
+	field(TWST,	"Atmosphere")
+	field(TWVL,	"1675")
+	field(THST,	"Millibar")
+	field(THVL,	"1672")
+	field(FRST,	"Torr")
+	field(FRVL,	"1673")
+}
+
+# Altitude Units
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AltitudeUnits$(ch)RB") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_Prc_Enum_1.$(mod),16,0xFFFF,2000)INT32_BE")
+	field(ZRST,	"Kilofeet")
+	field(ZRVL,	"1677")
+	field(ONST,	"Feet")
+	field(ONVL,	"1676")
+}
+
+
+
+# =========== Outputs
+# Process Offset
+record(ao, "$(s):$(ta):$(ss):$(mod):PrcsOffset$(ch)") 
+{
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynFloat64")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(PoFS=3324),2000)FLOAT32_BE")
+	field(EGU,	"°")
+	field(PREC,	"3")
+	field(ADEL,	"0.1")
+	info(autosaveFields,	"VAL")
+}
+
+# Process Function
+record(mbbo, "$(s):$(ta):$(ss):$(mod):PrcsFunction$(ch)") 
+{
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynUInt32Digital")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(PFn=3332),0xFFFF,2000)INT32_BE")
+	field(ZRST,	"Off")
+	field(ZRVL,	"62")
+	field(ONST,	"Sensor Backup")
+	field(ONVL,	"1201")
+	field(TWST,	"Pressure to Altitude")
+	field(TWVL,	"1649")
+	info(autosaveFields,	"VAL")
+}
+
+# Pressure Units
+record(mbbo, "$(s):$(ta):$(ss):$(mod):PressureUnits$(ch)") 
+{
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynUInt32Digital")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Punt=3332),0xFFFF,2000)INT32_BE")
+	field(ZRST,	"Pounds per Square Inch")
+	field(ZRVL,	"1671")
+	field(ONST,	"Pascal")
+	field(ONVL,	"1674")
+	field(TWST,	"Atmosphere")
+	field(TWVL,	"1675")
+	field(THST,	"Millibar")
+	field(THVL,	"1672")
+	field(FRST,	"Torr")
+	field(FRVL,	"1673")
+	info(autosaveFields,	"VAL")
+}
+
+# Altitude Units
+record(mbbo, "$(s):$(ta):$(ss):$(mod):AltitudeUnits$(ch)") 
+{
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynUInt32Digital")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Aunt=3332),0xFFFF,2000)INT32_BE")
+	field(ZRST,	"Kilofeet")
+	field(ZRVL,	"1677")
+	field(ONST,	"Feet")
+	field(ONVL,	"1676")
+	info(autosaveFields,	"VAL")
+}
+
+# Process Value Filter
+record(ao, "$(s):$(ta):$(ss):$(mod):PrcsFilter$(ch)") 
+{
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynFloat64")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(PvF=3330),2000)FLOAT32_BE")
+	field(EGU,	"s")
+	field(PREC,	"1")
+	field(DRVL,	"0.0")
+	field(DRVH,	"60.0")
+	info(autosaveFields,	"VAL")
+}

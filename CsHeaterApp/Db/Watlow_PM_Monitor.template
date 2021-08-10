@@ -1,0 +1,118 @@
+####  Macro Definitions  ####
+# (s) - Beam Line
+# (ta) - Target Area
+# (ss) - Device Name
+# (i)	- Channel or Index
+# (CMA)	- Control Mode Active
+# (hPr)	- Heat Power
+# (CPr)	- Cool Power
+# (PvA)	- Filtered Process Value
+# (CLS)	- Read Closed Loop Setpoint
+# (AtS)	- Autotune Status
+
+
+#=========== Monitor Menu ===========
+
+# Heat Power
+record(ai, "$(s):$(ta):$(ss):$(mod):HeatPower$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),14,2000)FLOAT32_BE")
+	field(EGU,	"%")
+	field(PREC,	"1")
+	field(MDEL,	"0.1")
+	field(ADEL,	"1")
+	info(archive, "Monitor, 00:00:10, VAL")
+}
+
+# Cool Power
+record(ai, "$(s):$(ta):$(ss):$(mod):CoolPower$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),16,2000)FLOAT32_BE")
+	field(EGU,	"%")
+	field(PREC,	"1")
+	field(MDEL,	"0.1")
+}
+
+# Filtered Process Value
+record(ai, "$(s):$(ta):$(ss):$(mod):ProcessValue$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_AI_Num_1.$(mod),$(PvA=42),2000)FLOAT32_BE")
+	field(EGU,	"°")
+	field(PREC,	"3")
+	field(MDEL,	"0.1")
+	field(ADEL,	"1")
+	info(archive, "Monitor, 00:00:10, VAL")
+}
+
+# Control Mode Active
+record(mbbi, "$(s):$(ta):$(ss):$(mod):ControlModeActive$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),2,0xFF,2000)UINT16")
+	field(ZRST,	"Off")
+	field(ZRVL,	"62")
+	field(ONST,	"Auto")
+	field(ONVL,	"10")
+	field(TWST,	"Manual")
+	field(TWVL,	"54")
+}
+
+# Read Active Closed Loop Setpoint. Active Set Point Active
+record(ai, "$(s):$(ta):$(ss):$(mod):ActiveSV$(ch)")
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),12,2000)FLOAT32_BE")
+	field(EGU,	"°")
+	field(PREC,	"3")
+	field(MDEL,	"0.1")
+	field(ADEL,	"1")
+	info(archive, "Monitor, 00:00:10, VAL")
+}
+
+# Autotune Status
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AutotuneStatus$(ch)") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),52,0xFF,2000)UINT16")
+	field(ZRST,	"Off")
+	field(ZRVL,	"62")
+	field(ONST,	"Waiting: cross 1 positive")
+	field(ONVL,	"119")
+	field(TWST,	"Waiting: cross 1 negative")
+	field(TWVL,	"120")
+	field(THST,	"Waiting: cross 2 positive")
+	field(THVL,	"121")
+	field(FRST,	"Waiting: cross 2 negative")
+	field(FRVL,	"122")
+	field(FVST,	"Waiting: cross 3 positive")
+	field(FVVL,	"123")
+	field(SXST,	"Waiting: cross 3 negative")
+	field(SXVL,	"150")
+	field(SVST,	"Measuring Max peak")
+	field(SVVL,	"151")
+	field(EIST,	"Measuring Min peak")
+	field(EIVL,	"152")
+	field(NIST,	"Calculating")
+	field(NIVL,	"153")
+	field(TEST,	"Complete")
+	field(TEVL,	"18")
+	field(ELST,	"Timeout")
+	field(ELVL,	"118")
+}
+
+

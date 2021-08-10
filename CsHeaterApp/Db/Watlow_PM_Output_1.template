@@ -1,0 +1,275 @@
+####  Macro Definitions  ####
+# (s)	- Beam Line
+# (ta)	- Target Area
+# (ss)	- Device Name
+
+#=========== Output Menu Instance 1 ===========
+# =========== Read Backs
+# Output Type RB
+record(mbbi, "$(s):$(ta):$(ss):$(mod):OutputType1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_AO_Enum_1.$(mod),0,0xFF,2000)UINT16")
+	field(ZRST,	"Volts")
+	field(ZRVL,	"104")
+	field(ONST,	"Milliampere")
+	field(ONVL,	"112")
+}
+
+# Output Function RB
+record(mbbi, "$(s):$(ta):$(ss):$(mod):OutputFunction1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_AO_Enum_1.$(mod),2,0xFF,2000)UINT16")
+	field(ZRST,	"Off")
+	field(ZRVL,	"62")
+	field(ONST,	"Heat")
+	field(ONVL,	"36")
+	field(TWST,	"Cool")
+	field(TWVL,	"20")
+	field(THST,	"Duplex")
+	field(THVL,	"212")
+	field(FRST,	"Alarm")
+	field(FRVL,	"6")
+	field(FVST,	"Profile Event Out A")
+	field(FVVL,	"233")
+	field(SXST,	"Profile Event Out B")
+	field(SXVL,	"234")
+	field(SVST,	"Retransmit")
+	field(SVVL,	"213")
+}
+
+# Retransmit Source RB
+record(mbbi, "$(s):$(ta):$(ss):$(mod):RetransmitSource1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_AO_Enum_1.$(mod),4,0xFF,2000)UINT16")
+	field(ZRST,	"Analog Input")
+	field(ZRVL,	"142")
+	field(ONST,	"Set Point")
+	field(ONVL,	"85")
+	field(TWST,	"Current")
+	field(TWVL,	"22")
+	field(THST,	"Process Value")
+	field(THVL,	"241")
+}
+
+# Output Function Instance RB
+record(mbbi, "$(s):$(ta):$(ss):$(mod):FunctionInstanceA1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_AO_Enum_1.$(mod),6,0xFF,2000)UINT16")
+	field(ZRST,	"1")
+	field(ZRVL,	"1")
+	field(ONST,	"2")
+	field(ONVL,	"2")
+	field(TWST,	"3")
+	field(TWVL,	"3")
+	field(THST,	"4")
+	field(THVL,	"4")
+}
+
+# Calibration Offset RB
+record(ai, "$(s):$(ta):$(ss):$(mod):AOCalOffset1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_AO_Num_1.$(mod),0,2000)FLOAT32_BE")
+	field(PREC,	"3")
+}
+
+# Scale Low RB
+record(ai, "$(s):$(ta):$(ss):$(mod):AOScaleLow1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_AO_Num_1.$(mod),4,2000)FLOAT32_BE")
+	field(PREC,	"1")
+}
+
+# Scale High RB
+record(ai, "$(s):$(ta):$(ss):$(mod):AOScaleHigh1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_AO_Num_1.$(mod),6,2000)FLOAT32_BE")
+	field(PREC,	"1")
+}
+
+# Range Low RB
+record(ai, "$(s):$(ta):$(ss):$(mod):AORangeLow1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_AO_Num_1.$(mod),8,2000)FLOAT32_BE")
+	field(PREC,	"3")
+}
+
+# Range High RB
+record(ai, "$(s):$(ta):$(ss):$(mod):AORangeHigh1RB") 
+{
+	field(SCAN,	"10 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynFloat64")
+	field(INP,	"@asyn(watlow_AO_Num_1.$(mod),10,2000)FLOAT32_BE")
+	field(PREC,	"3")
+}
+
+
+
+# =========== Outputs
+# Output Type
+record(mbbo, "$(s):$(ta):$(ss):$(mod):OutputType1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynUInt32Digital")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),840,0xFF,2000)UINT16")
+	field(ZRST,	"Volts")
+	field(ZRVL,	"104")
+	field(ONST,	"Milliampere")
+	field(ONVL,	"112")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OutputType1RB")
+}
+
+# Output Function
+record(mbbo, "$(s):$(ta):$(ss):$(mod):OutputFunction1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynUInt32Digital")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),842,0xFF,2000)UINT16")
+	field(ZRST,	"Off")
+	field(ZRVL,	"62")
+	field(ONST,	"Heat")
+	field(ONVL,	"36")
+	field(TWST,	"Cool")
+	field(TWVL,	"20")
+	field(THST,	"Duplex")
+	field(THVL,	"212")
+	field(FRST,	"Alarm")
+	field(FRVL,	"6")
+	field(FVST,	"Profile Event Out A")
+	field(FVVL,	"233")
+	field(SXST,	"Profile Event Out B")
+	field(SXVL,	"234")
+	field(SVST,	"Retransmit")
+	field(SVVL,	"213")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OutputFunction1RB")
+}
+
+# Retransmit Source
+record(mbbo, "$(s):$(ta):$(ss):$(mod):RetransmitSource1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynUInt32Digital")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),844,0xFF,2000)UINT16")
+	field(ZRST,	"Analog Input")
+	field(ZRVL,	"142")
+	field(ONST,	"Set Point")
+	field(ONVL,	"85")
+	field(TWST,	"Current")
+	field(TWVL,	"22")
+	field(THST,	"Process Value")
+	field(THVL,	"241")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):RetransmitSource1RB")
+}
+
+# Output Function Instance
+record(mbbo, "$(s):$(ta):$(ss):$(mod):FunctionInstanceA1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynUInt32Digital")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),846,0xFF,2000)UINT16")
+	field(ZRST,	"1")
+	field(ZRVL,	"1")
+	field(ONST,	"2")
+	field(ONVL,	"2")
+	field(TWST,	"3")
+	field(TWVL,	"3")
+	field(THST,	"4")
+	field(THVL,	"4")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):FunctionInstanceA1RB")
+}
+
+# Scale Low
+record(ao, "$(s):$(ta):$(ss):$(mod):AOScaleLow1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynFloat64")
+	field(OUT,	"@asyn(watlow.w.$(mod),856,2000)FLOAT32_BE")
+	field(PREC,	"1")
+	field(DRVL,	"-100")
+	field(DRVH,	"100")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AOScaleLow1RB")
+}
+
+# Scale High
+record(ao, "$(s):$(ta):$(ss):$(mod):AOScaleHigh1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynFloat64")
+	field(OUT,	"@asyn(watlow.w.$(mod),858,2000)FLOAT32_BE")
+	field(PREC,	"1")
+	field(DRVL,	"-100")
+	field(DRVH,	"100")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AOScaleHigh1RB")
+}
+
+# Range Low
+record(ao, "$(s):$(ta):$(ss):$(mod):AORangeLow1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynFloat64")
+	field(OUT,	"@asyn(watlow.w.$(mod),860,2000)FLOAT32_BE")
+	field(PREC,	"3")
+	field(DRVL,	"-1999")
+	field(DRVH,	"9999")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AORangeLow1RB")
+}
+
+# Range High
+record(ao, "$(s):$(ta):$(ss):$(mod):AORangeHigh1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynFloat64")
+	field(OUT,	"@asyn(watlow.w.$(mod),862,2000)FLOAT32_BE")
+	field(PREC,	"3")
+	field(DRVL,	"-1999")
+	field(DRVH,	"9999")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AORangeHigh1RB")
+}
+
+# Calibration Offset
+record(ao, "$(s):$(ta):$(ss):$(mod):AOCalOffset1") 
+{
+	field(ASG,	"$(ASG=BEAMLINE)")
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynFloat64")
+	field(OUT,	"@asyn(watlow.w.$(mod),852,2000)FLOAT32_BE")
+	field(PREC,	"3")
+	field(DRVL,	"-1999")
+	field(DRVH,	"9999")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AOCalOffset1RB")
+}
+
+
+
