@@ -44,5 +44,3 @@ include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
 
-$(COMMON_DIR)/CsHeater.dbd: $(COMMON_DIR)/asyn
-
