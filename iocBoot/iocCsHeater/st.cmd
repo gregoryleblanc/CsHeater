@@ -81,47 +81,47 @@ drvModbusAsynConfigure("watlow.enum.w.1", "watlow1", 0, 6, -1, 2, 0, 2000, "watl
 ##								 I = Module Index
 
 ###  4 == modbus read input registers (16-bit registers)
-drvModbusAsynConfigure("watlow_Glb_Num_1.1",  "watlow1", 0, 4,    0, 16, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Glb_Enum_1.1", "watlow1", 0, 4, 2308,  4, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Glb_Num_1.1",  "watlow1", 0, 4,    0, 16, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Glb_Enum_1.1", "watlow1", 0, 4, 2308,  4, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_AI_Num_1.1",   "watlow1", 0, 4,  360, 62, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Num_2.1",   "watlow1", 0, 4,  450, 62, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Enum_1.1",  "watlow1", 0, 4,  362, 82, 6, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Enum_2.1",  "watlow1", 0, 4,  452, 82, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Num_1.1",   "watlow1", 0, 4,  360, 62, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Num_2.1",   "watlow1", 0, 4,  450, 62, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Enum_1.1",  "watlow1", 0, 4,  362, 82, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Enum_2.1",  "watlow1", 0, 4,  452, 82, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_Al_Num_1.1",   "watlow1", 0, 4, 1880, 46, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Enum_1.1",  "watlow1", 0, 4, 1886, 42, 6, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Num_2.1",   "watlow1", 0, 4, 1940, 46, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Enum_2.1",  "watlow1", 0, 4, 1946, 68, 6, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Num_3.1",   "watlow1", 0, 4, 2000, 46, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Enum_3.1",  "watlow1", 0, 4, 2006, 42, 6, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Num_4.1",   "watlow1", 0, 4, 2060, 46, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Enum_4.1",  "watlow1", 0, 4, 2066, 68, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_1.1",   "watlow1", 0, 4, 1880, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Enum_1.1",  "watlow1", 0, 4, 1886, 42, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_2.1",   "watlow1", 0, 4, 1940, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Enum_2.1",  "watlow1", 0, 4, 1946, 68, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_3.1",   "watlow1", 0, 4, 2000, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Enum_3.1",  "watlow1", 0, 4, 2006, 42, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_4.1",   "watlow1", 0, 4, 2060, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Enum_4.1",  "watlow1", 0, 4, 2066, 68, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_Lim_Num_1.1",  "watlow1", 0, 4,  720, 20, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Lim_Enum_1.1", "watlow1", 0, 4,  728, 24, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Lim_Num_1.1",  "watlow1", 0, 4,  720, 20, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Lim_Enum_1.1", "watlow1", 0, 4,  728, 24, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_Lin_Num_1.1",  "watlow1", 0, 4, 3562, 52, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Lin_Enum_1.1", "watlow1", 0, 4, 3568, 52, 6, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Lin_Num_2.1",  "watlow1", 0, 4, 3632, 52, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Lin_Enum_2.1", "watlow1", 0, 4, 3638, 52, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Lin_Num_1.1",  "watlow1", 0, 4, 3562, 52, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Lin_Enum_1.1", "watlow1", 0, 4, 3568, 52, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Lin_Num_2.1",  "watlow1", 0, 4, 3632, 52, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Lin_Enum_2.1", "watlow1", 0, 4, 3638, 52, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_CL_Num_1.1",   "watlow1", 0, 4, 2370, 46, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Enum_1.1",  "watlow1", 0, 4, 2360, 54, 6, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Num_2.1",   "watlow1", 0, 4, 2640, 50, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Enum_2.1",  "watlow1", 0, 4, 2662, 22, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Num_1.1",   "watlow1", 0, 4, 2370, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Enum_1.1",  "watlow1", 0, 4, 2360, 54, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Num_2.1",   "watlow1", 0, 4, 2640, 50, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Enum_2.1",  "watlow1", 0, 4, 2662, 22, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_AO_Num_1.1",   "watlow1", 0, 4,  852, 24, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AO_Enum_1.1",  "watlow1", 0, 4,  840,  8, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO_Num_1.1",   "watlow1", 0, 4,  852, 24, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO_Enum_1.1",  "watlow1", 0, 4,  840,  8, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_AO2_Num_1.1",  "watlow1", 0, 4, 1034, 16, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AO2_Enum_1.1", "watlow1", 0, 4, 1038,  6, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO2_Num_1.1",  "watlow1", 0, 4, 1034, 16, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO2_Enum_1.1", "watlow1", 0, 4, 1038,  6, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_AO3_Num_1.1",  "watlow1", 0, 4, 1064, 16, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AO3_Enum_1.1", "watlow1", 0, 4, 1068,  6, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO3_Num_1.1",  "watlow1", 0, 4, 1064, 16, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO3_Enum_1.1", "watlow1", 0, 4, 1068,  6, INT32_LE_BS, 2000, "watlow1");
 
-drvModbusAsynConfigure("watlow_Prc_Num_1.1",  "watlow1", 0, 4, 3310, 14, 7, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Prc_Enum_1.1", "watlow1", 0, 4, 3320, 20, 6, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Prc_Num_1.1",  "watlow1", 0, 4, 3310, 14, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Prc_Enum_1.1", "watlow1", 0, 4, 3320, 20, INT32_LE_BS, 2000, "watlow1");
 #====================================================================
 
 
