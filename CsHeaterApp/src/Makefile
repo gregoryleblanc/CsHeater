@@ -20,7 +20,7 @@ CsHeater_DBD += base.dbd
 CsHeater_DBD += asyn.dbd
 CsHeater_DBD += drvAsynIPPort.dbd
 CsHeater_LIBS += asyn
-
+CsHeater_LIBS += modbus
 
 # Add all the support libraries needed by this IOC
 #CsHeater_LIBS += xxx

@@ -35,7 +35,7 @@ iocInit
 ##             testing different options to deteremine what will work most efficiently.
 
 ### set up the TCP/IP comms for modbus
-drvAsynIPPortConfigure("watlow1", "10.0.0.196", 0, 0, 0)
+drvAsynIPPortConfigure("watlow1", "10.0.0.196:502", 0, 0, 0)
 ##  https://epics-modbus.readthedocs.io/en/latest/#tcp-ip
 ##  drvAsynIPPortConfigure("portName","hostInfo",priority,noAutoConnect,noProcessEos)
 
