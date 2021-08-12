@@ -1,0 +1,4 @@
+#!/bin/sh
+sed -e '/^\s*\(#[^!].*\|#$\)/d' -e '/./!d' st.cmd > st.cmd.brief
+chmod u+x st.cmd.brief
+
