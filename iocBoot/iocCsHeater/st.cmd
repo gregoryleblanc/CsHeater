@@ -14,9 +14,6 @@ CsHeater_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=pi")
 
-cd "${TOP}/iocBoot/${IOC}"
-iocInit
-
 ## Start any sequence programs
 #seq sncxxx,"user=pi"
 
@@ -158,3 +155,8 @@ drvModbusAsynConfigure("watlow_AO_Enum_1.1",  "watlow1", 0, 4,  840,  8, INT32_L
 drvModbusAsynConfigure("watlow_Prc_Num_1.1",  "watlow1", 0, 4, 3310, 14, INT32_BE, 2000, "watlow1");
 drvModbusAsynConfigure("watlow_Prc_Enum_1.1", "watlow1", 0, 4, 3320, 20, INT32_LE_BS, 2000, "watlow1");
 #====================================================================
+
+
+cd "${TOP}/iocBoot/${IOC}"
+iocInit
+
