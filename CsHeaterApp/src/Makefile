@@ -19,6 +19,8 @@ CsHeater_DBD += base.dbd
 #CsHeater_DBD += xxx.dbd
 CsHeater_DBD += asyn.dbd
 CsHeater_DBD += drvAsynIPPort.dbd
+CsHeater_DBD += modbusApp.dbd
+CsHeater_DBD += modbusSupport.dbd
 CsHeater_LIBS += asyn
 CsHeater_LIBS += modbus
 
