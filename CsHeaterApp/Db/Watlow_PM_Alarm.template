@@ -1,4 +1,4 @@
-###  Macro Definitions  ####
+####  Macro Definitions  ####
 # (s)	- Beam Line
 # (ta)	- Target Area
 # (ss)	- Device Name
@@ -28,12 +28,12 @@
 # =========== Alarm Menu Instance ===========
 # =========== Inputs
 # Alarm State
-record(mbbi, "Cs:Source:OvenHeater:AlarmState1") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmState$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,1896,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),$(ASt=1896),0xFF,2000)UINT16")
 	field(ZRST,	"Startup")
 	field(ZRVL,	"88")
 	field(ONST,	"None")
@@ -50,12 +50,12 @@ record(mbbi, "Cs:Source:OvenHeater:AlarmState1")
 }
 
 # Alarm Clearable
-record(mbbi, "Cs:Source:OvenHeater:AlarmClearable1") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmClearable$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,1902,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),$(ACL=1902),0xFF,2000)UINT16")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
@@ -63,12 +63,12 @@ record(mbbi, "Cs:Source:OvenHeater:AlarmClearable1")
 }
 
 # Alarm Silenced
-record(mbbi, "Cs:Source:OvenHeater:AlarmSilenced1") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSilenced$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,1900,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),$(ASh=1900),0xFF,2000)UINT16")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
@@ -76,12 +76,12 @@ record(mbbi, "Cs:Source:OvenHeater:AlarmSilenced1")
 }
 
 # Alarm Latched
-record(mbbi, "Cs:Source:OvenHeater:AlarmLatched1") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmLatched$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,1898,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),$(ALt=1898),0xFF,2000)UINT16")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
@@ -92,31 +92,31 @@ record(mbbi, "Cs:Source:OvenHeater:AlarmLatched1")
 
 # =========== Readbacks
 # Low Alarm Setpoint Readback
-record(ai, "Cs:Source:OvenHeater:AlarmLowSP1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):AlarmLowSP$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Al_Num_1.1,2,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),2,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # High Alarm Setpoint Readback
-record(ai, "Cs:Source:OvenHeater:AlarmHighSP1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):AlarmHighSP$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Al_Num_1.1,0,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),0,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # Alarm Type Readback
-record(mbbi, "Cs:Source:OvenHeater:AlarmType1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmType$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,22,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),22,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Process Alarm")
@@ -126,11 +126,11 @@ record(mbbi, "Cs:Source:OvenHeater:AlarmType1RB")
 }
 
 # Alarm Source Readback
-record(mbbi, "Cs:Source:OvenHeater:AlarmSource1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSource$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,26,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),26,0xFF,2000)UINT16")
 	field(ZRST,	"Analog Input")
 	field(ZRVL,	"142")
 	field(ONST,	"Power")
@@ -142,29 +142,29 @@ record(mbbi, "Cs:Source:OvenHeater:AlarmSource1RB")
 }
 
 # Alarm Source Instance Readback
-record(ai, "Cs:Source:OvenHeater:SourceInstance1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):SourceInstance$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Al_Num_1.1,34,2000)INT16")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),34,2000)INT16")
 }
 
 # Alarm Hysteresis Readback
-record(ai, "Cs:Source:OvenHeater:AlarmHysteresis1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):AlarmHysteresis$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Al_Num_1.1,4,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),4,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # Alarm Logic Readback
-record(mbbi, "Cs:Source:OvenHeater:AlarmLogic1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmLogic$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,2,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),2,0xFF,2000)UINT16")
 	field(ZRST,	"Close On Alarm")
 	field(ZRVL,	"17")
 	field(ONST,	"Open On Alarm")
@@ -172,11 +172,11 @@ record(mbbi, "Cs:Source:OvenHeater:AlarmLogic1RB")
 }
 
 # Alarm Sides Readback
-record(mbbi, "Cs:Source:OvenHeater:AlarmSides1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSides$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,0,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),0,0xFF,2000)UINT16")
 	field(ZRST,	"Both")
 	field(ZRVL,	"13")
 	field(ONST,	"High")
@@ -186,11 +186,11 @@ record(mbbi, "Cs:Source:OvenHeater:AlarmSides1RB")
 }
 
 # Alarm Latching Readback
-record(mbbi, "Cs:Source:OvenHeater:Latching1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):Latching$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,6,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),6,0xFF,2000)UINT16")
 	field(ZRST,	"Non-Latching")
 	field(ZRVL,	"60")
 	field(ONST,	"Latching")
@@ -198,11 +198,11 @@ record(mbbi, "Cs:Source:OvenHeater:Latching1RB")
 }
 
 # Alarm Blocking Readback
-record(mbbi, "Cs:Source:OvenHeater:Blocking1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):Blocking$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,8,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),8,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Startup")
@@ -214,11 +214,11 @@ record(mbbi, "Cs:Source:OvenHeater:Blocking1RB")
 }
 
 # Alarm Silencing Readback
-record(mbbi, "Cs:Source:OvenHeater:Silencing1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):Silencing$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_1.1,4,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),4,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"On")
@@ -226,11 +226,11 @@ record(mbbi, "Cs:Source:OvenHeater:Silencing1RB")
 }
 
 # Alarm Delay Readback
-record(ai, "Cs:Source:OvenHeater:AlarmDelay1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):AlarmDelay$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Al_Num_1.1,40,2000)UINT16")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),40,2000)UINT16")
 	field(EGU,	"s")
 }
 
@@ -239,32 +239,32 @@ record(ai, "Cs:Source:OvenHeater:AlarmDelay1RB")
 
 # =========== Outputs
 # Low Alarm Setpoint
-record(ao, "Cs:Source:OvenHeater:AlarmLowSP1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):AlarmLowSP$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(OMSL,	"closed_loop")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,1882,2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(ALo=1882),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:AlarmLowSP1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmLowSP$(ch)RB")
 }
 
 # High Alarm Setpoint
-record(ao, "Cs:Source:OvenHeater:AlarmHighSP1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):AlarmHighSP$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,1880,2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(Ahi=1880),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:AlarmHighSP1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmHighSP$(ch)RB")
 }
 
 # Process Clear Alarm Request
-record(bi, "Cs:Source:OvenHeater:ClearAlarmButton1")
+record(bi, "$(s):$(ta):$(ss):$(mod):ClearAlarmButton$(ch)")
 {
 	field(DESC,	"Begins process to Clear the Alarm")
 	field(PINI,	"YES")
@@ -272,39 +272,39 @@ record(bi, "Cs:Source:OvenHeater:ClearAlarmButton1")
 	field(ZNAM,	"Clear Alarm")
 	field(ONAM,	"Clearing Alarm")
 	field(ASG,	"ALWAYS")
-	field(FLNK,	"Cs:Source:OvenHeater:ClearAlarmCalc1 PP")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):ClearAlarmCalc$(ch) PP")
 }
 
-record(calcout, "Cs:Source:OvenHeater:ClearAlarmCalc1")
+record(calcout, "$(s):$(ta):$(ss):$(mod):ClearAlarmCalc$(ch)")
 {
-	field(INPA,	"Cs:Source:OvenHeater:ClearAlarmButton1")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):ClearAlarmButton$(ch)")
 	field(CALC,	"A=1")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:ProcessClearAlarm1 PP")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):ProcessClearAlarm$(ch) PP")
 }
 
 # Process Clear Alarm
-record(seq, "Cs:Source:OvenHeater:ProcessClearAlarm1") 
+record(seq, "$(s):$(ta):$(ss):$(mod):ProcessClearAlarm$(ch)") 
 {
 	field(DO1,	"0")
-	field(LNK1,	"Cs:Source:OvenHeater:ClearAlarm1 PP")
+	field(LNK1,	"$(s):$(ta):$(ss):$(mod):ClearAlarm$(ch) PP")
 	field(DLY2,	"1")
 	field(DO2,	"255")
-	field(LNK2,	"Cs:Source:OvenHeater:ClearAlarm1 PP")
-	field(LNK3,	"Cs:Source:OvenHeater:ClearAlarmButton1 PP")
+	field(LNK2,	"$(s):$(ta):$(ss):$(mod):ClearAlarm$(ch) PP")
+	field(LNK3,	"$(s):$(ta):$(ss):$(mod):ClearAlarmButton$(ch) PP")
 }
 
 # Clear Alarm
-record(ao, "Cs:Source:OvenHeater:ClearAlarm1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):ClearAlarm$(ch)") 
 {
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asynMask(watlow.w.1,1904,0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.w.$(mod),$(ACLr=1904),0xFF,2000)UINT16")
 }
 
 
 # Process Silence Alarm Request
-record(bi, "Cs:Source:OvenHeater:SilenceAlarmButton1")
+record(bi, "$(s):$(ta):$(ss):$(mod):SilenceAlarmButton$(ch)")
 {
 	field(DESC,	"Begins process to Silence the Alarm")
 	field(PINI,	"YES")
@@ -312,64 +312,64 @@ record(bi, "Cs:Source:OvenHeater:SilenceAlarmButton1")
 	field(ZNAM,	"Silence Alarm")
 	field(ONAM,	"Silencing Alarm")
 	field(ASG,	"ALWAYS")
-	field(FLNK,	"Cs:Source:OvenHeater:SilenceAlarmCalc1 PP")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):SilenceAlarmCalc$(ch) PP")
 }
 
-record(calcout, "Cs:Source:OvenHeater:SilenceAlarmCalc1")
+record(calcout, "$(s):$(ta):$(ss):$(mod):SilenceAlarmCalc$(ch)")
 {
-	field(INPA,	"Cs:Source:OvenHeater:SilenceAlarmButton1")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):SilenceAlarmButton$(ch)")
 	field(CALC,	"A=1")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:ProcessSilenceAlarm1 PP")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):ProcessSilenceAlarm$(ch) PP")
 }
 
 # Process Silence Alarm
-record(seq, "Cs:Source:OvenHeater:ProcessSilenceAlarm1") 
+record(seq, "$(s):$(ta):$(ss):$(mod):ProcessSilenceAlarm$(ch)") 
 {
 	field(DO1,	"0")
-	field(LNK1,	"Cs:Source:OvenHeater:SilenceAlarm1 PP")
+	field(LNK1,	"$(s):$(ta):$(ss):$(mod):SilenceAlarm$(ch) PP")
 	field(DLY2,	"1")
 	field(DO2,	"255")
-	field(LNK2,	"Cs:Source:OvenHeater:SilenceAlarm1 PP")
-	field(LNK3,	"Cs:Source:OvenHeater:SilenceAlarmButton1 PP")
+	field(LNK2,	"$(s):$(ta):$(ss):$(mod):SilenceAlarm$(ch) PP")
+	field(LNK3,	"$(s):$(ta):$(ss):$(mod):SilenceAlarmButton$(ch) PP")
 }
 
 # Alarm Silence Request
-record(mbbo, "Cs:Source:OvenHeater:SilenceAlarm1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):SilenceAlarm$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asyn(watlow.w.1,1906,2000)UINT16")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(ASr=1906),2000)UINT16")
 	field(ZRST,	"Silence")
 	field(ZRVL,	"1010")
 }
 
 
 # Alarm Type
-record(mbbo, "Cs:Source:OvenHeater:AlarmType1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmType$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(OMSL,	"supervisory")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,1908,0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Aty=1908),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Process Alarm")
 	field(ONVL,	"76")
 	field(TWST,	"Deviation Alarm")
 	field(TWVL,	"24")
-	field(FLNK,	"Cs:Source:OvenHeater:AlarmType1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmType$(ch)RB")
 }
 
 # Alarm Source
-record(mbbo, "Cs:Source:OvenHeater:AlarmSource1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmSource$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,1912,0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(SrA=1912),0xFF,2000)UINT16")
 	field(ZRST,	"Analog Input")
 	field(ZRVL,	"142")
 	field(ONST,	"Power")
@@ -378,85 +378,85 @@ record(mbbo, "Cs:Source:OvenHeater:AlarmSource1")
 	field(TWVL,	"241")
 	field(THST,	"Linearization")
 	field(THVL,	"238")
-	field(FLNK,	"Cs:Source:OvenHeater:AlarmSource1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmSource$(ch)RB")
 }
 
 # Alarm Source Instance
-record(ao, "Cs:Source:OvenHeater:SourceInstance1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):SourceInstance$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asyn(watlow.w.1,1914,2000)INT16")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(iSA=1914),2000)INT16")
 	field(DRVL,	"1")
 	field(DRVH,	"2")
-	field(FLNK,	"Cs:Source:OvenHeater:SourceInstance1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):SourceInstance$(ch)RB")
 }
 
 # Alarm Hysteresis
-record(ao, "Cs:Source:OvenHeater:AlarmHysteresis1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):AlarmHysteresis$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,1884,2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(Ahy=1884),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(DRVL,	"0.001")
-	field(FLNK,	"Cs:Source:OvenHeater:AlarmHysteresis1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmHysteresis$(ch)RB")
 }
 
 # Alarm Logic
-record(mbbo, "Cs:Source:OvenHeater:AlarmLogic1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmLogic$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,1888,0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(ALg=1888),0xFF,2000)UINT16")
 	field(ZRST,	"Close On Alarm")
 	field(ZRVL,	"17")
 	field(ONST,	"Open On Alarm")
 	field(ONVL,	"66")
-	field(FLNK,	"Cs:Source:OvenHeater:AlarmLogic1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmLogic$(ch)RB")
 }
 
 # Alarm Sides
-record(mbbo, "Cs:Source:OvenHeater:AlarmSides1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmSides$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(ASd=1886),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(ASd=1886),0xFF,2000)UINT16")
 	field(ZRST,	"Both")
 	field(ZRVL,	"13")
 	field(ONST,	"High")
 	field(ONVL,	"37")
 	field(TWST,	"Low")
 	field(TWVL,	"53")
-	field(FLNK,	"Cs:Source:OvenHeater:AlarmSides1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmSides$(ch)RB")
 }
 
 # Alarm Latching
-record(mbbo, "Cs:Source:OvenHeater:Latching1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):Latching$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(ALA=1892),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(ALA=1892),0xFF,2000)UINT16")
 	field(ZRST,	"Non-Latching")
 	field(ZRVL,	"60")
 	field(ONST,	"Latching")
 	field(ONVL,	"49")
-	field(FLNK,	"Cs:Source:OvenHeater:Latching1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):Latching$(ch)RB")
 }
 
 # Alarm Blocking
-record(mbbo, "Cs:Source:OvenHeater:Blocking1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):Blocking$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(AbL=1894),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(AbL=1894),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Startup")
@@ -465,16 +465,16 @@ record(mbbo, "Cs:Source:OvenHeater:Blocking1")
 	field(TWVL,	"85")
 	field(THST,	"Both")
 	field(THVL,	"13")
-	field(FLNK,	"Cs:Source:OvenHeater:Blocking1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):Blocking$(ch)RB")
 }
 
 # Alarm Silencing
-record(mbbo, "Cs:Source:OvenHeater:Silencing1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):Silencing$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(ASi=1890),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(ASi=1890),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"On")
@@ -482,16 +482,16 @@ record(mbbo, "Cs:Source:OvenHeater:Silencing1")
 }
 
 # Alarm Delay
-record(ao, "Cs:Source:OvenHeater:AlarmDelay1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):AlarmDelay$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asyn(watlow.w.1,$(AdL=1920),2000)UINT16")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(AdL=1920),2000)UINT16")
 	field(EGU,	"s")
 	field(DRVL,	"0")
 	field(DRVH,	"9999")
-	field(FLNK,	"Cs:Source:OvenHeater:AlarmDelay1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmDelay$(ch)RB")
 }
 
 

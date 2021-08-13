@@ -30,44 +30,44 @@
 # ///
 # /// Record for the Boolean Button
 # ///
-record(bi, "Cs:Source:OvenHeater:PID:Set$(W):Update")
+record(bi, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update")
 {
 	field(ZNAM,	"Update")
 	field(ONAM,	"Updating")
-	field(FLNK,	"Cs:Source:OvenHeater:PID:Set$(W):CalcUpdate")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcUpdate")
 }
 
 
 # ///
 # /// Is this the active PID Set?
 # ///
-record(calcout, "Cs:Source:OvenHeater:PID:Set$(W):CalcUpdate")
+record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcUpdate")
 {
 	field(DESC,	"Is this the active PID set")
-	field(INPA,	"Cs:Source:OvenHeater:PID:Set$(W):Update.VAL MS")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update.VAL MS")
 	field(CALC,	"A")
 	field(OOPT,	"Transition To Non-zero")
-	field(OUT,	"Cs:Source:OvenHeater:PID:Set$(W):UpdtSet.PROC")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):UpdtSet.PROC")
 	field(DOPT,	"Use CALC")
 }
 
 # ///
 # /// Sequence record to trigger the update to the PID Set. 
 # ///
-record(seq, "Cs:Source:OvenHeater:PID:Set$(W):UpdtSet")
+record(seq, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):UpdtSet")
 {
 	field(DESC,     "Update PID Set Values")
 	field(DOL1,     "$(P_LINK)RB")
-	field(LNK1,     "Cs:Source:OvenHeater:PID:Updt$(W):PSet.VAL PP")
+	field(LNK1,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):PSet.VAL PP")
 	field(DLY1,     "0.1")
 	field(DOL2,     "$(I_LINK)RB")
-	field(LNK2,     "Cs:Source:OvenHeater:PID:Updt$(W):ISet.VAL PP")
+	field(LNK2,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):ISet.VAL PP")
 	field(DLY2,     "0.1")
 	field(DOL3,     "$(D_LINK)RB")
-	field(LNK3,     "Cs:Source:OvenHeater:PID:Updt$(W):DSet.VAL PP")
+	field(LNK3,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):DSet.VAL PP")
 	field(DLY3,     "0.1")
 	field(DOL4,	"0")
-	field(LNK4,	"Cs:Source:OvenHeater:PID:Set$(W):Update PP")
+	field(LNK4,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update PP")
 }
 
 

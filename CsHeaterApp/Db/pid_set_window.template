@@ -31,7 +31,7 @@
 # ///
 # /// Disable this template
 # ///
-record(bo, "Cs:Source:OvenHeater:PID:Set$(W):Disable") {
+record(bo, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Disable") {
 	field(DESC,	"Disable this PID window")
 	field(PINI,	"YES")
 	field(VAL,	"1")
@@ -40,17 +40,17 @@ record(bo, "Cs:Source:OvenHeater:PID:Set$(W):Disable") {
 	field(ONAM,	"Disabled")
 	field(ZSV,	"NO_ALARM")
 	field(OSV,	"MAJOR")
-	field(FLNK,	"Cs:Source:OvenHeater:PID:Set$(W):CalcWriteEnable")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable")
 	info(autosaveFields, "VAL")
 }
 
 # ///
 # /// Record to hold the current PV value
 # ///
-record(ai, "Cs:Source:OvenHeater:PID:Set$(W):Value") {
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Value") {
 	field(DESC,	"Current PV Value")
 	field(INP,	"$(PV) CP MS")
-	field(FLNK,	"Cs:Source:OvenHeater:PID:Set$(W):CalcInWindow.PROC")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcInWindow.PROC")
 	field(EGU,	"$(UNITS)")
 	field(PREC,	"$(PREC=2)")
 }
@@ -58,15 +58,15 @@ record(ai, "Cs:Source:OvenHeater:PID:Set$(W):Value") {
 # ///
 # /// Calculate if $(PV) is in the window.
 # ///
-record(calcout, "Cs:Source:OvenHeater:PID:Set$(W):CalcInWindow") {
+record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcInWindow") {
 	field(DESC,	"Calc PV in window")
 	field(PINI,	"YES")
-	field(INPA,	"Cs:Source:OvenHeater:PID:Set$(W):Low")
-	field(INPB,	"Cs:Source:OvenHeater:PID:Set$(W):High")
-	field(INPC,	"Cs:Source:OvenHeater:PID:Set$(W):Value MS")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Low")
+	field(INPB,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):High")
+	field(INPC,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Value MS")
 	field(CALC,	"((C>=A)&&(C<B))")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:PID:Set$(W):InWindow.VAL PP MS")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):InWindow.VAL PP MS")
 	field(DOPT,	"Use CALC")
 	field(PREC,	"$(PREC=2)")
 	field(SCAN,	"10 second")
@@ -75,7 +75,7 @@ record(calcout, "Cs:Source:OvenHeater:PID:Set$(W):CalcInWindow") {
 # ///
 # /// The low boundary for the PV that is used by CalcInWindow
 # ///
-record(ai, "Cs:Source:OvenHeater:PID:Set$(W):Low") {
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Low") {
 	field(DESC,	"Low PV")
 	field(VAL,	"$(LOW=0)")
 	field(PREC,	"$(PREC=2)")
@@ -86,7 +86,7 @@ record(ai, "Cs:Source:OvenHeater:PID:Set$(W):Low") {
 # ///
 # /// The high boundary for the PV that is used by CalcInWindow
 # ///
-record(ai, "Cs:Source:OvenHeater:PID:Set$(W):High") {
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):High") {
 	field(DESC,	"High PV")
 	field(VAL,	"$(HIGH=0)")
 	field(PREC,	"$(PREC=2)")
@@ -97,25 +97,25 @@ record(ai, "Cs:Source:OvenHeater:PID:Set$(W):High") {
 # ///
 # /// Flag to indicate if the $(PV) is in the window
 # ///
-record(bo, "Cs:Source:OvenHeater:PID:Set$(W):InWindow") {
+record(bo, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):InWindow") {
 	field(DESC,	"PV in window")
 	field(PINI,	"YES")
 	field(VAL,	"0")
 	field(OMSL,	"supervisory")
 	field(ZNAM,	"Not In Window")
 	field(ONAM,	"In Window")
-	field(FLNK,	"Cs:Source:OvenHeater:PID:Set$(W):CalcPIDWrite.PROC")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcPIDWrite.PROC")
 }
 
 # ///
 # /// If the in-window flag does a 0->1 transition, trigger the PID write
 # ///
-record(calcout, "Cs:Source:OvenHeater:PID:Set$(W):CalcPIDWrite") {
+record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcPIDWrite") {
 	field(DESC,	"Calc PID Write")
-	field(INPA,	"Cs:Source:OvenHeater:PID:Set$(W):InWindow.VAL MS")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):InWindow.VAL MS")
 	field(CALC,	"A")
 	field(OOPT,	"Transition To Non-zero")
-	field(OUT,	"Cs:Source:OvenHeater:PID:Set$(W):PIDWrite.PROC")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):PIDWrite.PROC")
 	field(DOPT,	"Use CALC")
 }
 
@@ -125,29 +125,29 @@ record(calcout, "Cs:Source:OvenHeater:PID:Set$(W):CalcPIDWrite") {
 # /// This is also precessed when a user changes one of the parameters. This fixes the issue
 # /// of a change not being applied if the PV is already inside the window.
 # ///
-record(calcout, "Cs:Source:OvenHeater:PID:Set$(W):CalcWriteEnable") {
+record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable") {
 	field(DESC,	"Calc Write Enable")
-	field(INPA,	"Cs:Source:OvenHeater:PID:Set$(W):InWindow.VAL MS")
-	field(INPB,	"Cs:Source:OvenHeater:PID:Set$(W):Disable.VAL MS")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):InWindow.VAL MS")
+	field(INPB,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Disable.VAL MS")
 #	field(CALC,	"A&&!B")
 	field(CALC,	"A")
 	field(OOPT,	"When Non-zero")
-	field(OUT,	"Cs:Source:OvenHeater:PID:Set$(W):PIDWrite.PROC")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):PIDWrite.PROC")
 	field(DOPT,	"Use CALC")
 }
 
 # ///
 # /// Sequence record to trigger a PID write. 
 # ///
-record(seq, "Cs:Source:OvenHeater:PID:Set$(W):PIDWrite") {
+record(seq, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):PIDWrite") {
 	field(DESC,     "Write PID Values")
-	field(DOL1,     "Cs:Source:OvenHeater:PID:Set$(W):PSet")
+	field(DOL1,     "$(s):$(ta):$(ss):$(mod):PID:Set$(W):PSet")
 	field(LNK1,     "$(P_LINK) PP")
 	field(DLY1,     "0.1")
-	field(DOL2,     "Cs:Source:OvenHeater:PID:Set$(W):ISet")
+	field(DOL2,     "$(s):$(ta):$(ss):$(mod):PID:Set$(W):ISet")
 	field(LNK2,     "$(I_LINK) PP")
 	field(DLY2,     "0.1")
-	field(DOL3,     "Cs:Source:OvenHeater:PID:Set$(W):DSet")
+	field(DOL3,     "$(s):$(ta):$(ss):$(mod):PID:Set$(W):DSet")
 	field(LNK3,     "$(D_LINK) PP")
 	field(DLY3,     "0.1")
 }
@@ -155,39 +155,39 @@ record(seq, "Cs:Source:OvenHeater:PID:Set$(W):PIDWrite") {
 # ///
 # /// The P that will be written by the seq record PIDWrite
 # ///
-record(ai, "Cs:Source:OvenHeater:PID:Set$(W):PSet") {
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):PSet") {
 	field(DESC,	"P Set")
 	field(VAL,	"$(P=0)")
 #	field(PREC,	"$(PREC=3)")
 	field(PREC,	"3")
 	field(PINI,	"YES")
-	field(FLNK,	"Cs:Source:OvenHeater:PID:Set$(W):CalcWriteEnable")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable")
 	info(autosaveFields, "VAL")
 }
 
 # ///
 # /// The I that will be written by the seq record PIDWrite
 # ///
-record(ai, "Cs:Source:OvenHeater:PID:Set$(W):ISet") {
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):ISet") {
 	field(DESC,	"I Set")
 	field(VAL,	"$(I=0)")
 #	field(PREC,	"$(PREC=0)")
 	field(PREC,	"0")
 	field(PINI,	"YES")
-	field(FLNK,	"Cs:Source:OvenHeater:PID:Set$(W):CalcWriteEnable")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable")
 	info(autosaveFields, "VAL")
 }
 
 # ///
 # /// The D that will be written by the seq record PIDWrite
 # ///
-record(ai, "Cs:Source:OvenHeater:PID:Set$(W):DSet") {
+record(ai, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):DSet") {
 	field(DESC,	"D Set")
 	field(VAL,	"$(D=0)")
 #	field(PREC,	"$(PREC=0)")
 	field(PREC,	"0")
 	field(PINI,	"YES")
-	field(FLNK,	"Cs:Source:OvenHeater:PID:Set$(W):CalcWriteEnable")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcWriteEnable")
 	info(autosaveFields, "VAL")
 }
 

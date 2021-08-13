@@ -1,4 +1,4 @@
-include "Watlow_PM_IOC_Alarms.template"
+include "Watlow_PM_IOC_Alarm.template"
 include "Watlow_PM_Alarm.template"
 #include "Watlow_PM_Analog_Input.template"
 include "Watlow_PM_General.template"

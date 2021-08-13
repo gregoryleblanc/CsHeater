@@ -37,12 +37,12 @@
 #=========== Control Loop Menu ===========
 # =========== Inputs
 # Open Loop Error Status
-record(mbbi, "Cs:Source:OvenHeater:OpenLoopError1") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):OpenLoopError$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.1,48,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),48,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"None")
 	field(ZRVL,	"61")
 	field(ONST,	"Open Loop")
@@ -52,12 +52,12 @@ record(mbbi, "Cs:Source:OvenHeater:OpenLoopError1")
 }
 
 # Output Power
-record(ai, "Cs:Source:OvenHeater:OutputPwr1") 
+record(ai, "$(s):$(ta):$(ss):$(mod):OutputPwr$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.1,18,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),18,2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(PREC,	"1")
 	field(MDEL,	"0.1")
@@ -71,84 +71,84 @@ record(ai, "Cs:Source:OvenHeater:OutputPwr1")
 # =========== Read Backs
 # ------ CL_Num_1 Range
 # Cool Proportional Band RB
-record(ai, "Cs:Source:OvenHeater:CoolPID_P1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):CoolPID_P$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.1,2,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),2,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Dead Band RB
-record(ai, "Cs:Source:OvenHeater:DeadBand1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):DeadBand$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.1,8,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),8,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"1")
 	field(MDEL,	"0.1")
 }
 
 # Heat Hysteresis RB
-record(ai, "Cs:Source:OvenHeater:HeatHysteresis1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):HeatHysteresis$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.1,10,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),10,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Cool Hysteresis RB
-record(ai, "Cs:Source:OvenHeater:CoolHysteresis1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):CoolHysteresis$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.1,12,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),12,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Open Loop Detect Time RB
-record(ai, "Cs:Source:OvenHeater:OpenLoopTime1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):OpenLoopTime$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.1,34,2000)UINT16")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),34,2000)UINT16")
 	field(EGU,	"s")
 	field(PREC,	"0")
 	field(MDEL,	"0.1")
 }
 
 # Open Loop Detect Deviation RB
-record(ai, "Cs:Source:OvenHeater:OpenLoopDeviation1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):OpenLoopDeviation$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.1,36,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),36,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Peltier Delay RB
-record(ai, "Cs:Source:OvenHeater:PeltierDelay1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):PeltierDelay$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.1,44,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),44,2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(MDEL,	"0.1")
 }
@@ -157,106 +157,106 @@ record(ai, "Cs:Source:OvenHeater:PeltierDelay1RB")
 
 # ------ CL_Num_2 Range
 # Control Setpoint RB
-record(ai, "Cs:Source:OvenHeater:SetSetpoint1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):SetSetpoint$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,0,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),0,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"1")
 }
 
 # Manual Output/Open Loop Setpoint RB
-record(ai, "Cs:Source:OvenHeater:ManualOutput1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):ManualOutput$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,2,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),2,2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(PREC,	"1")
 }
 
 # Minimum Setpoint RB
-record(ai, "Cs:Source:OvenHeater:MinSetpoint1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):MinSetpoint$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,4,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),4,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Maximum Setpoint RB
-record(ai, "Cs:Source:OvenHeater:MaxSetpoint1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):MaxSetpoint$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,6,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),6,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Minimum Manual Power RB
-record(ai, "Cs:Source:OvenHeater:MinManualPwr1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):MinManualPwr$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,8,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),8,2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(PREC,	"1")
 	field(MDEL,	"0.1")
 }
 
 # Maximum Manual Power RB
-record(ai, "Cs:Source:OvenHeater:MaxManualPwr1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):MaxManualPwr$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,10,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),10,2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(PREC,	"1")
 	field(MDEL,	"0.1")
 }
 
 # Idle Setpoint RB
-record(ai, "Cs:Source:OvenHeater:IdleSetpoint1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):IdleSetpoint$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,16,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),16,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"1")
 	field(MDEL,	"0.1")
 }
 
 # Fixed Power RB
-record(ai, "Cs:Source:OvenHeater:FixedPower1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):FixedPower$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,20,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),20,2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(EGU,	"%")
 	field(MDEL,	"0.1")
 }
 
 # Ramp Rate RB
-record(ai, "Cs:Source:OvenHeater:RampRate1RB") 
+record(ai, "$(s):$(ta):$(ss):$(mod):RampRate$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.1,32,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),32,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
@@ -266,12 +266,12 @@ record(ai, "Cs:Source:OvenHeater:RampRate1RB")
 
 # ------ CL_Enum_1 Range
 # Control Mode RB
-record(mbbi, "Cs:Source:OvenHeater:ControlMode1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):ControlMode$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.1,0,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),0,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Auto")
@@ -281,12 +281,12 @@ record(mbbi, "Cs:Source:OvenHeater:ControlMode1RB")
 }
 
 # Cool Algorithm RB
-record(mbbi, "Cs:Source:OvenHeater:CoolMethod1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):CoolMethod$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
 	field(PINI,	"YES")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.1,6,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),6,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"PID")
@@ -296,12 +296,12 @@ record(mbbi, "Cs:Source:OvenHeater:CoolMethod1RB")
 }
 
 # Cool Output Curve RB
-record(mbbi, "Cs:Source:OvenHeater:CoolCurve1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):CoolCurve$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.1,8,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),8,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Non-linear Curve 1")
@@ -311,12 +311,12 @@ record(mbbi, "Cs:Source:OvenHeater:CoolCurve1RB")
 }
 
 # Open Loop Detect Enable RB
-record(mbbi, "Cs:Source:OvenHeater:OpenLoopEnable1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):OpenLoopEnable$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.1,42,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),42,0xFF,2000)UINT16")
 	field(ZRST,	"Disabled")
 	field(ZRVL,	"59")
 	field(ONST,	"Enabled")
@@ -325,12 +325,12 @@ record(mbbi, "Cs:Source:OvenHeater:OpenLoopEnable1RB")
 
 # ------ CL_Enum_2 Range
 # User Failure Action RB
-record(mbbi, "Cs:Source:OvenHeater:UserFailAction1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):UserFailAction$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_2.1,0,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_2.$(mod),0,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Bumpless")
@@ -342,12 +342,12 @@ record(mbbi, "Cs:Source:OvenHeater:UserFailAction1RB")
 }
 
 # Input Error Failure RB
-record(mbbi, "Cs:Source:OvenHeater:InputErrorFailure1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):InputErrorFailure$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_2.1,2,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_2.$(mod),2,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Bumpless")
@@ -359,12 +359,12 @@ record(mbbi, "Cs:Source:OvenHeater:InputErrorFailure1RB")
 }
 
 # Ramp Action RB
-record(mbbi, "Cs:Source:OvenHeater:RampAction1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):RampAction$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_2.1,4,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_2.$(mod),4,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Startup")
@@ -376,12 +376,12 @@ record(mbbi, "Cs:Source:OvenHeater:RampAction1RB")
 }
 
 # Ramp Scale RB
-record(mbbi, "Cs:Source:OvenHeater:RampScale1RB") 
+record(mbbi, "$(s):$(ta):$(ss):$(mod):RampScale$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_2.1,6,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_2.$(mod),6,0xFF,2000)UINT16")
 	field(ZRST,	"Hours")
 	field(ZRVL,	"39")
 	field(ONST,	"Minutes")
@@ -392,195 +392,195 @@ record(mbbi, "Cs:Source:OvenHeater:RampScale1RB")
 
 # =========== Outputs
 # Control Mode
-record(mbbo, "Cs:Source:OvenHeater:ControlMode1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):ControlMode$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(CnM=2360),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(CnM=2360),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Auto")
 	field(ONVL,	"10")
 	field(TWST,	"Manual")
 	field(TWVL,	"54")
-	field(FLNK,	"Cs:Source:OvenHeater:ControlMode1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):ControlMode$(ch)RB")
 }
 
 # Control Setpoint
-record(ao, "Cs:Source:OvenHeater:SetSetpoint1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):SetSetpoint$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(CSP=2640),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(CSP=2640),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"1")
 	field(ADEL,	"0.1")
 	info(archive, "Monitor, 00:00:10, VAL")
 	info(autosaveFields,	"VAL")
 }
-record(calcout, "Cs:Source:OvenHeater:SetSetpoint1SyncMin") 
+record(calcout, "$(s):$(ta):$(ss):$(mod):SetSetpoint$(ch)SyncMin") 
 {
-	field(INPA,	"Cs:Source:OvenHeater:MinSetpoint1 CP")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):MinSetpoint$(ch) CP")
 	field(CALC,	"A")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:SetSetpoint1.DRVL")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):SetSetpoint$(ch).DRVL")
 }
-record(calcout, "Cs:Source:OvenHeater:SetSetpoint1SyncMax") 
+record(calcout, "$(s):$(ta):$(ss):$(mod):SetSetpoint$(ch)SyncMax") 
 {
-	field(INPA,	"Cs:Source:OvenHeater:MaxSetpoint1 CP")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):MaxSetpoint$(ch) CP")
 	field(CALC,	"A")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:SetSetpoint1.DRVH")
-	field(FLNK,	"Cs:Source:OvenHeater:SetSetpoint1RB")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):SetSetpoint$(ch).DRVH")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):SetSetpoint$(ch)RB")
 }
 
 # Idle Setpoint
-record(ao, "Cs:Source:OvenHeater:IdleSetpoint1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):IdleSetpoint$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(idS=2656),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(idS=2656),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"1")
 }
-record(calcout, "Cs:Source:OvenHeater:IdleSetpoint1SyncMin") 
+record(calcout, "$(s):$(ta):$(ss):$(mod):IdleSetpoint$(ch)SyncMin") 
 {
-	field(INPA,	"Cs:Source:OvenHeater:MinSetpoint1 CP")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):MinSetpoint$(ch) CP")
 	field(CALC,	"A")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:IdleSetpoint1.DRVL")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):IdleSetpoint$(ch).DRVL")
 }
-record(calcout, "Cs:Source:OvenHeater:IdleSetpoint1SyncMax") 
+record(calcout, "$(s):$(ta):$(ss):$(mod):IdleSetpoint$(ch)SyncMax") 
 {
-	field(INPA,	"Cs:Source:OvenHeater:MaxSetpoint1 CP")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):MaxSetpoint$(ch) CP")
 	field(CALC,	"A")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:IdleSetpoint1.DRVH")
-	field(FLNK,	"Cs:Source:OvenHeater:IdleSetpoint1RB")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):IdleSetpoint$(ch).DRVH")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):IdleSetpoint$(ch)RB")
 }
 
 # Heat Hysteresis
-record(ao, "Cs:Source:OvenHeater:HeatHysteresis1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):HeatHysteresis$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(hhy=2380),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(hhy=2380),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:HeatHysteresis1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):HeatHysteresis$(ch)RB")
 }
 
 # Cool Proportional Band
-record(ao, "Cs:Source:OvenHeater:CoolPID_P1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):CoolPID_P$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(CPb=2372),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(CPb=2372),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:CoolPID_P1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):CoolPID_P$(ch)RB")
 }
 
 # Cool Hysteresis
-record(ao, "Cs:Source:OvenHeater:CoolHysteresis1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):CoolHysteresis$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(Chy=2382),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(Chy=2382),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:CoolHysteresis1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):CoolHysteresis$(ch)RB")
 }
 
 # Dead Band
-record(ao, "Cs:Source:OvenHeater:DeadBand1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):DeadBand$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(Cdb=2378),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(Cdb=2378),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"1")
-	field(FLNK,	"Cs:Source:OvenHeater:DeadBand1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):DeadBand$(ch)RB")
 }
 
 # Manual Output/Open Loop Setpoint
-record(ao, "Cs:Source:OvenHeater:ManualOutput1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):ManualOutput$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(oSP=2642),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(oSP=2642),2000)FLOAT32_BE")
 	field(EGU,	"%")
 #	Limits are conditional determined on mode of heating/cooling?
 	field(DRVL,	"-100")
 	field(DRVH,	"100")
 	field(PREC,	"1")
-	field(FLNK,	"Cs:Source:OvenHeater:ManualOutput1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):ManualOutput$(ch)RB")
 	info(archive, "Monitor, 00:00:10, VAL")
 }
 # Cool Algorithm
-record(mbbo, "Cs:Source:OvenHeater:CoolMethod1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):CoolMethod$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(CAg=2366),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(CAg=2366),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"PID")
 	field(ONVL,	"71")
 	field(TWST,	"On/Off")
 	field(TWVL,	"64")
-	field(FLNK,	"Cs:Source:OvenHeater:CoolMethod1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):CoolMethod$(ch)RB")
 }
 
 # Cool Output Curve
-record(mbbo, "Cs:Source:OvenHeater:CoolCurve1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):CoolCurve$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(CCr=2368),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(CCr=2368),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Non-linear Curve 1")
 	field(ONVL,	"214")
 	field(TWST,	"Non-linear Curve 2")
 	field(TWVL,	"215")
-	field(FLNK,	"Cs:Source:OvenHeater:CoolCurve1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):CoolCurve$(ch)RB")
 }
 
 # Peltier Delay
-record(ao, "Cs:Source:OvenHeater:PeltierDelay1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):PeltierDelay$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(PdL=2414),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(PdL=2414),2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(DRVL,	"0")
 	field(DRVH,	"5")
 	field(PREC,	"1")
-	field(FLNK,	"Cs:Source:OvenHeater:PeltierDelay1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PeltierDelay$(ch)RB")
 }
 
 # User Failure Action
-record(mbbo, "Cs:Source:OvenHeater:UserFailAction1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):UserFailAction$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(UFA=2662),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(UFA=2662),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Bumpless")
@@ -589,16 +589,16 @@ record(mbbo, "Cs:Source:OvenHeater:UserFailAction1")
 	field(TWVL,	"33")
 	field(THST,	"User")
 	field(THVL,	"100")
-	field(FLNK,	"Cs:Source:OvenHeater:UserFailAction1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):UserFailAction$(ch)RB")
 }
 
 # Input Error Failure
-record(mbbo, "Cs:Source:OvenHeater:InputErrorFailure1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):InputErrorFailure$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(FAiL=2664),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(FAiL=2664),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Bumpless")
@@ -607,83 +607,83 @@ record(mbbo, "Cs:Source:OvenHeater:InputErrorFailure1")
 	field(TWVL,	"54")
 	field(THST,	"User")
 	field(THVL,	"100")
-	field(FLNK,	"Cs:Source:OvenHeater:InputErrorFailure1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):InputErrorFailure$(ch)RB")
 }
 
 # Fixed Power
-record(ao, "Cs:Source:OvenHeater:FixedPower1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):FixedPower$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(MAn=2660),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(MAn=2660),2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(EGU,	"%")
 }
-record(calcout, "Cs:Source:OvenHeater:FixedPower1SyncMin") 
+record(calcout, "$(s):$(ta):$(ss):$(mod):FixedPower$(ch)SyncMin") 
 {
-	field(INPA,	"Cs:Source:OvenHeater:MinManualPwr1 CP")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):MinManualPwr$(ch) CP")
 	field(CALC,	"A")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:FixedPower1.DRVL")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):FixedPower$(ch).DRVL")
 }
-record(calcout, "Cs:Source:OvenHeater:FixedPower1SyncMax") 
+record(calcout, "$(s):$(ta):$(ss):$(mod):FixedPower$(ch)SyncMax") 
 {
-	field(INPA,	"Cs:Source:OvenHeater:MaxManualPwr1 CP")
+	field(INPA,	"$(s):$(ta):$(ss):$(mod):MaxManualPwr$(ch) CP")
 	field(CALC,	"A")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"Cs:Source:OvenHeater:FixedPower1.DRVH")
-	field(FLNK,	"Cs:Source:OvenHeater:FixedPower1RB")
+	field(OUT,	"$(s):$(ta):$(ss):$(mod):FixedPower$(ch).DRVH")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):FixedPower$(ch)RB")
 }
 
 # Open Loop Detect Enable
-record(mbbo, "Cs:Source:OvenHeater:OpenLoopEnable1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):OpenLoopEnable$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(LdE=2402),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(LdE=2402),0xFF,2000)UINT16")
 	field(ZRST,	"Disabled")
 	field(ZRVL,	"59")
 	field(ONST,	"Enabled")
 	field(ONVL,	"106")
-	field(FLNK,	"Cs:Source:OvenHeater:OpenLoopEnable1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OpenLoopEnable$(ch)RB")
 }
 
 # Open Loop Detect Time
-record(ao, "Cs:Source:OvenHeater:OpenLoopTime1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):OpenLoopTime$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(Ldt=2404),2000)UINT16")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(Ldt=2404),2000)UINT16")
 	field(EGU,	"s")
 	field(DRVL,	"0")
 	field(DRVH,	"3600")
 	field(PREC,	"0")
-	field(FLNK,	"Cs:Source:OvenHeater:OpenLoopTime1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OpenLoopTime$(ch)RB")
 }
 
 # Open Loop Detect Deviation
-record(ao, "Cs:Source:OvenHeater:OpenLoopDeviation1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):OpenLoopDeviation$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(Ldd=1926),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(Ldd=1926),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:OpenLoopDeviation1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OpenLoopDeviation$(ch)RB")
 }
 
 # Ramp Action
-record(mbbo, "Cs:Source:OvenHeater:RampAction1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):RampAction$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(rPA=2666),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(rPA=2666),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Startup")
@@ -692,94 +692,94 @@ record(mbbo, "Cs:Source:OvenHeater:RampAction1")
 	field(TWVL,	"85")
 	field(THST,	"Both")
 	field(THVL,	"13")
-	field(FLNK,	"Cs:Source:OvenHeater:RampAction1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):RampAction$(ch)RB")
 	info(autosaveFields,	"VAL")
 }
 
 # Ramp Scale
-record(mbbo, "Cs:Source:OvenHeater:RampScale1") 
+record(mbbo, "$(s):$(ta):$(ss):$(mod):RampScale$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.1,$(rSC=2668),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(rSC=2668),0xFF,2000)UINT16")
 	field(ZRST,	"Hours")
 	field(ZRVL,	"39")
 	field(ONST,	"Minutes")
 	field(ONVL,	"57")
-	field(FLNK,	"Cs:Source:OvenHeater:RampScale1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):RampScale$(ch)RB")
 	info(autosaveFields,	"VAL")
 }
 
 # Ramp Rate
-record(ao, "Cs:Source:OvenHeater:RampRate1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):RampRate$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(rrt=2672),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(rrt=2672),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:RampRate1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):RampRate$(ch)RB")
 	info(autosaveFields,	"VAL")
 }
 
 # Minimum Setpoint
-record(ao, "Cs:Source:OvenHeater:MinSetpoint1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):MinSetpoint$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(LSP=2644),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(LSP=2644),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:MinSetpoint1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):MinSetpoint$(ch)RB")
 }
 
 # Maximum Setpoint
-record(ao, "Cs:Source:OvenHeater:MaxSetpoint1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):MaxSetpoint$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(hSP=2646),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(hSP=2646),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"Cs:Source:OvenHeater:MaxSetpoint1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):MaxSetpoint$(ch)RB")
 }
 
 # Minimum Manual Power
-record(ao, "Cs:Source:OvenHeater:MinManualPwr1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):MinManualPwr$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(SPL=2648),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(SPL=2648),2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(DRVL,	"-100")
 	field(DRVH,	"100")
 	field(PREC,	"1")
-	field(FLNK,	"Cs:Source:OvenHeater:MinManualPwr1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):MinManualPwr$(ch)RB")
 }
 
 # Maximum Manual Power
-record(ao, "Cs:Source:OvenHeater:MaxManualPwr1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):MaxManualPwr$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.1,$(SPh=2650),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.$(mod),$(SPh=2650),2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(DRVL,	"-100")
 	field(DRVH,	"100")
 	field(PREC,	"1")
-	field(FLNK,	"Cs:Source:OvenHeater:MaxManualPwr1RB")
+	field(FLNK,	"$(s):$(ta):$(ss):$(mod):MaxManualPwr$(ch)RB")
 }
 
 # Open Loop Error Clear Request
-record(ao, "Cs:Source:OvenHeater:OpenLoopClear1") 
+record(ao, "$(s):$(ta):$(ss):$(mod):OpenLoopClear$(ch)") 
 {
 	field(DTYP,	"asynInt32")
 	field(PINI,	"YES")
-	field(OUT,	"@asynMask(watlow.w.1,$(oLC=2410),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.w.$(mod),$(oLC=2410),0xFF,2000)UINT16")
 }
 
 
