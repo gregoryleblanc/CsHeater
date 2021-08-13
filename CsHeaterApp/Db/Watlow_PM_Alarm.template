@@ -28,26 +28,26 @@
 # =========== Alarm Menu Instance ===========
 # =========== Inputs
 # Alarm State
-#record(mbbi, "Cs:Source:OvenHeater:AlarmState1") 
-#{
-#	field(SCAN,	"1 second")
-#	field(PINI,	"YES")
-#	field(DTYP,	"asynUInt32Digital")
-#	field(INP,	"@asynMask(watlow_Al_Enum_1.1,1896,0xFF,2000)UINT16")
-#	field(ZRST,	"Startup")
-#	field(ZRVL,	"88")
-#	field(ONST,	"None")
-#	field(ONVL,	"61")
-#	field(TWST,	"Blocked")
-#	field(TWVL,	"12")
-#	field(THST,	"Alarm Low")
-#	field(THVL,	"8")
-#	field(FRST,	"Alarm High")
-#	field(FRVL,	"7")
-#	field(FVST,	"Error")
-#	field(FVVL,	"28")
-#	info(archive, "Monitor, 00:00:01, VAL")
-#}
+record(mbbi, "Cs:Source:OvenHeater:AlarmState1") 
+{
+	field(SCAN,	"1 second")
+	field(PINI,	"YES")
+	field(DTYP,	"asynUInt32Digital")
+	field(INP,	"@asynMask(watlow_Al_Enum_1.1,1896,0xFF,2000)UINT16")
+	field(ZRST,	"Startup")
+	field(ZRVL,	"88")
+	field(ONST,	"None")
+	field(ONVL,	"61")
+	field(TWST,	"Blocked")
+	field(TWVL,	"12")
+	field(THST,	"Alarm Low")
+	field(THVL,	"8")
+	field(FRST,	"Alarm High")
+	field(FRVL,	"7")
+	field(FVST,	"Error")
+	field(FVVL,	"28")
+	info(archive, "Monitor, 00:00:01, VAL")
+}
 
 # Alarm Clearable
 record(mbbi, "Cs:Source:OvenHeater:AlarmClearable1") 
