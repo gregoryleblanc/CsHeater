@@ -42,7 +42,7 @@ record(ai, "Cs:Source:OvenHeater:SoftwareRev")
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Glb_Num_1,4,2000)INT32_BE")
+	field(INP,	"@asyn(watlow_Glb_Num_1.1,4,2000)INT32_BE")
 	field(MDEL,	"1")
 }
 
@@ -52,7 +52,7 @@ record(ai, "Cs:Source:OvenHeater:SerialNumber")
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Glb_Num_1,12,2000)INT32_BE")
+	field(INP,	"@asyn(watlow_Glb_Num_1.1,12,2000)INT32_BE")
 	field(MDEL,	"1")
 }
 
@@ -62,7 +62,7 @@ record(ai, "Cs:Source:OvenHeater:SoftwareBuild")
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Glb_Num_1,8,2000)INT32_BE")
+	field(INP,	"@asyn(watlow_Glb_Num_1.1,8,2000)INT32_BE")
 	field(MDEL,	"1")
 }
 
@@ -72,7 +72,7 @@ record(ai, "Cs:Source:OvenHeater:MakeDate")
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Glb_Num_1,14,2000)INT32_BE")
+	field(INP,	"@asyn(watlow_Glb_Num_1.1,14,2000)INT32_BE")
 	field(MDEL,	"1")
 }
 
@@ -82,7 +82,7 @@ record(ai, "Cs:Source:OvenHeater:HardwareID")
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Glb_Num_1,0,2000)INT32_BE")
+	field(INP,	"@asyn(watlow_Glb_Num_1.1,0,2000)INT32_BE")
 	field(MDEL,	"1")
 }
 
@@ -92,52 +92,52 @@ record(ai, "Cs:Source:OvenHeater:FirmwareID")
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Glb_Num_1,2,2000)INT32_BE")
+	field(INP,	"@asyn(watlow_Glb_Num_1.1,2,2000)INT32_BE")
 	field(MDEL,	"1")
 }
 
 # Device Status
-record(mbbi, "Cs:Source:OvenHeater:DeviceStatus") 
-{
-	field(SCAN,	"10 second")
-	field(PINI,	"YES")
-	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow.enum.w,30,0xFF,2000)UINT16")
-	field(ZRST,	"Nominal")
-	field(ZRVL,	"138")
-	field(ONST,	"Fault")
-	field(ONVL,	"32")
-}
+#record(mbbi, "Cs:Source:OvenHeater:DeviceStatus") 
+#{
+#	field(SCAN,	"10 second")
+#	field(PINI,	"YES")
+#	field(DTYP,	"asynUInt32Digital")
+#	field(INP,	"@asynMask(watlow.enum.w,30,0xFF,2000)UINT16")
+#	field(ZRST,	"Nominal")
+#	field(ZRVL,	"138")
+#	field(ONST,	"Fault")
+#	field(ONVL,	"32")
+#}
 
 
 
 #=========== Global Menu ===========
 
 # Ramp Type
-record(mbbo, "Cs:Source:OvenHeater:RampType") 
-{
-	field(SCAN,	"Passive")
-	field(PINI,	"YES")
-	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w,4414,0xFF,2000)UINT16")
-	field(ZRST,	"Rate")
-	field(ZRVL,	"81")
-	field(ONST,	"Time")
-	field(ONVL,	"143")
-}
+#record(mbbo, "Cs:Source:OvenHeater:RampType") 
+#{
+#	field(SCAN,	"Passive")
+#	field(PINI,	"YES")
+#	field(DTYP,	"asynUInt32Digital")
+#	field(OUT,	"@asynMask(watlow.enum.w,4414,0xFF,2000)UINT16")
+#	field(ZRST,	"Rate")
+#	field(ZRVL,	"81")
+#	field(ONST,	"Time")
+#	field(ONVL,	"143")
+#}
 
 # Units
-record(mbbo, "Cs:Source:OvenHeater:Units")
-{
-	field(SCAN,	"Passive")
-	field(PINI,	"YES")
-	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w,2308,0xFF,2000)UINT16")
-	field(ZRST,	"°F")
-	field(ZRVL,	"30")
-	field(ONST,	"°C")
-	field(ONVL,	"15")
-}
+#record(mbbo, "Cs:Source:OvenHeater:Units")
+#{
+#	field(SCAN,	"Passive")
+#	field(PINI,	"YES")
+#	field(DTYP,	"asynUInt32Digital")
+#	field(OUT,	"@asynMask(watlow.enum.w,2308,0xFF,2000)UINT16")
+#	field(ZRST,	"°F")
+#	field(ZRVL,	"30")
+#	field(ONST,	"°C")
+#	field(ONVL,	"15")
+#}
 
 #=========== Module Level Alarm Handling  ===========
 # Conditions for an alarm for each module:
@@ -150,7 +150,7 @@ record(mbbo, "Cs:Source:OvenHeater:Units")
 # Process the communication status check.
 record(calcout, "Cs:Source:OvenHeater:CommsAlarmCalc")
 {
-	field(INPA,	"Cs:Source:OvenHeater:ControlMode$(ch)RB.SEVR CP")
+	field(INPA,	"Cs:Source:OvenHeater:ControlMode1RB.SEVR CP")
 	field(CALC,	"A==3")
 	field(OOPT,	"Every Time")
 	field(DOPT,	"Use CALC")
@@ -191,7 +191,7 @@ record(calc, "Cs:Source:OvenHeater:ModAlarmStates")
 # If ControlMode <> Off (0) set out to 0 else process the remainder alarms.
 record(calcout, "Cs:Source:OvenHeater:PrcsModAlarms")
 {
-	field(INPA,	"Cs:Source:OvenHeater:ControlMode$(ch) CP")
+	field(INPA,	"Cs:Source:OvenHeater:ControlMode1 CP")
 	field(INPB,	"Cs:Source:OvenHeater:DeviceStatus CP")
 	field(INPC,	"Cs:Source:OvenHeater:LimitState CP")
 	field(INPD,	"Cs:Source:OvenHeater:OpenLoopError1 CP")
