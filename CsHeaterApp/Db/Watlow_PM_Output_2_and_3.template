@@ -16,12 +16,12 @@
 #=========== Output Menu (Instance 2 and 3) ===========
 # ========= Read Backs
 # Output Digtial Function RB
-record(mbbi, "$(s):$(ta):$(ss):$(mod):OutputFunction$(ch)RB") 
+record(mbbi, "Cs:Source:OvenHeater:OutputFunction1RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AO$(ch)_Enum_1.$(mod),0,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AO1_Enum_1.1,0,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Alarm")
@@ -43,12 +43,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):OutputFunction$(ch)RB")
 }
 
 # Function Instance RB
-record(mbbi, "$(s):$(ta):$(ss):$(mod):FunctionInstanceD$(ch)RB") 
+record(mbbi, "Cs:Source:OvenHeater:FunctionInstanceD1RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AO$(ch)_Enum_1.$(mod),2,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AO1_Enum_1.1,2,0xFF,2000)UINT16")
 	field(ZRST,	"1")
 	field(ZRVL,	"1")
 	field(ONST,	"2")
@@ -60,36 +60,36 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):FunctionInstanceD$(ch)RB")
 }
 
 # Output Time Base RB
-record(ai, "$(s):$(ta):$(ss):$(mod):OutputTimeBase$(ch)RB") 
+record(ai, "Cs:Source:OvenHeater:OutputTimeBase1RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AO$(ch)_Num_1.$(mod),0,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AO1_Num_1.1,0,2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(EGU,	"s")
 	field(MDEL,	"0.01")
 }
 
 # Output Low Power Scale RB
-record(ai, "$(s):$(ta):$(ss):$(mod):OutputLPScale$(ch)RB") 
+record(ai, "Cs:Source:OvenHeater:OutputLPScale1RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AO$(ch)_Num_1.$(mod),12,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AO1_Num_1.1,12,2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(EGU,	"%")
 	field(MDEL,	"0.01")
 }
 
 # Output High Power Scale RB
-record(ai, "$(s):$(ta):$(ss):$(mod):OutputHPScale$(ch)RB") 
+record(ai, "Cs:Source:OvenHeater:OutputHPScale1RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AO$(ch)_Num_1.$(mod),14,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AO1_Num_1.1,14,2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(EGU,	"%")
 	field(MDEL,	"0.01")
@@ -99,12 +99,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):OutputHPScale$(ch)RB")
 
 # ========= Outputs
 # Output Digtial Function
-record(mbbo, "$(s):$(ta):$(ss):$(mod):OutputFunction$(ch)") 
+record(mbbo, "Cs:Source:OvenHeater:OutputFunction1") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Fnd=1038),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(Fnd=1038),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Alarm")
@@ -123,16 +123,16 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):OutputFunction$(ch)")
 	field(SVVL,	"234")
 	field(EIST,	"Limit")
 	field(EIVL,	"126")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OutputFunction$(ch)RB")
+	field(FLNK,	"Cs:Source:OvenHeater:OutputFunction1RB")
 }
 
 # Function Instance
-record(mbbo, "$(s):$(ta):$(ss):$(mod):FunctionInstanceD$(ch)") 
+record(mbbo, "Cs:Source:OvenHeater:FunctionInstanceD1") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Fid=1040),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(Fid=1040),0xFF,2000)UINT16")
 	field(ZRST,	"1")
 	field(ZRVL,	"1")
 	field(ONST,	"2")
@@ -141,49 +141,49 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):FunctionInstanceD$(ch)")
 	field(TWVL,	"3")
 	field(THST,	"4")
 	field(THVL,	"4")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):FunctionInstanceD$(ch)RB")
+	field(FLNK,	"Cs:Source:OvenHeater:FunctionInstanceD1RB")
 }
 
 # Output Time Base
-record(ao, "$(s):$(ta):$(ss):$(mod):OutputTimeBase$(ch)") 
+record(ao, "Cs:Source:OvenHeater:OutputTimeBase1") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(otB=1034),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(otB=1034),2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(EGU,	"s")
 	field(DRVL,	"5.0")
 	field(DRVH,	"60.0")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OutputTimeBase$(ch)RB")
+	field(FLNK,	"Cs:Source:OvenHeater:OutputTimeBase1RB")
 }
 
 # Output Low Power Scale
-record(ao, "$(s):$(ta):$(ss):$(mod):OutputLPScale$(ch)") 
+record(ao, "Cs:Source:OvenHeater:OutputLPScale1") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(dLo=1046),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(dLo=1046),2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(EGU,	"%")
 	field(DRVL,	"0")
 	field(DRVH,	"100")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OutputLPScale$(ch)RB")
+	field(FLNK,	"Cs:Source:OvenHeater:OutputLPScale1RB")
 }
 
 # Output High Power Scale
-record(ao, "$(s):$(ta):$(ss):$(mod):OutputHPScale$(ch)") 
+record(ao, "Cs:Source:OvenHeater:OutputHPScale1") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(dhi=1048),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(dhi=1048),2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(EGU,	"%")
 	field(DRVL,	"0")
 	field(DRVH,	"100")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):OutputHPScale$(ch)RB")
+	field(FLNK,	"Cs:Source:OvenHeater:OutputHPScale1RB")
 }
 
 

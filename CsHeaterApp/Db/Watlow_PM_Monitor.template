@@ -14,12 +14,12 @@
 #=========== Monitor Menu ===========
 
 # Heat Power
-record(ai, "$(s):$(ta):$(ss):$(mod):HeatPower$(ch)") 
+record(ai, "Cs:Source:OvenHeater:HeatPower1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),14,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.1,14,2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(PREC,	"1")
 	field(MDEL,	"0.1")
@@ -28,24 +28,24 @@ record(ai, "$(s):$(ta):$(ss):$(mod):HeatPower$(ch)")
 }
 
 # Cool Power
-record(ai, "$(s):$(ta):$(ss):$(mod):CoolPower$(ch)") 
+record(ai, "Cs:Source:OvenHeater:CoolPower1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),16,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_1.1,16,2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(PREC,	"1")
 	field(MDEL,	"0.1")
 }
 
 # Filtered Process Value
-record(ai, "$(s):$(ta):$(ss):$(mod):ProcessValue$(ch)") 
+record(ai, "Cs:Source:OvenHeater:ProcessValue1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_1.$(mod),$(PvA=42),2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,$(PvA=42),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
@@ -54,12 +54,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):ProcessValue$(ch)")
 }
 
 # Control Mode Active
-record(mbbi, "$(s):$(ta):$(ss):$(mod):ControlModeActive$(ch)") 
+record(mbbi, "Cs:Source:OvenHeater:ControlModeActive1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),2,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.1,2,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Auto")
@@ -69,12 +69,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):ControlModeActive$(ch)")
 }
 
 # Read Active Closed Loop Setpoint. Active Set Point Active
-record(ai, "$(s):$(ta):$(ss):$(mod):ActiveSV$(ch)")
+record(ai, "Cs:Source:OvenHeater:ActiveSV1")
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_2.$(mod),12,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_2.1,12,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
@@ -83,12 +83,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):ActiveSV$(ch)")
 }
 
 # Autotune Status
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AutotuneStatus$(ch)") 
+record(mbbi, "Cs:Source:OvenHeater:AutotuneStatus1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),52,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Enum_1.1,52,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Waiting: cross 1 positive")

@@ -18,12 +18,12 @@
 #=========== Process Value Menu ===========
 # =========== Inputs
 # Process Source Value A
-record(ai, "$(s):$(ta):$(ss):$(mod):PrcsSrcVA$(ch)") 
+record(ai, "Cs:Source:OvenHeater:PrcsSrcVA1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),0,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Prc_Num_1.1,0,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(ADEL,	"0.1")
@@ -31,12 +31,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):PrcsSrcVA$(ch)")
 }
 
 # Process Source Value B
-record(ai, "$(s):$(ta):$(ss):$(mod):PrcsSrcVB$(ch)") 
+record(ai, "Cs:Source:OvenHeater:PrcsSrcVB1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),2,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Prc_Num_1.1,2,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(ADEL,	"0.1")
@@ -44,12 +44,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):PrcsSrcVB$(ch)")
 }
 
 # Process Output Value
-record(ai, "$(s):$(ta):$(ss):$(mod):PrcsOutput$(ch)") 
+record(ai, "Cs:Source:OvenHeater:PrcsOutput1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),12,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Prc_Num_1.1,12,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(ADEL,	"0.1")
@@ -57,12 +57,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):PrcsOutput$(ch)")
 }
 
 # Process Output Error
-record(mbbi, "$(s):$(ta):$(ss):$(mod):PrcsOutputError$(ch)") 
+record(mbbi, "Cs:Source:OvenHeater:PrcsOutputError1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Prc_Enum_1.$(mod),12,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Prc_Enum_1.1,12,0xFF,2000)UINT16")
 	field(ZRST,	"None")
 	field(ZRVL,	"61")
 	field(ONST,	"Open")
@@ -92,34 +92,34 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):PrcsOutputError$(ch)")
 
 # =========== Read Backs
 # Process Offset
-record(ai, "$(s):$(ta):$(ss):$(mod):PrcsOffset$(ch)RB") 
+record(ai, "Cs:Source:OvenHeater:PrcsOffset1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),0,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Prc_Num_1.1,0,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # Process Value Filter
-record(ai, "$(s):$(ta):$(ss):$(mod):PrcsFilter$(ch)RB") 
+record(ai, "Cs:Source:OvenHeater:PrcsFilter1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Prc_Num_1.$(mod),6,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Prc_Num_1.1,6,2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(PREC,	"1")
 }
 
 # Process Function
-record(mbbi, "$(s):$(ta):$(ss):$(mod):PrcsFunction$(ch)RB") 
+record(mbbi, "Cs:Source:OvenHeater:PrcsFunction1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Prc_Enum_1.$(mod),0,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_Prc_Enum_1.1,0,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Sensor Backup")
@@ -129,12 +129,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):PrcsFunction$(ch)RB")
 }
 
 # Pressure Units
-record(mbbi, "$(s):$(ta):$(ss):$(mod):PressureUnits$(ch)RB") 
+record(mbbi, "Cs:Source:OvenHeater:PressureUnits1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Prc_Enum_1.$(mod),14,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_Prc_Enum_1.1,14,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Pounds per Square Inch")
 	field(ZRVL,	"1671")
 	field(ONST,	"Pascal")
@@ -148,12 +148,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):PressureUnits$(ch)RB")
 }
 
 # Altitude Units
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AltitudeUnits$(ch)RB") 
+record(mbbi, "Cs:Source:OvenHeater:AltitudeUnits1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Prc_Enum_1.$(mod),16,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_Prc_Enum_1.1,16,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Kilofeet")
 	field(ZRVL,	"1677")
 	field(ONST,	"Feet")
@@ -164,11 +164,11 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AltitudeUnits$(ch)RB")
 
 # =========== Outputs
 # Process Offset
-record(ao, "$(s):$(ta):$(ss):$(mod):PrcsOffset$(ch)") 
+record(ao, "Cs:Source:OvenHeater:PrcsOffset1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(PoFS=3324),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(PoFS=3324),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(ADEL,	"0.1")
@@ -176,11 +176,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):PrcsOffset$(ch)")
 }
 
 # Process Function
-record(mbbo, "$(s):$(ta):$(ss):$(mod):PrcsFunction$(ch)") 
+record(mbbo, "Cs:Source:OvenHeater:PrcsFunction1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(PFn=3332),0xFFFF,2000)INT32_BE")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(PFn=3332),0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Sensor Backup")
@@ -191,11 +191,11 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):PrcsFunction$(ch)")
 }
 
 # Pressure Units
-record(mbbo, "$(s):$(ta):$(ss):$(mod):PressureUnits$(ch)") 
+record(mbbo, "Cs:Source:OvenHeater:PressureUnits1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Punt=3332),0xFFFF,2000)INT32_BE")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(Punt=3332),0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Pounds per Square Inch")
 	field(ZRVL,	"1671")
 	field(ONST,	"Pascal")
@@ -210,11 +210,11 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):PressureUnits$(ch)")
 }
 
 # Altitude Units
-record(mbbo, "$(s):$(ta):$(ss):$(mod):AltitudeUnits$(ch)") 
+record(mbbo, "Cs:Source:OvenHeater:AltitudeUnits1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Aunt=3332),0xFFFF,2000)INT32_BE")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(Aunt=3332),0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Kilofeet")
 	field(ZRVL,	"1677")
 	field(ONST,	"Feet")
@@ -223,11 +223,11 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):AltitudeUnits$(ch)")
 }
 
 # Process Value Filter
-record(ao, "$(s):$(ta):$(ss):$(mod):PrcsFilter$(ch)") 
+record(ao, "Cs:Source:OvenHeater:PrcsFilter1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(PvF=3330),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(PvF=3330),2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(PREC,	"1")
 	field(DRVL,	"0.0")

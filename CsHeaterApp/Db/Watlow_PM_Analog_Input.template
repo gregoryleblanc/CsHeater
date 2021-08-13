@@ -28,12 +28,12 @@
 #=========== Analog Input Menu ===========
 # =========== Inputs
 # Analog Input #
-record(ai, "$(s):$(ta):$(ss):$(mod):AnalogInput$(ch)") 
+record(ai, Cs:Source:OvenHeater:AnalogInput1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_1.$(mod),$(Ain=0),2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,$(Ain=0),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(ADEL,	"0.1")
@@ -41,12 +41,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):AnalogInput$(ch)")
 }
 
 # Analog Input Error #
-record(mbbi, "$(s):$(ta):$(ss):$(mod):InputError$(ch)") 
+record(mbbi, Cs:Source:OvenHeater:InputError1") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AI_Enum_1.$(mod),$(iEr=0),0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AI_Enum_1.1,$(iEr=0),0xFF,2000)UINT16")
 	field(ZRST,	"None")
 	field(ZRVL,	"61")
 	field(ONST,	"Open")
@@ -71,23 +71,23 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):InputError$(ch)")
 
 # =========== Read Backs
 # Calibration Offset #
-record(ai, "$(s):$(ta):$(ss):$(mod):AICalOffset$(ch)RB") 
+record(ai, Cs:Source:OvenHeater:AICalOffset1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP, "asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_$(ch).$(mod),22,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,22,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # Sensor Type
-record(mbbi, "$(s):$(ta):$(ss):$(mod):SensorType$(ch)RB") 
+record(mbbi, Cs:Source:OvenHeater:SensorType1RB") 
 {
 	field(SCAN, "1 second")
 	field(PINI,	"YES")
 	field(DTYP, "asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AI_Enum_$(ch).$(mod),6,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AI_Enum_1.1,6,0xFF,2000)UINT16")
 	field(ZRST, "Off")
 	field(ZRVL, "62")
 	field(ONST, "Thermocouple")
@@ -107,12 +107,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):SensorType$(ch)RB")
 }
 
 # TC Linearization (Type)
-record(mbbi, "$(s):$(ta):$(ss):$(mod):TCType$(ch)RB") 
+record(mbbi, Cs:Source:OvenHeater:TCType1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AI_Enum_$(ch).$(mod),8,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AI_Enum_1.1,8,0xFF,2000)UINT16")
 	field(ZRST,	"J")
 	field(ZRVL,	"46")
 	field(ONST,	"F")
@@ -138,12 +138,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):TCType$(ch)RB")
 }
 
 # RTD Leads
-record(mbbi, "$(s):$(ta):$(ss):$(mod):RTDLeads$(ch)RB") 
+record(mbbi, Cs:Source:OvenHeater:RTDLeads1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AI_Enum_$(ch).$(mod),10,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AI_Enum_1.1,10,0xFF,2000)UINT16")
 	field(ZRST,	"2")
 	field(ZRVL,	"1")
 	field(ONST,	"3")
@@ -151,12 +151,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):RTDLeads$(ch)RB")
 }
 
 # Units
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AIUnits$(ch)RB") 
+record(mbbi, Cs:Source:OvenHeater:AIUnits1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AI_Enum_$(ch).$(mod),80,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AI_Enum_1.1,80,0xFF,2000)UINT16")
 	field(ZRST,	"Process")
 	field(ZRVL,	"75")
 	field(ONST,	"Power")
@@ -164,52 +164,52 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AIUnits$(ch)RB")
 }
 
 # Scale Low
-record(ai, "$(s):$(ta):$(ss):$(mod):ScaleLow$(ch)RB") 
+record(ai, Cs:Source:OvenHeater:ScaleLow1RB") 
 {
 	field(SCAN,"1 second")
 	field(PINI,	"YES")
 	field(DTYP, "asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_$(ch).$(mod),28,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,28,2000)FLOAT32_BE")
 	field(PREC, "1")
 }
 
 # Scale High
-record(ai, "$(s):$(ta):$(ss):$(mod):ScaleHigh$(ch)RB") 
+record(ai, Cs:Source:OvenHeater:ScaleHigh1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_$(ch).$(mod),30,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,30,2000)FLOAT32_BE")
 	field(PREC,	"1")
 }
 
 # Range Low
-record(ai, "$(s):$(ta):$(ss):$(mod):RangeLow$(ch)RB") 
+record(ai, Cs:Source:OvenHeater:RangeLow1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_$(ch).$(mod),32,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,32,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Range High
-record(ai, "$(s):$(ta):$(ss):$(mod):RangeHigh$(ch)RB") 
+record(ai, Cs:Source:OvenHeater:RangeHigh1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_$(ch).$(mod),34,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,34,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Process Error Enable
-record(mbbi, "$(s):$(ta):$(ss):$(mod):ProcessErrorEnable$(ch)RB") 
+record(mbbi, Cs:Source:OvenHeater:ProcessErrorEnable1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AI_Enum_$(ch).$(mod),56,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AI_Enum_1.1,56,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Low")
@@ -217,33 +217,33 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):ProcessErrorEnable$(ch)RB")
 }
 
 # Process Error Low 
-record(ai, "$(s):$(ta):$(ss):$(mod):ProcessErrorLow$(ch)RB") 
+record(ai, Cs:Source:OvenHeater:ProcessErrorLow1RB") 
 {
 	field(SCAN,"1 second")
 	field(PINI,	"YES")
 	field(DTYP,"asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_$(ch).$(mod),60,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,60,2000)FLOAT32_BE")
 	field(PREC,	"1")
 }
 
 # Filter
-record(ai, "$(s):$(ta):$(ss):$(mod):Filter$(ch)RB") 
+record(ai, Cs:Source:OvenHeater:Filter1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_$(ch).$(mod),26,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1.1,26,2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(PREC,	"1")
 }
 
 # Error Latching
-record(mbbi, "$(s):$(ta):$(ss):$(mod):ErrorLatching$(ch)RB") 
+record(mbbi, Cs:Source:OvenHeater:ErrorLatching1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AI_Enum_$(ch).$(mod),52,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_AI_Enum_1.1,52,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"On")
@@ -251,12 +251,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):ErrorLatching$(ch)RB")
 }
 
 # Display Precision
-record(mbbi, "$(s):$(ta):$(ss):$(mod):DisplayPrecision$(ch)RB") 
+record(mbbi, Cs:Source:OvenHeater:DisplayPrecision1RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_AI_Enum_$(ch).$(mod),36,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_AI_Enum_1.1,36,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Whole")
 	field(ZRVL,	"105")
 	field(ONST,	"Tenths")
@@ -271,22 +271,22 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):DisplayPrecision$(ch)RB")
 
 # =========== Outputs
 # Calibration Offset #
-record(ao, "$(s):$(ta):$(ss):$(mod):AICalOffset$(ch)") 
+record(ao, Cs:Source:OvenHeater:AICalOffset1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP, "asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(iCA=360),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(iCA=360),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # Sensor Type
-record(mbbo, "$(s):$(ta):$(ss):$(mod):SensorType$(ch)") 
+record(mbbo, Cs:Source:OvenHeater:SensorType1") 
 {
 	field(SCAN, "Passive")
 	field(DOL,	"95")
 	field(DTYP, "asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(SEn=368),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(SEn=368),0xFF,2000)UINT16")
 	field(ZRST, "Off")
 	field(ZRVL, "62")
 	field(ONST, "Thermocouple")
@@ -309,12 +309,12 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):SensorType$(ch)")
 }
 
 # TC Linearization (Type)
-record(mbbo, "$(s):$(ta):$(ss):$(mod):TCType$(ch)") 
+record(mbbo, Cs:Source:OvenHeater:TCType1") 
 {
 	field(SCAN,	"Passive")
 	field(DOL,	"48")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Lin=370),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(Lin=370),0xFF,2000)UINT16")
 	field(ZRST,	"J")
 	field(ZRVL,	"46")
 	field(ONST,	"F")
@@ -341,11 +341,11 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):TCType$(ch)")
 }
 
 # RTD Leads
-record(mbbo, "$(s):$(ta):$(ss):$(mod):RTDLeads$(ch)") 
+record(mbbo, Cs:Source:OvenHeater:RTDLeads1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(rtL=372),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(rtL=372),0xFF,2000)UINT16")
 	field(ZRST,	"2")
 	field(ZRVL,	"1")
 	field(ONST,	"3")
@@ -353,11 +353,11 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):RTDLeads$(ch)")
 }
 
 # Units
-record(mbbo, "$(s):$(ta):$(ss):$(mod):AIUnits$(ch)") 
+record(mbbo, Cs:Source:OvenHeater:AIUnits1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Unt=442),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(Unt=442),0xFF,2000)UINT16")
 	field(ZRST,	"Process")
 	field(ZRVL,	"75")
 	field(ONST,	"Power")
@@ -370,12 +370,12 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):AIUnits$(ch)")
 }
 
 # Scale Low
-record(ao, "$(s):$(ta):$(ss):$(mod):ScaleLow$(ch)") 
+record(ao, Cs:Source:OvenHeater:ScaleLow1") 
 {
 #	Conditional set if SEn = 56, 104 or 112
 	field(SCAN,"Passive")
 	field(DTYP, "asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(SLo=388),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(SLo=388),2000)FLOAT32_BE")
 	field(PREC, "1")
 	field(DRVL, "-100")
 	field(DRVH, "1000")
@@ -383,12 +383,12 @@ record(ao, "$(s):$(ta):$(ss):$(mod):ScaleLow$(ch)")
 }
 
 # Scale High
-record(ao, "$(s):$(ta):$(ss):$(mod):ScaleHigh$(ch)") 
+record(ao, Cs:Source:OvenHeater:ScaleHigh1") 
 {
 #	Conditional set if SEn = 56, 104 or 112
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Shi=390),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(Shi=390),2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(DRVL,	"-100")
 	field(DRVH,	"1000")
@@ -396,12 +396,12 @@ record(ao, "$(s):$(ta):$(ss):$(mod):ScaleHigh$(ch)")
 }
 
 # Range Low
-record(ao, "$(s):$(ta):$(ss):$(mod):RangeLow$(ch)") 
+record(ao, Cs:Source:OvenHeater:RangeLow1") 
 {
 #	Conditional set if SEn = 56, 104 or 112
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(rLo=392),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(rLo=392),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -409,12 +409,12 @@ record(ao, "$(s):$(ta):$(ss):$(mod):RangeLow$(ch)")
 }
 
 # Range High
-record(ao, "$(s):$(ta):$(ss):$(mod):RangeHigh$(ch)") 
+record(ao, Cs:Source:OvenHeater:RangeHigh1") 
 {
 #	Conditional set if SEn = 56, 104 or 112
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(rhi=394),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(rhi=394),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -422,11 +422,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):RangeHigh$(ch)")
 }
 
 # Process Error Enable
-record(mbbo, "$(s):$(ta):$(ss):$(mod):ProcessErrorEnable$(ch)") 
+record(mbbo, Cs:Source:OvenHeater:ProcessErrorEnable1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(PEE=418),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(PEE=418),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Low")
@@ -434,22 +434,22 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):ProcessErrorEnable$(ch)")
 }
 
 # Process Error Low 
-record(ao, "$(s):$(ta):$(ss):$(mod):ProcessErrorLow$(ch)") 
+record(ao, Cs:Source:OvenHeater:ProcessErrorLow1") 
 {
 	field(SCAN,"Passive")
 	field(DTYP,"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(PEL=420),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(PEL=420),2000)FLOAT32_BE")
 	field(PREC,	"1")
 	field(DRVL,	"-100")
 	field(DRVH,	"1000")
 }
 
 # Filter
-record(ao, "$(s):$(ta):$(ss):$(mod):Filter$(ch)") 
+record(ao, Cs:Source:OvenHeater:Filter1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(FiL=386),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(FiL=386),2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(PREC,	"1")
 	field(DRVL,	"0")
@@ -458,11 +458,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):Filter$(ch)")
 }
 
 # Error Latching
-record(mbbo, "$(s):$(ta):$(ss):$(mod):ErrorLatching$(ch)") 
+record(mbbo, Cs:Source:OvenHeater:ErrorLatching1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(iEL=414),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(iEL=414),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"On")
@@ -470,11 +470,11 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):ErrorLatching$(ch)")
 }
 
 # Display Precision
-record(mbbo, "$(s):$(ta):$(ss):$(mod):DisplayPrecision$(ch)") 
+record(mbbo, Cs:Source:OvenHeater:DisplayPrecision1") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(dEC=398),0xFFFF,2000)INT32_BE")
+	field(OUT,	"@asynMask(watlow.enum.w.1,$(dEC=398),0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Whole")
 	field(ZRVL,	"105")
 	field(ONST,	"Tenths")

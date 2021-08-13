@@ -11,7 +11,7 @@
 # =============   Top Level Alarm Handling   =============
 # Disable top level alarm handling.
 # This is on the Main Page so update the macros accordingly.
-record(bo, "$(s):$(ta):Watlow:AlarmControl")
+record(bo, "Cs:Source:Watlow:AlarmControl")
 {
 	field(DESC,	"Disable Alarms")
 	field(PINI,	"YES")
@@ -27,23 +27,23 @@ record(bo, "$(s):$(ta):Watlow:AlarmControl")
 
 ## Top level alarm summary record.  If enabled check the status of each module.
 ## This is where it will need to be determined if only one is in use or 4.  Now its presumed 4.
-record(calcout, "$(s):$(ta):Watlow:AlarmSummaryCalc")
+record(calcout, "Cs:Source:Watlow:AlarmSummaryCalc")
 {
-	field(INPA,	"$(s):$(ta):Watlow:AlarmControl CP")
-	field(INPB,	"$(s):$(ta):$(ss):1:ModAlarmSummary CP")
-#	field(INPC,	"$(s):$(ta):$(ss):2:ModAlarmSummary CP")
-#	field(INPD,	"$(s):$(ta):$(ss):3:ModAlarmSummary CP")
-#	field(INPE,	"$(s):$(ta):$(ss):4:ModAlarmSummary CP")
+	field(INPA,	"Cs:Source:Watlow:AlarmControl CP")
+	field(INPB,	"Cs:Source:OvenHeater:1:ModAlarmSummary CP")
+#	field(INPC,	"Cs:Source:OvenHeater:2:ModAlarmSummary CP")
+#	field(INPD,	"Cs:Source:OvenHeater:3:ModAlarmSummary CP")
+#	field(INPE,	"Cs:Source:OvenHeater:4:ModAlarmSummary CP")
 #	field(INPF,	"2")
 #	field(CALC,	"(A=1)?0:(B=F||C=F||D=F||E=F)")
 	field(CALC,	"((A=0)&&(B=2))?1:0")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"$(s):$(ta):Watlow:AlarmSummary PP")
+	field(OUT,	"Cs:Source:Watlow:AlarmSummary PP")
 }
 
 
-record(bi, "$(s):$(ta):Watlow:AlarmSummary")
+record(bi, "Cs:Source:Watlow:AlarmSummary")
 {
 	field(SCAN,	"Passive")
 	field(ZNAM,	"No Alarm")
