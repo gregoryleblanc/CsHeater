@@ -19,11 +19,13 @@ CsHeater_DBD += base.dbd
 #CsHeater_DBD += xxx.dbd
 CsHeater_DBD += asyn.dbd
 CsHeater_DBD += drvAsynIPPort.dbd
-CsHeater_LIBS += asyn
-
+CsHeater_DBD += modbusApp.dbd
+CsHeater_DBD += modbusSupport.dbd
 
 # Add all the support libraries needed by this IOC
 #CsHeater_LIBS += xxx
+CsHeater_LIBS += asyn
+CsHeater_LIBS += modbus
 
 # CsHeater_registerRecordDeviceDriver.cpp derives from CsHeater.dbd
 CsHeater_SRCS += CsHeater_registerRecordDeviceDriver.cpp

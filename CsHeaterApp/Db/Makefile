@@ -23,6 +23,8 @@ DB += Update_PID_Set.template
 #DB += Watlow_PM_Linearization.template
 #DB += Watlow_PM_Process_Value.template
 
+DB += Watlow_PM_General.db
+
 
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_TEMPLATE = <templatename>

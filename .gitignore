@@ -5,4 +5,5 @@ configure/O.*/
 db/
 dbd/
 iocBoot/iocCsHeater/envPaths
+iocBoot/iocCsHeater/st.cmd.brief
 
