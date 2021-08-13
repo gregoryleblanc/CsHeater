@@ -7,7 +7,7 @@
 #=========== Lock/Factory Menu ===========
 
 ## Operations Security
-#record(ao, "$(s):$(ta):$(ss):$(mod):OperationsSecurity")
+#record(ao, "Cs:Source:OvenHeater:$(mod):OperationsSecurity")
 #{
 #	field(SCAN,	"Passive")
 #	field(DTYP,	"asynInt32")
@@ -17,7 +17,7 @@
 #}
 
 ## Read Lock
-#record(ao, "$(s):$(ta):$(ss):$(mod):ReadLock")
+#record(ao, "Cs:Source:OvenHeater:$(mod):ReadLock")
 #{
 #	field(SCAN,	"Passive")
 #	field(DTYP,	"asynInt32")
@@ -27,7 +27,7 @@
 #}
 
 ## Write Lock
-#record(ao, "$(s):$(ta):$(ss):$(mod):WriteLock")
+#record(ao, "Cs:Source:OvenHeater:$(mod):WriteLock")
 #{
 #	field(SCAN,	"Passive")
 #	field(DTYP,	"asynInt32")
@@ -37,7 +37,7 @@
 #}
 
 # Software Revision
-record(ai, "$(s):$(ta):$(ss):$(mod):SoftwareRev")
+record(ai, "Cs:Source:OvenHeater:$(mod):SoftwareRev")
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
@@ -47,7 +47,7 @@ record(ai, "$(s):$(ta):$(ss):$(mod):SoftwareRev")
 }
 
 # Serial Number
-record(ai, "$(s):$(ta):$(ss):$(mod):SerialNumber") 
+record(ai, "Cs:Source:OvenHeater:$(mod):SerialNumber") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
@@ -57,7 +57,7 @@ record(ai, "$(s):$(ta):$(ss):$(mod):SerialNumber")
 }
 
 # Software Build Number
-record(ai, "$(s):$(ta):$(ss):$(mod):SoftwareBuild") 
+record(ai, "Cs:Source:OvenHeater:$(mod):SoftwareBuild") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
@@ -67,7 +67,7 @@ record(ai, "$(s):$(ta):$(ss):$(mod):SoftwareBuild")
 }
 
 # Date of Manufacture
-record(ai, "$(s):$(ta):$(ss):$(mod):MakeDate") 
+record(ai, "Cs:Source:OvenHeater:$(mod):MakeDate") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
@@ -77,7 +77,7 @@ record(ai, "$(s):$(ta):$(ss):$(mod):MakeDate")
 }
 
 # Hardware ID
-record(ai, "$(s):$(ta):$(ss):$(mod):HardwareID") 
+record(ai, "Cs:Source:OvenHeater:$(mod):HardwareID") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
@@ -87,7 +87,7 @@ record(ai, "$(s):$(ta):$(ss):$(mod):HardwareID")
 }
 
 # Firmware ID
-record(ai, "$(s):$(ta):$(ss):$(mod):FirmwareID") 
+record(ai, "Cs:Source:OvenHeater:$(mod):FirmwareID") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
@@ -97,7 +97,7 @@ record(ai, "$(s):$(ta):$(ss):$(mod):FirmwareID")
 }
 
 # Device Status
-record(mbbi, "$(s):$(ta):$(ss):$(mod):DeviceStatus") 
+record(mbbi, "Cs:Source:OvenHeater:$(mod):DeviceStatus") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
@@ -114,7 +114,7 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):DeviceStatus")
 #=========== Global Menu ===========
 
 # Ramp Type
-record(mbbo, "$(s):$(ta):$(ss):$(mod):RampType") 
+record(mbbo, "Cs:Source:OvenHeater:$(mod):RampType") 
 {
 	field(SCAN,	"Passive")
 	field(PINI,	"YES")
@@ -127,7 +127,7 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):RampType")
 }
 
 # Units
-record(mbbo, "$(s):$(ta):$(ss):$(mod):Units")
+record(mbbo, "Cs:Source:OvenHeater:$(mod):Units")
 {
 	field(SCAN,	"Passive")
 	field(PINI,	"YES")
@@ -148,17 +148,17 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):Units")
 
 
 # Process the communication status check.
-record(calcout, "$(s):$(ta):$(ss):$(mod):CommsAlarmCalc")
+record(calcout, "Cs:Source:OvenHeater:$(mod):CommsAlarmCalc")
 {
-	field(INPA,	"$(s):$(ta):$(ss):$(mod):ControlMode$(ch)RB.SEVR CP")
+	field(INPA,	"Cs:Source:OvenHeater:$(mod):ControlMode$(ch)RB.SEVR CP")
 	field(CALC,	"A==3")
 	field(OOPT,	"Every Time")
 	field(DOPT,	"Use CALC")
-	field(OUT,	"$(s):$(ta):$(ss):$(mod):CommStatusInd PP")
+	field(OUT,	"Cs:Source:OvenHeater:$(mod):CommStatusInd PP")
 }
 
 # Update the communication status indication.
-record(mbbi, "$(s):$(ta):$(ss):$(mod):CommStatusInd") 
+record(mbbi, "Cs:Source:OvenHeater:$(mod):CommStatusInd") 
 {
 	field(ZRST,	"Nominal")
 	field(ONST,	"Fault")
@@ -171,16 +171,16 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):CommStatusInd")
 # Initially the calc record was using the Watlow register values for the representation to perform
 # the calculation.  After monitoring the PVs it was discoverd that the index value of the enum
 # is what is being reported.  Therefore, the calculation was changed to the index value.
-record(calc, "$(s):$(ta):$(ss):$(mod):ModAlarmStates")
+record(calc, "Cs:Source:OvenHeater:$(mod):ModAlarmStates")
 {
-	field(INPA,	"$(s):$(ta):$(ss):$(mod):AlarmState1 CP")
-	field(INPB,	"$(s):$(ta):$(ss):$(mod):AlarmState2 CP")
-	field(INPC,	"$(s):$(ta):$(ss):$(mod):AlarmState3 CP")
-	field(INPD,	"$(s):$(ta):$(ss):$(mod):AlarmState4 CP")
-	field(INPE,	"$(s):$(ta):$(ss):$(mod):AlarmType1 CP")
-	field(INPF,	"$(s):$(ta):$(ss):$(mod):AlarmType2 CP")
-	field(INPG,	"$(s):$(ta):$(ss):$(mod):AlarmType3 CP")
-	field(INPH,	"$(s):$(ta):$(ss):$(mod):AlarmType4 CP")
+	field(INPA,	"Cs:Source:OvenHeater:$(mod):AlarmState1 CP")
+	field(INPB,	"Cs:Source:OvenHeater:$(mod):AlarmState2 CP")
+	field(INPC,	"Cs:Source:OvenHeater:$(mod):AlarmState3 CP")
+	field(INPD,	"Cs:Source:OvenHeater:$(mod):AlarmState4 CP")
+	field(INPE,	"Cs:Source:OvenHeater:$(mod):AlarmType1 CP")
+	field(INPF,	"Cs:Source:OvenHeater:$(mod):AlarmType2 CP")
+	field(INPG,	"Cs:Source:OvenHeater:$(mod):AlarmType3 CP")
+	field(INPH,	"Cs:Source:OvenHeater:$(mod):AlarmType4 CP")
 	field(CALC,	"(A>2 && E#0)||(B>2 && F#0)||(C>2 && G#0)||(D>2 && H#0)?1:0")
 }
 
@@ -189,22 +189,22 @@ record(calc, "$(s):$(ta):$(ss):$(mod):ModAlarmStates")
 # Limit State:	Off (62), None (61), Limit High (51), Limit Low (52), Error (28)
 # Open Loop Error Status:	None (61), Open Loop (1274), Reversed Sensor (1275)
 # If ControlMode <> Off (0) set out to 0 else process the remainder alarms.
-record(calcout, "$(s):$(ta):$(ss):$(mod):PrcsModAlarms")
+record(calcout, "Cs:Source:OvenHeater:$(mod):PrcsModAlarms")
 {
-	field(INPA,	"$(s):$(ta):$(ss):$(mod):ControlMode$(ch) CP")
-	field(INPB,	"$(s):$(ta):$(ss):$(mod):DeviceStatus CP")
-	field(INPC,	"$(s):$(ta):$(ss):$(mod):LimitState CP")
-	field(INPD,	"$(s):$(ta):$(ss):$(mod):OpenLoopError1 CP")
-	field(INPE,	"$(s):$(ta):$(ss):$(mod):CommStatusInd CP")
-	field(INPF,	"$(s):$(ta):$(ss):$(mod):ModAlarmStates CP")
+	field(INPA,	"Cs:Source:OvenHeater:$(mod):ControlMode$(ch) CP")
+	field(INPB,	"Cs:Source:OvenHeater:$(mod):DeviceStatus CP")
+	field(INPC,	"Cs:Source:OvenHeater:$(mod):LimitState CP")
+	field(INPD,	"Cs:Source:OvenHeater:$(mod):OpenLoopError1 CP")
+	field(INPE,	"Cs:Source:OvenHeater:$(mod):CommStatusInd CP")
+	field(INPF,	"Cs:Source:OvenHeater:$(mod):ModAlarmStates CP")
 	field(CALC,	"(A=0)?0:(B=1||C#1||D#0||E=1||F=1)+1")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"$(s):$(ta):$(ss):$(mod):ModAlarmSummary PP")
+	field(OUT,	"Cs:Source:OvenHeater:$(mod):ModAlarmSummary PP")
 }
 
 # Master alarm state for the module
-record(mbbi, "$(s):$(ta):$(ss):$(mod):ModAlarmSummary")
+record(mbbi, "Cs:Source:OvenHeater:$(mod):ModAlarmSummary")
 {
 	field(PINI,	"YES")
 	field(SCAN,	"Passive")
