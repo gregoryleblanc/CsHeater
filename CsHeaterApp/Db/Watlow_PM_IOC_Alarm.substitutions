@@ -1,7 +1,7 @@
 file Watlow_PM_IOC_Alarm.template
 {
 pattern	{  s, ta,      ss}
-	{   , SE,  Watlow}
+        { '', SE,  Watlow}
 }
 
 file save_restoreStatus.db

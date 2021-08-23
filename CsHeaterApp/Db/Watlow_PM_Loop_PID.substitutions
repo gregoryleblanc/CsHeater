@@ -1,5 +1,5 @@
 file Watlow_PM_Loop_PID.template
 {
 pattern	{  s, ta,      ss, mod, ch}
-	{   , SE,  Watlow,   1,  1}
+        { '', SE,  Watlow,   1,  1}
 }
