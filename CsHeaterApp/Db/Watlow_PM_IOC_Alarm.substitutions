@@ -1,4 +1,4 @@
-file Watlow_PM_IOC_Alarms.template
+file Watlow_PM_IOC_Alarm.template
 {
 pattern	{  s, ta,      ss}
 	{   , SE,  Watlow}

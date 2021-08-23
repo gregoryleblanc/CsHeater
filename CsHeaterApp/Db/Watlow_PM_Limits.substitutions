@@ -1,0 +1,5 @@
+file Watlow_PM_Limits.template
+{
+pattern	{  s, ta,      ss, mod}
+	{   , SE,  Watlow,   1}
+}
