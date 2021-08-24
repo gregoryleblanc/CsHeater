@@ -13,13 +13,15 @@ CsHeater_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=pi")
-dbLoadRecords("db/Watlow_PM_General.db")
-dbLoadRecords("db/Watlow_PM_Alarm.db")
-dbLoadRecords("db/Watlow_PM_Limits.db")
-dbLoadRecords("db/Watlow_PM_Loop.db")
-dbLoadRecords("db/Watlow_PM_Loop_PID.db")
-dbLoadRecords("db/Watlow_PM_Output_1.db")
-dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
+#dbLoadRecords("db/Watlow_PM_General.db")
+#dbLoadRecords("db/Watlow_PM_Alarm.db")
+#dbLoadRecords("db/Watlow_PM_Limits.db")
+#dbLoadRecords("db/Watlow_PM_Loop.db")
+#dbLoadRecords("db/Watlow_PM_Loop_PID.db")
+#dbLoadRecords("db/Watlow_PM_Output_1.db")
+#dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
+#dbLoadRecords("db/Watlow_PM_Analog_Input.db")
+dbLoadRecords("db/Watlow_PM_Monitor.db")
 
 ## Start any sequence programs
 #seq sncxxx,"user=pi"
@@ -99,10 +101,9 @@ drvModbusAsynConfigure("watlow_Glb_Num_1.1",  "watlow1", 0, 4,    0, 16, INT32_B
 ###  Address 362 is Analog Input 1 Alarm, which the manual says is read-only uint  *Page 70
 ###  Address 452 is Analog Input 2 Alarm, which the manual says is read-only uint  *Page 70
 drvModbusAsynConfigure("watlow_AI_Num_1.1",   "watlow1", 0, 4,  360, 62, INT32_BE, 2000, "watlow1");
-# #FIXME
-# drvModbusAsynConfigure("watlow_AI_Num_2.1",   "watlow1", 0, 4,  450, 62, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_AI_Enum_1.1",  "watlow1", 0, 4,  362, 82, INT32_LE_BS, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_AI_Enum_2.1",  "watlow1", 0, 4,  452, 82, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Num_2.1",   "watlow1", 0, 4,  450, 62, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Enum_1.1",  "watlow1", 0, 4,  362, 82, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Enum_2.1",  "watlow1", 0, 4,  452, 82, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 1880 is High Set Point, which the manual says is Read, Write, EEPROM, User Set, float  *Page 82
 ###  Address 1886 is Alarm 1 sides, which the manual says is Read, Write, EEPROM, User Set, uint  *Page 82

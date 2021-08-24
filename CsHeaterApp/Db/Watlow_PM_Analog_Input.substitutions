@@ -1,0 +1,6 @@
+file Watlow_PM_Analog_Input.template
+{
+pattern {  s, ta,      ss, mod, ch, Ain, iEr, iCA, SEn, Lin, rtL, Unt, SLo, Shi, rLo, rhi, PEE, PEL, FiL, iEL, dEC}
+        { '', SE,  Watlow,   1,  1,   0,   0, 382, 368, 370, 372, 442, 388, 390, 392, 394, 418, 420, 386, 414, 398}
+        { '', SE,  Watlow,   1,  2,   0,   0, 472, 458, 460, 462, 532, 478, 480, 482, 484, 508, 510, 476, 504, 488}
+}
