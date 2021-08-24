@@ -85,16 +85,18 @@ drvModbusAsynConfigure("watlow.enum.w.1", "watlow1", 0, 6, -1, 2, 0, 2000, "watl
 
 ###
 drvModbusAsynConfigure("watlow_Glb_Num_1.1",  "watlow1", 0, 4,    0, 16, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Glb_Enum_1.1", "watlow1", 0, 4, 2308,  4, INT32_LE_BS, 2000, "watlow1");
+# #FIXME
+# drvModbusAsynConfigure("watlow_Glb_Enum_1.1", "watlow1", 0, 4, 2308,  4, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 360 is Analog Input 1, which the manual says is a read-only float  *Page 70
 ###  Address 450 is Analog Input 2, which the manual says is a read-only float  *Page 70
 ###  Address 362 is Analog Input 1 Alarm, which the manual says is read-only uint  *Page 70
 ###  Address 452 is Analog Input 2 Alarm, which the manual says is read-only uint  *Page 70
 drvModbusAsynConfigure("watlow_AI_Num_1.1",   "watlow1", 0, 4,  360, 62, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Num_2.1",   "watlow1", 0, 4,  450, 62, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Enum_1.1",  "watlow1", 0, 4,  362, 82, INT32_LE_BS, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Enum_2.1",  "watlow1", 0, 4,  452, 82, INT32_LE_BS, 2000, "watlow1");
+# #FIXME
+# drvModbusAsynConfigure("watlow_AI_Num_2.1",   "watlow1", 0, 4,  450, 62, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_AI_Enum_1.1",  "watlow1", 0, 4,  362, 82, INT32_LE_BS, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_AI_Enum_2.1",  "watlow1", 0, 4,  452, 82, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 1880 is High Set Point, which the manual says is Read, Write, EEPROM, User Set, float  *Page 82
 ###  Address 1886 is Alarm 1 sides, which the manual says is Read, Write, EEPROM, User Set, uint  *Page 82
@@ -122,10 +124,11 @@ drvModbusAsynConfigure("watlow_Lim_Enum_1.1", "watlow1", 0, 4,  728, 24, INT32_L
 ###  Address 3568 is Linearization, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 103
 ###  Address 3632 is Linearization Source Instance, which the manual says is Read, Write, EEPROM, Users Set, un-signed 8-bits  *Page 103
 ###  Address 3638 is Linearization, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 103
-drvModbusAsynConfigure("watlow_Lin_Num_1.1",  "watlow1", 0, 4, 3562, 52, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Lin_Enum_1.1", "watlow1", 0, 4, 3568, 52, INT32_LE_BS, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Lin_Num_2.1",  "watlow1", 0, 4, 3632, 52, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Lin_Enum_2.1", "watlow1", 0, 4, 3638, 52, INT32_LE_BS, 2000, "watlow1");
+# #FIXME
+# drvModbusAsynConfigure("watlow_Lin_Num_1.1",  "watlow1", 0, 4, 3562, 52, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Lin_Enum_1.1", "watlow1", 0, 4, 3568, 52, INT32_LE_BS, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Lin_Num_2.1",  "watlow1", 0, 4, 3632, 52, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Lin_Enum_2.1", "watlow1", 0, 4, 3638, 52, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 2370 is Heat Proportional Band, which the manual says is Read, Write, EEPROM, Users Set, float  *Page 78
 ###  Address 2360 is Control Mode, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 77
@@ -153,8 +156,9 @@ drvModbusAsynConfigure("watlow_AO3_Enum_1.1", "watlow1", 0, 4, 1068,  6, INT32_L
 
 ###  Address 3310 is Source Value A, which the manual says is Read, float  *Page 73
 ###  Address 3320 is Process Value Function, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 107
-drvModbusAsynConfigure("watlow_Prc_Num_1.1",  "watlow1", 0, 4, 3310, 14, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Prc_Enum_1.1", "watlow1", 0, 4, 3320, 20, INT32_LE_BS, 2000, "watlow1");
+# #FIXME
+# drvModbusAsynConfigure("watlow_Prc_Num_1.1",  "watlow1", 0, 4, 3310, 14, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Prc_Enum_1.1", "watlow1", 0, 4, 3320, 20, INT32_LE_BS, 2000, "watlow1");
 #====================================================================
 
 
