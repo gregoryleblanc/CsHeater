@@ -1,3 +1,7 @@
+This is the mapping of addresses to their various names and descriptions from the watlow manual.  The addresses are in the watlow manual, but the offsets are what are used when setting up the various .substitution files.
+These are all here for Input 1.  Their is an duplicate set for Input 2, located at a starting address of 450.
+
+
 | Address | Offset | Type (Watlow) | Type (EPICS) | Name/Description                               |
 | ------- | ------ | ------------- | ------------ | ---------------------------------------------- |
 | 360     | 0      | float         | INT32\_BE    | Process Value                                  |
