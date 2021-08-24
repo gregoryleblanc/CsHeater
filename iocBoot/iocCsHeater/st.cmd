@@ -14,6 +14,12 @@ CsHeater_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=pi")
 dbLoadRecords("db/Watlow_PM_General.db")
+dbLoadRecords("db/Watlow_PM_Alarm.db")
+dbLoadRecords("db/Watlow_PM_Limits.db")
+dbLoadRecords("db/Watlow_PM_Loop.db")
+dbLoadRecords("db/Watlow_PM_Loop_PID.db")
+dbLoadRecords("db/Watlow_PM_Output_1.db")
+dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
 
 ## Start any sequence programs
 #seq sncxxx,"user=pi"
