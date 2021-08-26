@@ -20,7 +20,7 @@ CsHeater_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/Watlow_PM_Loop_PID.db")
 #dbLoadRecords("db/Watlow_PM_Output_1.db")
 #dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
-#dbLoadRecords("db/Watlow_PM_Analog_Input.db")
+dbLoadRecords("db/Watlow_PM_Analog_Input.db")
 dbLoadRecords("db/Watlow_PM_Monitor.db")
 
 ## Start any sequence programs
@@ -92,18 +92,23 @@ drvModbusAsynConfigure("watlow.enum.w.1", "watlow1", 0, 6, -1, 2, 0, 2000, "watl
 ###  Use "Map 2" from the manual for all items below
 
 ###
-drvModbusAsynConfigure("watlow_Glb_Num_1.1",  "watlow1", 0, 4,    0, 16, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Glb_Num_1",  "watlow1", 0, 4,    0, 16, INT32_BE, 2000, "watlow1");
 # #FIXME
-# drvModbusAsynConfigure("watlow_Glb_Enum_1.1", "watlow1", 0, 4, 2308,  4, INT32_LE_BS, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Glb_Enum_1", "watlow1", 0, 4, 2308,  4, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 360 is Analog Input 1, which the manual says is a read-only float  *Page 70
 ###  Address 450 is Analog Input 2, which the manual says is a read-only float  *Page 70
 ###  Address 362 is Analog Input 1 Alarm, which the manual says is read-only uint  *Page 70
 ###  Address 452 is Analog Input 2 Alarm, which the manual says is read-only uint  *Page 70
-drvModbusAsynConfigure("watlow_AI_Num_1.1",   "watlow1", 0, 4,  360, 62, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Num_2.1",   "watlow1", 0, 4,  450, 62, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Enum_1.1",  "watlow1", 0, 4,  362, 82, INT32_LE_BS, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AI_Enum_2.1",  "watlow1", 0, 4,  452, 82, INT32_LE_BS, 2000, "watlow1");
+
+# The next two lines here are set up to read all of the information pertaining to Analog Input 1.
+# I increased the read size of the Num_1 read to cover everything related to AI1.  This might
+# allow me to eliminate the second line, if I can figure out the byte order.  
+drvModbusAsynConfigure("watlow_AI_Num_1",   "watlow1", 0, 4,  360, 82, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Enum_1",  "watlow1", 0, 4,  360, 82, INT32_LE_BS, 2000, "watlow1");
+
+#drvModbusAsynConfigure("watlow_AI_Num_2",   "watlow1", 0, 4,  450, 62, INT32_BE, 2000, "watlow1");
+#drvModbusAsynConfigure("watlow_AI_Enum_2",  "watlow1", 0, 4,  452, 82, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 1880 is High Set Point, which the manual says is Read, Write, EEPROM, User Set, float  *Page 82
 ###  Address 1886 is Alarm 1 sides, which the manual says is Read, Write, EEPROM, User Set, uint  *Page 82
@@ -113,59 +118,59 @@ drvModbusAsynConfigure("watlow_AI_Enum_2.1",  "watlow1", 0, 4,  452, 82, INT32_L
 ###  Address 2006 is not in my manual.
 ###  Address 2060 is not in my manual.
 ###  Address 2066 is not in my manual.
-drvModbusAsynConfigure("watlow_Al_Num_1.1",   "watlow1", 0, 4, 1880, 46, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Enum_1.1",  "watlow1", 0, 4, 1886, 42, INT32_LE_BS, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Num_2.1",   "watlow1", 0, 4, 1940, 46, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Enum_2.1",  "watlow1", 0, 4, 1946, 68, INT32_LE_BS, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Num_3.1",   "watlow1", 0, 4, 2000, 46, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Enum_3.1",  "watlow1", 0, 4, 2006, 42, INT32_LE_BS, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Num_4.1",   "watlow1", 0, 4, 2060, 46, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Al_Enum_4.1",  "watlow1", 0, 4, 2066, 68, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_1",   "watlow1", 0, 4, 1880, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Enum_1",  "watlow1", 0, 4, 1886, 42, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_2",   "watlow1", 0, 4, 1940, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Enum_2",  "watlow1", 0, 4, 1946, 68, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_3",   "watlow1", 0, 4, 2000, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Enum_3",  "watlow1", 0, 4, 2006, 42, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_4",   "watlow1", 0, 4, 2060, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Enum_4",  "watlow1", 0, 4, 2066, 68, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 720 is Clear Limit, which the manual says is Write, uint  *Page 75
 ###  Address 728 is Limit Sides, which the manual says is Read, Write, EEPROM, User Set, uint  *Page 114
-drvModbusAsynConfigure("watlow_Lim_Num_1.1",  "watlow1", 0, 4,  720, 20, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_Lim_Enum_1.1", "watlow1", 0, 4,  728, 24, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Lim_Num_1",  "watlow1", 0, 4,  720, 20, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Lim_Enum_1", "watlow1", 0, 4,  728, 24, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 3562 is Linearization Source Function, which the manual says is Read, Write, EEPROM, Users Set, un-signed 8-bits  *Page 103
 ###  Address 3568 is Linearization, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 103
 ###  Address 3632 is Linearization Source Instance, which the manual says is Read, Write, EEPROM, Users Set, un-signed 8-bits  *Page 103
 ###  Address 3638 is Linearization, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 103
 # #FIXME
-# drvModbusAsynConfigure("watlow_Lin_Num_1.1",  "watlow1", 0, 4, 3562, 52, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Lin_Enum_1.1", "watlow1", 0, 4, 3568, 52, INT32_LE_BS, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Lin_Num_2.1",  "watlow1", 0, 4, 3632, 52, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Lin_Enum_2.1", "watlow1", 0, 4, 3638, 52, INT32_LE_BS, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Lin_Num_1",  "watlow1", 0, 4, 3562, 52, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Lin_Enum_1", "watlow1", 0, 4, 3568, 52, INT32_LE_BS, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Lin_Num_2",  "watlow1", 0, 4, 3632, 52, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Lin_Enum_2", "watlow1", 0, 4, 3638, 52, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 2370 is Heat Proportional Band, which the manual says is Read, Write, EEPROM, Users Set, float  *Page 78
 ###  Address 2360 is Control Mode, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 77
 ###  Address 2640 is Set Point, which the manual says is Read, Write, EEPROM, Users Set, float  *Page 78
 ###  Address 2662 is Auto-to-Manual Power, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 121
-drvModbusAsynConfigure("watlow_CL_Num_1.1",   "watlow1", 0, 4, 2370, 46, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Enum_1.1",  "watlow1", 0, 4, 2360, 54, INT32_LE_BS, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Num_2.1",   "watlow1", 0, 4, 2640, 50, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Enum_2.1",  "watlow1", 0, 4, 2662, 22, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Num_1",   "watlow1", 0, 4, 2370, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Enum_1",  "watlow1", 0, 4, 2360, 54, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Num_2",   "watlow1", 0, 4, 2640, 50, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Enum_2",  "watlow1", 0, 4, 2662, 22, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 852 is Calibration Offset, which the manual says is Read, Write, EEPROM, Users Set, float  *Page 128
 ###  Address 840 is Output Process Type, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 126
-drvModbusAsynConfigure("watlow_AO_Num_1.1",   "watlow1", 0, 4,  852, 24, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AO_Enum_1.1",  "watlow1", 0, 4,  840,  8, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO_Num_1",   "watlow1", 0, 4,  852, 24, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO_Enum_1",  "watlow1", 0, 4,  840,  8, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 1034 is not in my manual.
 ###  Address 1038 is not in my manual.
-drvModbusAsynConfigure("watlow_AO2_Num_1.1",  "watlow1", 0, 4, 1034, 16, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AO2_Enum_1.1", "watlow1", 0, 4, 1038,  6, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO2_Num_1",  "watlow1", 0, 4, 1034, 16, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO2_Enum_1", "watlow1", 0, 4, 1038,  6, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 1064 is not in my manual.
 ###  Address 1068 is not in my manual.
-drvModbusAsynConfigure("watlow_AO3_Num_1.1",  "watlow1", 0, 4, 1064, 16, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_AO3_Enum_1.1", "watlow1", 0, 4, 1068,  6, INT32_LE_BS, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO3_Num_1",  "watlow1", 0, 4, 1064, 16, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AO3_Enum_1", "watlow1", 0, 4, 1068,  6, INT32_LE_BS, 2000, "watlow1");
 
 ###  Address 3310 is Source Value A, which the manual says is Read, float  *Page 73
 ###  Address 3320 is Process Value Function, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 107
 # #FIXME
-# drvModbusAsynConfigure("watlow_Prc_Num_1.1",  "watlow1", 0, 4, 3310, 14, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Prc_Enum_1.1", "watlow1", 0, 4, 3320, 20, INT32_LE_BS, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Prc_Num_1",  "watlow1", 0, 4, 3310, 14, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_Prc_Enum_1", "watlow1", 0, 4, 3320, 20, INT32_LE_BS, 2000, "watlow1");
 #====================================================================
 
 
