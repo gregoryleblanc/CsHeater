@@ -10,7 +10,7 @@ include $(TOP)/configure/CONFIG
 # DB += Watlow_PM_Alarm.substitutions
 # DB += Watlow_PM_General.template
 # DB += Watlow_PM_General.substitutions
-DB += Watlow_PM_General.db
+# DB += Watlow_PM_General.db
 # DB += Watlow_PM_Limits.template
 # DB += Watlow_PM_Limits.db
 # DB += Watlow_PM_Loop.template
@@ -33,11 +33,11 @@ DB += Watlow_PM_General.db
 
 # Only process the templates below as required by the application.
 # DB += Watlow_PM_Analog_Input.template
-DB += Watlow_PM_Analog_Input.db
+# DB += Watlow_PM_Analog_Input.db
 # DB += Watlow_PM_Linearization.template
 # DB += Watlow_PM_Process_Value.template
 
-# DB += Watlow_PM.db
+DB += Watlow_PM.db
 
 
 # If <anyname>.db template is not named <anyname>*.template add
