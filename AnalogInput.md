@@ -36,3 +36,16 @@ These are all here for Input 1.  Their is an duplicate set for Input 2, located 
 | 418     | 58     | uint          | INT32\_BE    | Process Error Enterable                        |
 | 420     | 60     |               | INT32\_BE    | Process Error Low Value (minimum before error) |
 | 422     | 62     |               | INT32\_BE    |                                                |
+| 424     | 64     |               | INT32\_BE    |                                                |
+| 426     | 66     |               | INT32\_BE    |                                                |
+| 428     | 68     |               | INT32\_BE    |                                                |
+| 430     | 70     |               | INT32\_BE    |                                                |
+| 432     | 72     | uint          | INT32\_BE    | Resistance Range (max resistance)              |
+| 434     | 74     | uint          | INT32\_BE    | Thermistor Curve                               |
+| 436     | 76     |               | INT32\_BE    |                                                |
+| 438     | 78     |               | INT32\_BE    |                                                |
+| 440     | 80     |               | INT32\_BE    |                                                |
+| 442     | 82     | uint          | INT32\_BE    | Units or Maybe Input Error (docs unclear)      |
+| 444     | 84     |               | INT32\_BE    |                                                |
+| 446     | 86     |               | INT32\_BE    |                                                |
+| 448     | 88     |               | INT32\_BE    |                                                |
