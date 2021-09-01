@@ -100,14 +100,10 @@ drvModbusAsynConfigure("watlow_Glb_Enum_1", "watlow1", 0, 4, 2308,  4, INT32_LE_
 ###  Address 362 is Analog Input 1 Alarm, which the manual says is read-only uint  *Page 70
 ###  Address 452 is Analog Input 2 Alarm, which the manual says is read-only uint  *Page 70
 
-# The next two lines here are set up to read all of the information pertaining to Analog Input 1.
-# I increased the read size of the Num_1 read to cover everything related to AI1.  This might
-# allow me to eliminate the second line, if I can figure out the byte order.  
+# This configurss the watlow_AI_Num_1 driver to read all of the data related to Analog Input 1.
 drvModbusAsynConfigure("watlow_AI_Num_1",   "watlow1", 0, 4,  360, 84, INT32_BE, 2000, "watlow1");
-#drvModbusAsynConfigure("watlow_AI_Enum_1",  "watlow1", 0, 4,  362, 82, INT32_LE_BS, 2000, "watlow1");
-
-#drvModbusAsynConfigure("watlow_AI_Num_2",   "watlow1", 0, 4,  450, 62, INT32_BE, 2000, "watlow1");
-#drvModbusAsynConfigure("watlow_AI_Enum_2",  "watlow1", 0, 4,  452, 82, INT32_LE_BS, 2000, "watlow1");
+# This is the same thing, only for Analog Input 2.  Note the different starting address.
+drvModbusAsynConfigure("watlow_AI_Num_2",   "watlow1", 0, 4,  450, 84, INT32_BE, 2000, "watlow1");
 
 ###  Address 1880 is High Set Point, which the manual says is Read, Write, EEPROM, User Set, float  *Page 82
 ###  Address 1886 is Alarm 1 sides, which the manual says is Read, Write, EEPROM, User Set, uint  *Page 82
