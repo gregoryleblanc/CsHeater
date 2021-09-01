@@ -30,6 +30,8 @@
 #=========== Analog Input Menu ===========
 # =========== Inputs
 # Analog Input #
+# ModBus Address: 360
+# ModBus Offset: 0
 record(ai, "$(ta):$(ss):AnalogInput$(ch)") 
 {
 	field(SCAN,	"1 second")
@@ -43,6 +45,8 @@ record(ai, "$(ta):$(ss):AnalogInput$(ch)")
 }
 
 # Analog Input Error #
+# ModBus Address: 362
+# ModBus Offset: 2 (or 0, from Enum)
 record(mbbi, "$(ta):$(ss):InputError$(ch)") 
 {
 	field(SCAN,	"1 second")
@@ -73,6 +77,8 @@ record(mbbi, "$(ta):$(ss):InputError$(ch)")
 
 # =========== Read Backs
 # Calibration Offset #
+# ModBus Address: 382
+# ModBus Offset: 22
 record(ai, "$(ta):$(ss):AICalOffset$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -84,6 +90,8 @@ record(ai, "$(ta):$(ss):AICalOffset$(ch)RB")
 }
 
 # Sensor Type
+# ModBus Address: 386
+# ModBus Offset: 8 (or 6, from Enum)
 record(mbbi, "$(ta):$(ss):SensorType$(ch)RB") 
 {
 	field(SCAN, "1 second")
@@ -109,6 +117,8 @@ record(mbbi, "$(ta):$(ss):SensorType$(ch)RB")
 }
 
 # TC Linearization (Type)
+# ModBus Address: 370
+# ModBus Offset: 10 (or 8, from Enum)
 record(mbbi, "$(ta):$(ss):TCType$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -140,6 +150,8 @@ record(mbbi, "$(ta):$(ss):TCType$(ch)RB")
 }
 
 # RTD Leads
+# ModBus Address: 372
+# ModBus Offset: 12 (or 10 from Enum)
 record(mbbi, "$(ta):$(ss):RTDLeads$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -153,6 +165,8 @@ record(mbbi, "$(ta):$(ss):RTDLeads$(ch)RB")
 }
 
 # Units
+# ModBus Address: 442
+# ModBus Offset: 82 (or 80 from Enum)
 record(mbbi, "$(ta):$(ss):AIUnits$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -166,6 +180,8 @@ record(mbbi, "$(ta):$(ss):AIUnits$(ch)RB")
 }
 
 # Scale Low
+# ModBus Address: 388 
+# ModBus Offset: 28
 record(ai, "$(ta):$(ss):ScaleLow$(ch)RB") 
 {
 	field(SCAN,"1 second")
@@ -176,6 +192,8 @@ record(ai, "$(ta):$(ss):ScaleLow$(ch)RB")
 }
 
 # Scale High
+# ModBus Address: 390
+# ModBus Offset: 30
 record(ai, "$(ta):$(ss):ScaleHigh$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -186,6 +204,8 @@ record(ai, "$(ta):$(ss):ScaleHigh$(ch)RB")
 }
 
 # Range Low
+# ModBus Address: 392
+# ModBus Offset: 32
 record(ai, "$(ta):$(ss):RangeLow$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -196,6 +216,8 @@ record(ai, "$(ta):$(ss):RangeLow$(ch)RB")
 }
 
 # Range High
+# ModBus Address: 394
+# ModBus Offset: 34
 record(ai, "$(ta):$(ss):RangeHigh$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -205,7 +227,9 @@ record(ai, "$(ta):$(ss):RangeHigh$(ch)RB")
 	field(PREC,	"3")
 }
 
-# Process Error Enable
+# Process Error Enable (aka enterable)
+# ModBus Address: 418
+# ModBus Offset: 58 (or 56 from Enum)
 record(mbbi, "$(ta):$(ss):ProcessErrorEnable$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -219,6 +243,8 @@ record(mbbi, "$(ta):$(ss):ProcessErrorEnable$(ch)RB")
 }
 
 # Process Error Low 
+# ModBus Address: 420
+# ModBus Offset: 62 (or 60 from Enum)
 record(ai, "$(ta):$(ss):ProcessErrorLow$(ch)RB") 
 {
 	field(SCAN,"1 second")
@@ -229,6 +255,8 @@ record(ai, "$(ta):$(ss):ProcessErrorLow$(ch)RB")
 }
 
 # Filter
+# ModBus Address: 386
+# ModBus Offset: 26
 record(ai, "$(ta):$(ss):Filter$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -240,6 +268,8 @@ record(ai, "$(ta):$(ss):Filter$(ch)RB")
 }
 
 # Error Latching
+# ModBus Address: 414
+# ModBus Offset: 54 (or 52 using Enum)
 record(mbbi, "$(ta):$(ss):ErrorLatching$(ch)RB") 
 {
 	field(SCAN,	"1 second")
@@ -253,6 +283,8 @@ record(mbbi, "$(ta):$(ss):ErrorLatching$(ch)RB")
 }
 
 # Display Precision
+# ModBus Address: 398
+# ModBus Offset: 38 (or 36 using Enum)
 record(mbbi, "$(ta):$(ss):DisplayPrecision$(ch)RB") 
 {
 	field(SCAN,	"1 second")
