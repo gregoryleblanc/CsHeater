@@ -1,12 +1,14 @@
-Copyright (c) <YEAR> <HOLDERS>.
+Copyright (c) 2021 Ohio University Edwards Accelerator Lab.
+Copyright (c) 2021 Gregory Leblanc
+Copyright (c) 2020 Gary Taufer
 All rights reserved.
 
-<PRODUCT> is distributed subject to the following license conditions:
+CsHeater Driver Module is distributed subject to the following license conditions:
 
  SOFTWARE LICENSE AGREEMENT
- Software: <PRODUCT>
+ Software: CsHeater Driver Module
 
- 1. The "Software", below, refers to <PRODUCT> (in either source code, or
+ 1. The "Software", below, refers to CsHeater Driver Module (in either source code, or
     binary form and accompanying documentation). Each licensee is
     addressed as "you" or "Licensee."
 
