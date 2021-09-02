@@ -1,6 +1,5 @@
 ####  Macro Definitions  ####
 ####  Watlow_PM_Alarm Definitions  ####
-# (s)	- Beam Line
 # (ta)	- Target Area
 # (ss)	- Device Name
 # (i)	- Channel or Index
@@ -29,12 +28,12 @@
 # =========== Alarm Menu Instance ===========
 # =========== Inputs
 # Alarm State
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmState$(ch)") 
+record(mbbi, "$(ta):$(ss):AlarmState$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),$(ASt=1896),0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),$(ASt),0xFF,2000)UINT16")
 	field(ZRST,	"Startup")
 	field(ZRVL,	"88")
 	field(ONST,	"None")
@@ -51,12 +50,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmState$(ch)")
 }
 
 # Alarm Clearable
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmClearable$(ch)") 
+record(mbbi, "$(ta):$(ss):AlarmClearable$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),$(ACL=1902),0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),$(ACL),0xFF,2000)UINT16")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
@@ -64,12 +63,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmClearable$(ch)")
 }
 
 # Alarm Silenced
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSilenced$(ch)") 
+record(mbbi, "$(ta):$(ss):AlarmSilenced$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),$(ASh=1900),0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),$(AS),0xFF,2000)UINT16")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
@@ -77,12 +76,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSilenced$(ch)")
 }
 
 # Alarm Latched
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmLatched$(ch)") 
+record(mbbi, "$(ta):$(ss):AlarmLatched$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),$(ALt=1898),0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),$(ALt),0xFF,2000)UINT16")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
@@ -93,31 +92,31 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmLatched$(ch)")
 
 # =========== Readbacks
 # Low Alarm Setpoint Readback
-record(ai, "$(s):$(ta):$(ss):$(mod):AlarmLowSP$(ch)RB") 
+record(ai, "$(ta):$(ss):AlarmLowSP$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),2,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch),2,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # High Alarm Setpoint Readback
-record(ai, "$(s):$(ta):$(ss):$(mod):AlarmHighSP$(ch)RB") 
+record(ai, "$(ta):$(ss):AlarmHighSP$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),0,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch),0,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # Alarm Type Readback
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmType$(ch)RB") 
+record(mbbi, "$(ta):$(ss):AlarmType$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),22,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),22,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Process Alarm")
@@ -127,11 +126,11 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmType$(ch)RB")
 }
 
 # Alarm Source Readback
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSource$(ch)RB") 
+record(mbbi, "$(ta):$(ss):AlarmSource$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),26,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),26,0xFF,2000)UINT16")
 	field(ZRST,	"Analog Input")
 	field(ZRVL,	"142")
 	field(ONST,	"Power")
@@ -143,29 +142,29 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSource$(ch)RB")
 }
 
 # Alarm Source Instance Readback
-record(ai, "$(s):$(ta):$(ss):$(mod):SourceInstance$(ch)RB") 
+record(ai, "$(ta):$(ss):SourceInstance$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),34,2000)INT16")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch),34,2000)INT16")
 }
 
 # Alarm Hysteresis Readback
-record(ai, "$(s):$(ta):$(ss):$(mod):AlarmHysteresis$(ch)RB") 
+record(ai, "$(ta):$(ss):AlarmHysteresis$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),4,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch),4,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 }
 
 # Alarm Logic Readback
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmLogic$(ch)RB") 
+record(mbbi, "$(ta):$(ss):AlarmLogic$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),2,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),2,0xFF,2000)UINT16")
 	field(ZRST,	"Close On Alarm")
 	field(ZRVL,	"17")
 	field(ONST,	"Open On Alarm")
@@ -173,11 +172,11 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmLogic$(ch)RB")
 }
 
 # Alarm Sides Readback
-record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSides$(ch)RB") 
+record(mbbi, "$(ta):$(ss):AlarmSides$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),0,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),0,0xFF,2000)UINT16")
 	field(ZRST,	"Both")
 	field(ZRVL,	"13")
 	field(ONST,	"High")
@@ -187,11 +186,11 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):AlarmSides$(ch)RB")
 }
 
 # Alarm Latching Readback
-record(mbbi, "$(s):$(ta):$(ss):$(mod):Latching$(ch)RB") 
+record(mbbi, "$(ta):$(ss):Latching$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),6,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),6,0xFF,2000)UINT16")
 	field(ZRST,	"Non-Latching")
 	field(ZRVL,	"60")
 	field(ONST,	"Latching")
@@ -199,11 +198,11 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):Latching$(ch)RB")
 }
 
 # Alarm Blocking Readback
-record(mbbi, "$(s):$(ta):$(ss):$(mod):Blocking$(ch)RB") 
+record(mbbi, "$(ta):$(ss):Blocking$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),8,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),8,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Startup")
@@ -215,11 +214,11 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):Blocking$(ch)RB")
 }
 
 # Alarm Silencing Readback
-record(mbbi, "$(s):$(ta):$(ss):$(mod):Silencing$(ch)RB") 
+record(mbbi, "$(ta):$(ss):Silencing$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Al_Enum_$(ch).$(mod),4,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Al_Num_$(ch),4,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"On")
@@ -227,11 +226,11 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):Silencing$(ch)RB")
 }
 
 # Alarm Delay Readback
-record(ai, "$(s):$(ta):$(ss):$(mod):AlarmDelay$(ch)RB") 
+record(ai, "$(ta):$(ss):AlarmDelay$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(DTYP,	"asynInt32")
-	field(INP,	"@asyn(watlow_Al_Num_$(ch).$(mod),40,2000)UINT16")
+	field(INP,	"@asyn(watlow_Al_Num_$(ch),40,2000)UINT16")
 	field(EGU,	"s")
 }
 
@@ -240,32 +239,32 @@ record(ai, "$(s):$(ta):$(ss):$(mod):AlarmDelay$(ch)RB")
 
 # =========== Outputs
 # Low Alarm Setpoint
-record(ao, "$(s):$(ta):$(ss):$(mod):AlarmLowSP$(ch)") 
+record(ao, "$(ta):$(ss):AlarmLowSP$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(OMSL,	"closed_loop")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(ALo=1882),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(ALo=1882),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmLowSP$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):AlarmLowSP$(ch)RB")
 }
 
 # High Alarm Setpoint
-record(ao, "$(s):$(ta):$(ss):$(mod):AlarmHighSP$(ch)") 
+record(ao, "$(ta):$(ss):AlarmHighSP$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Ahi=1880),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Ahi=1880),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmHighSP$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):AlarmHighSP$(ch)RB")
 }
 
 # Process Clear Alarm Request
-record(bi, "$(s):$(ta):$(ss):$(mod):ClearAlarmButton$(ch)")
+record(bi, "$(ta):$(ss):ClearAlarmButton$(ch)")
 {
 	field(DESC,	"Begins process to Clear the Alarm")
 	field(PINI,	"YES")
@@ -273,39 +272,39 @@ record(bi, "$(s):$(ta):$(ss):$(mod):ClearAlarmButton$(ch)")
 	field(ZNAM,	"Clear Alarm")
 	field(ONAM,	"Clearing Alarm")
 	field(ASG,	"ALWAYS")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):ClearAlarmCalc$(ch) PP")
+	field(FLNK,	"$(ta):$(ss):ClearAlarmCalc$(ch) PP")
 }
 
-record(calcout, "$(s):$(ta):$(ss):$(mod):ClearAlarmCalc$(ch)")
+record(calcout, "$(ta):$(ss):ClearAlarmCalc$(ch)")
 {
-	field(INPA,	"$(s):$(ta):$(ss):$(mod):ClearAlarmButton$(ch)")
+	field(INPA,	"$(ta):$(ss):ClearAlarmButton$(ch)")
 	field(CALC,	"A=1")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"$(s):$(ta):$(ss):$(mod):ProcessClearAlarm$(ch) PP")
+	field(OUT,	"$(ta):$(ss):ProcessClearAlarm$(ch) PP")
 }
 
 # Process Clear Alarm
-record(seq, "$(s):$(ta):$(ss):$(mod):ProcessClearAlarm$(ch)") 
+record(seq, "$(ta):$(ss):ProcessClearAlarm$(ch)") 
 {
 	field(DO1,	"0")
-	field(LNK1,	"$(s):$(ta):$(ss):$(mod):ClearAlarm$(ch) PP")
+	field(LNK1,	"$(ta):$(ss):ClearAlarm$(ch) PP")
 	field(DLY2,	"1")
 	field(DO2,	"255")
-	field(LNK2,	"$(s):$(ta):$(ss):$(mod):ClearAlarm$(ch) PP")
-	field(LNK3,	"$(s):$(ta):$(ss):$(mod):ClearAlarmButton$(ch) PP")
+	field(LNK2,	"$(ta):$(ss):ClearAlarm$(ch) PP")
+	field(LNK3,	"$(ta):$(ss):ClearAlarmButton$(ch) PP")
 }
 
 # Clear Alarm
-record(ao, "$(s):$(ta):$(ss):$(mod):ClearAlarm$(ch)") 
+record(ao, "$(ta):$(ss):ClearAlarm$(ch)") 
 {
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asynMask(watlow.w.$(mod),$(ACLr=1904),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.w,$(ACLr=1904),0xFF,2000)UINT16")
 }
 
 
 # Process Silence Alarm Request
-record(bi, "$(s):$(ta):$(ss):$(mod):SilenceAlarmButton$(ch)")
+record(bi, "$(ta):$(ss):SilenceAlarmButton$(ch)")
 {
 	field(DESC,	"Begins process to Silence the Alarm")
 	field(PINI,	"YES")
@@ -313,64 +312,64 @@ record(bi, "$(s):$(ta):$(ss):$(mod):SilenceAlarmButton$(ch)")
 	field(ZNAM,	"Silence Alarm")
 	field(ONAM,	"Silencing Alarm")
 	field(ASG,	"ALWAYS")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):SilenceAlarmCalc$(ch) PP")
+	field(FLNK,	"$(ta):$(ss):SilenceAlarmCalc$(ch) PP")
 }
 
-record(calcout, "$(s):$(ta):$(ss):$(mod):SilenceAlarmCalc$(ch)")
+record(calcout, "$(ta):$(ss):SilenceAlarmCalc$(ch)")
 {
-	field(INPA,	"$(s):$(ta):$(ss):$(mod):SilenceAlarmButton$(ch)")
+	field(INPA,	"$(ta):$(ss):SilenceAlarmButton$(ch)")
 	field(CALC,	"A=1")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"$(s):$(ta):$(ss):$(mod):ProcessSilenceAlarm$(ch) PP")
+	field(OUT,	"$(ta):$(ss):ProcessSilenceAlarm$(ch) PP")
 }
 
 # Process Silence Alarm
-record(seq, "$(s):$(ta):$(ss):$(mod):ProcessSilenceAlarm$(ch)") 
+record(seq, "$(ta):$(ss):ProcessSilenceAlarm$(ch)") 
 {
 	field(DO1,	"0")
-	field(LNK1,	"$(s):$(ta):$(ss):$(mod):SilenceAlarm$(ch) PP")
+	field(LNK1,	"$(ta):$(ss):SilenceAlarm$(ch) PP")
 	field(DLY2,	"1")
 	field(DO2,	"255")
-	field(LNK2,	"$(s):$(ta):$(ss):$(mod):SilenceAlarm$(ch) PP")
-	field(LNK3,	"$(s):$(ta):$(ss):$(mod):SilenceAlarmButton$(ch) PP")
+	field(LNK2,	"$(ta):$(ss):SilenceAlarm$(ch) PP")
+	field(LNK3,	"$(ta):$(ss):SilenceAlarmButton$(ch) PP")
 }
 
 # Alarm Silence Request
-record(mbbo, "$(s):$(ta):$(ss):$(mod):SilenceAlarm$(ch)") 
+record(mbbo, "$(ta):$(ss):SilenceAlarm$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(ASr=1906),2000)UINT16")
+	field(OUT,	"@asyn(watlow.w,$(ASr=1906),2000)UINT16")
 	field(ZRST,	"Silence")
 	field(ZRVL,	"1010")
 }
 
 
 # Alarm Type
-record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmType$(ch)") 
+record(mbbo, "$(ta):$(ss):AlarmType$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(OMSL,	"supervisory")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(Aty=1908),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(Aty=1908),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Process Alarm")
 	field(ONVL,	"76")
 	field(TWST,	"Deviation Alarm")
 	field(TWVL,	"24")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmType$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):AlarmType$(ch)RB")
 }
 
 # Alarm Source
-record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmSource$(ch)") 
+record(mbbo, "$(ta):$(ss):AlarmSource$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(SrA=1912),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(SrA=1912),0xFF,2000)UINT16")
 	field(ZRST,	"Analog Input")
 	field(ZRVL,	"142")
 	field(ONST,	"Power")
@@ -379,85 +378,85 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmSource$(ch)")
 	field(TWVL,	"241")
 	field(THST,	"Linearization")
 	field(THVL,	"238")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmSource$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):AlarmSource$(ch)RB")
 }
 
 # Alarm Source Instance
-record(ao, "$(s):$(ta):$(ss):$(mod):SourceInstance$(ch)") 
+record(ao, "$(ta):$(ss):SourceInstance$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(iSA=1914),2000)INT16")
+	field(OUT,	"@asyn(watlow.w,$(iSA=1914),2000)INT16")
 	field(DRVL,	"1")
 	field(DRVH,	"2")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):SourceInstance$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):SourceInstance$(ch)RB")
 }
 
 # Alarm Hysteresis
-record(ao, "$(s):$(ta):$(ss):$(mod):AlarmHysteresis$(ch)") 
+record(ao, "$(ta):$(ss):AlarmHysteresis$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Ahy=1884),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Ahy=1884),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(DRVL,	"0.001")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmHysteresis$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):AlarmHysteresis$(ch)RB")
 }
 
 # Alarm Logic
-record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmLogic$(ch)") 
+record(mbbo, "$(ta):$(ss):AlarmLogic$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(ALg=1888),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(ALg=1888),0xFF,2000)UINT16")
 	field(ZRST,	"Close On Alarm")
 	field(ZRVL,	"17")
 	field(ONST,	"Open On Alarm")
 	field(ONVL,	"66")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmLogic$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):AlarmLogic$(ch)RB")
 }
 
 # Alarm Sides
-record(mbbo, "$(s):$(ta):$(ss):$(mod):AlarmSides$(ch)") 
+record(mbbo, "$(ta):$(ss):AlarmSides$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(ASd=1886),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(ASd=1886),0xFF,2000)UINT16")
 	field(ZRST,	"Both")
 	field(ZRVL,	"13")
 	field(ONST,	"High")
 	field(ONVL,	"37")
 	field(TWST,	"Low")
 	field(TWVL,	"53")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmSides$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):AlarmSides$(ch)RB")
 }
 
 # Alarm Latching
-record(mbbo, "$(s):$(ta):$(ss):$(mod):Latching$(ch)") 
+record(mbbo, "$(ta):$(ss):Latching$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(ALA=1892),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(ALA=1892),0xFF,2000)UINT16")
 	field(ZRST,	"Non-Latching")
 	field(ZRVL,	"60")
 	field(ONST,	"Latching")
 	field(ONVL,	"49")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):Latching$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):Latching$(ch)RB")
 }
 
 # Alarm Blocking
-record(mbbo, "$(s):$(ta):$(ss):$(mod):Blocking$(ch)") 
+record(mbbo, "$(ta):$(ss):Blocking$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(AbL=1894),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(AbL=1894),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Startup")
@@ -466,16 +465,16 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):Blocking$(ch)")
 	field(TWVL,	"85")
 	field(THST,	"Both")
 	field(THVL,	"13")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):Blocking$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):Blocking$(ch)RB")
 }
 
 # Alarm Silencing
-record(mbbo, "$(s):$(ta):$(ss):$(mod):Silencing$(ch)") 
+record(mbbo, "$(ta):$(ss):Silencing$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(ASi=1890),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(ASi=1890),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"On")
@@ -483,16 +482,16 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):Silencing$(ch)")
 }
 
 # Alarm Delay
-record(ao, "$(s):$(ta):$(ss):$(mod):AlarmDelay$(ch)") 
+record(ao, "$(ta):$(ss):AlarmDelay$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(AdL=1920),2000)UINT16")
+	field(OUT,	"@asyn(watlow.w,$(AdL=1920),2000)UINT16")
 	field(EGU,	"s")
 	field(DRVL,	"0")
 	field(DRVH,	"9999")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):AlarmDelay$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):AlarmDelay$(ch)RB")
 }
 
 

@@ -92,35 +92,23 @@ drvModbusAsynConfigure("watlow.enum.w", "watlow1", 0, 6, -1, 2, 0, 2000, "watlow
 ###  https://www.watlow.com/-/media/documents/user-manuals/pmpmintegrated.ashx?la=en&hash=F571AEE5BEDB0B8AAB2DC6600BB0F28AD08754AE
 ###  Use "Map 2" from the manual for all items below
 
+# This configures the watlow_Glb_Num_1 to read information from the "factory page".  *Page 174
 drvModbusAsynConfigure("watlow_Glb_Num_1",  "watlow1", 0, 4,    0, 16, INT32_BE, 2000, "watlow1");
+# This configures watlow_Glb_Enum_1 to read the global "display units" parameter. *Page 142
+# This isn't actually configured in any of the template files.
+# FIXME.
 drvModbusAsynConfigure("watlow_Glb_Enum_1", "watlow1", 0, 4, 2308,  4, INT32_LE_BS, 2000, "watlow1");
 
-###  Address 360 is Analog Input 1, which the manual says is a read-only float  *Page 70
-###  Address 450 is Analog Input 2, which the manual says is a read-only float  *Page 70
-###  Address 362 is Analog Input 1 Alarm, which the manual says is read-only uint  *Page 70
-###  Address 452 is Analog Input 2 Alarm, which the manual says is read-only uint  *Page 70
-
-# This configurss the watlow_AI_Num_1 driver to read all of the data related to Analog Input 1.
+# This configurss the watlow_AI_Num_1 driver to read all of the data related to Analog Input 1. *Page 70
 drvModbusAsynConfigure("watlow_AI_Num_1",   "watlow1", 0, 4,  360, 84, INT32_BE, 2000, "watlow1");
-# This is the same thing, only for Analog Input 2.  Note the different starting address.
+# This is the same thing, only for Analog Input 2.  Note the different starting address.  *Page 70
 drvModbusAsynConfigure("watlow_AI_Num_2",   "watlow1", 0, 4,  450, 84, INT32_BE, 2000, "watlow1");
 
-###  Address 1880 is High Set Point, which the manual says is Read, Write, EEPROM, User Set, float  *Page 82
-###  Address 1886 is Alarm 1 sides, which the manual says is Read, Write, EEPROM, User Set, uint  *Page 82
-###  Address 1940 is not in my manual.
-###  Address 1946 is not in my manual.
-###  Address 2000 is not in my manual.
-###  Address 2006 is not in my manual.
-###  Address 2060 is not in my manual.
-###  Address 2066 is not in my manual.
-# drvModbusAsynConfigure("watlow_Al_Num_1",   "watlow1", 0, 4, 1880, 46, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Al_Enum_1",  "watlow1", 0, 4, 1886, 42, INT32_LE_BS, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Al_Num_2",   "watlow1", 0, 4, 1940, 46, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Al_Enum_2",  "watlow1", 0, 4, 1946, 68, INT32_LE_BS, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Al_Num_3",   "watlow1", 0, 4, 2000, 46, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Al_Enum_3",  "watlow1", 0, 4, 2006, 42, INT32_LE_BS, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Al_Num_4",   "watlow1", 0, 4, 2060, 46, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Al_Enum_4",  "watlow1", 0, 4, 2066, 68, INT32_LE_BS, 2000, "watlow1");
+# This configures the watlow_Al_Num_1 driver to read all of the alarms data for Instances 1-4.  
+drvModbusAsynConfigure("watlow_Al_Num_1",   "watlow1", 0, 4, 1880, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_2",   "watlow1", 0, 4, 1940, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_3",   "watlow1", 0, 4, 2000, 46, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Al_Num_4",   "watlow1", 0, 4, 2060, 46, INT32_BE, 2000, "watlow1");
 
 ###  Address 720 is Clear Limit, which the manual says is Write, uint  *Page 75
 ###  Address 728 is Limit Sides, which the manual says is Read, Write, EEPROM, User Set, uint  *Page 114
