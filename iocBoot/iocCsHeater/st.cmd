@@ -24,9 +24,11 @@ dbLoadRecords("db/Watlow_PM_Limits.db")
 # dbLoadRecords("db/Watlow_PM_Loop_PID.db")
 
 dbLoadRecords("db/Watlow_PM_Output_1.db")
+
+# Outputs 2 and 3 need more work and some testing.
 # dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
+
 dbLoadRecords("db/Watlow_PM_Monitor.db")
-# dbLoadRecords("db/Watlow_PM.db")
 
 ## Start any sequence programs
 #seq sncxxx,"user=pi"
@@ -99,10 +101,11 @@ drvModbusAsynConfigure("watlow.enum.w", "watlow1", 0, 6, -1, 2, 0, 2000, "watlow
 
 # This configures the watlow_Glb_Num_1 to read information from the "factory page".  *Page 174
 drvModbusAsynConfigure("watlow_Glb_Num_1",  "watlow1", 0, 4,    0, 16, INT32_BE, 2000, "watlow1");
+
 # This configures watlow_Glb_Enum_1 to read the global "display units" parameter. *Page 142
 # This isn't actually configured in any of the template files.
 # FIXME.
-drvModbusAsynConfigure("watlow_Glb_Enum_1", "watlow1", 0, 4, 2308,  4, INT32_LE_BS, 2000, "watlow1");
+#drvModbusAsynConfigure("watlow_Glb_Enum_1", "watlow1", 0, 4, 2308,  4, INT32_LE_BS, 2000, "watlow1");
 
 # This configurss the watlow_AI_Num_1 driver to read all of the data related to Analog Input 1. *Page 70
 drvModbusAsynConfigure("watlow_AI_Num_1",   "watlow1", 0, 4,  360, 84, INT32_BE, 2000, "watlow1");
@@ -119,11 +122,6 @@ drvModbusAsynConfigure("watlow_Al_Num_4",   "watlow1", 0, 4, 2060, 46, INT32_BE,
 # This configures the watlow_Lim_Num_1 driver to read all of the limits data.
 drvModbusAsynConfigure("watlow_Lim_Num_1",  "watlow1", 0, 4,  720, 50, INT32_BE, 2000, "watlow1");
 
-###  Address 3562 is Linearization Source Function, which the manual says is Read, Write, EEPROM, Users Set, un-signed 8-bits  *Page 103
-###  Address 3568 is Linearization, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 103
-###  Address 3632 is Linearization Source Instance, which the manual says is Read, Write, EEPROM, Users Set, un-signed 8-bits  *Page 103
-###  Address 3638 is Linearization, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 103
-# #FIXME
 # drvModbusAsynConfigure("watlow_Lin_Num_1",  "watlow1", 0, 4, 3562, 52, INT32_BE, 2000, "watlow1");
 # drvModbusAsynConfigure("watlow_Lin_Enum_1", "watlow1", 0, 4, 3568, 52, INT32_LE_BS, 2000, "watlow1");
 # drvModbusAsynConfigure("watlow_Lin_Num_2",  "watlow1", 0, 4, 3632, 52, INT32_BE, 2000, "watlow1");
@@ -136,19 +134,12 @@ drvModbusAsynConfigure("watlow_Lim_Num_1",  "watlow1", 0, 4,  720, 50, INT32_BE,
 # This configures watlow_AO_Num_1 and 2 to load all of the Analog Output commands.
 drvModbusAsynConfigure("watlow_AO_Num_1",   "watlow1", 0, 4,  840, 24, INT32_BE, 2000, "watlow1");
 
-###  Address 1034 is not in my manual.
-###  Address 1038 is not in my manual.
 # drvModbusAsynConfigure("watlow_AO2_Num_1",  "watlow1", 0, 4, 1034, 16, INT32_BE, 2000, "watlow1");
 # drvModbusAsynConfigure("watlow_AO2_Enum_1", "watlow1", 0, 4, 1038,  6, INT32_LE_BS, 2000, "watlow1");
 
-###  Address 1064 is not in my manual.
-###  Address 1068 is not in my manual.
 # drvModbusAsynConfigure("watlow_AO3_Num_1",  "watlow1", 0, 4, 1064, 16, INT32_BE, 2000, "watlow1");
 # drvModbusAsynConfigure("watlow_AO3_Enum_1", "watlow1", 0, 4, 1068,  6, INT32_LE_BS, 2000, "watlow1");
 
-###  Address 3310 is Source Value A, which the manual says is Read, float  *Page 73
-###  Address 3320 is Process Value Function, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 107
-# #FIXME
 # drvModbusAsynConfigure("watlow_Prc_Num_1",  "watlow1", 0, 4, 3310, 14, INT32_BE, 2000, "watlow1");
 # drvModbusAsynConfigure("watlow_Prc_Enum_1", "watlow1", 0, 4, 3320, 20, INT32_LE_BS, 2000, "watlow1");
 #====================================================================
