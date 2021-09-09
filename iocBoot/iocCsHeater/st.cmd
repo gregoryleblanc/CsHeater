@@ -13,16 +13,20 @@ CsHeater_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=pi")
-#dbLoadRecords("db/Watlow_PM_General.db")
-#dbLoadRecords("db/Watlow_PM_Alarm.db")
-#dbLoadRecords("db/Watlow_PM_Limits.db")
-#dbLoadRecords("db/Watlow_PM_Loop.db")
-#dbLoadRecords("db/Watlow_PM_Loop_PID.db")
-#dbLoadRecords("db/Watlow_PM_Output_1.db")
-#dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
-#dbLoadRecords("db/Watlow_PM_Analog_Input.db")
-#dbLoadRecords("db/Watlow_PM_Monitor.db")
-dbLoadRecords("db/Watlow_PM.db")
+dbLoadRecords("db/Watlow_PM_Alarm.db")
+dbLoadRecords("db/Watlow_PM_Analog_Input.db")
+dbLoadRecords("db/Watlow_PM_General.db")
+dbLoadRecords("db/Watlow_PM_Limits.db")
+
+# Loop commands are not working.  Something is askew, but I think these commands might not be supported by
+# my controller.  
+# dbLoadRecords("db/Watlow_PM_Loop.db")
+# dbLoadRecords("db/Watlow_PM_Loop_PID.db")
+
+dbLoadRecords("db/Watlow_PM_Output_1.db")
+# dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
+dbLoadRecords("db/Watlow_PM_Monitor.db")
+# dbLoadRecords("db/Watlow_PM.db")
 
 ## Start any sequence programs
 #seq sncxxx,"user=pi"
@@ -51,14 +55,15 @@ modbusInterposeConfig("watlow1", 0, 2000, 0)
 ##  https://epics-modbus.readthedocs.io/en/latest/#modbusinterposeconfig
 ##  modbusInterposeConfig(portName,linkType,timeoutMsec,writeDelayMsec)
 
-### create the modbus port driver
+### create the modbus port driver for writing 
 ### 16 == modbus write multiple registers
 drvModbusAsynConfigure("watlow.w.1", "watlow1", 0, 16, -1, 4, 0, 2000, "watlow1");
 ##  https://epics-modbus.readthedocs.io/en/latest/#drvmodbusasynconfigure
 ##  drvModbusAsynConfigure(portName,tcpPortName,slaveAddress,modbusFunction,modbusStartAddress,modbusLength,
 ##                         dataType,pollMsec,plcType);
 
-### create the modbus port driver
+### create the modbus port driver for writing 
+### FIXME: Maybe this one can be deleted/obsoleted
 ### 6 == modbus write single register
 drvModbusAsynConfigure("watlow.enum.w", "watlow1", 0, 6, -1, 2, 0, 2000, "watlow1");
 
@@ -72,13 +77,13 @@ drvModbusAsynConfigure("watlow.enum.w", "watlow1", 0, 6, -1, 2, 0, 2000, "watlow
 ##                                  AI == Analog Input
 ##                                  AO == Analog Output
 ##                                  Al == Alarm
-##                                  Glb == FIXME
-##                                  Lim == FIXME
-##                                  Lin == FIXME
-##                                  CL == FIXME
-##                                  AO2 == FIXME
-##                                  AO3 == FIXME
-##                                  Prc == FIXME
+##                                  Glb == Global
+##                                  Lim == Limits
+##                                  Lin == Linearization
+##                                  CL == Control Loop
+##                                  AO2 == Analog Output 2 (not sure this exists)
+##                                  AO3 == Analog Output 3 (this exists)
+##                                  Prc == Processgit s
 ##                              DT = Data Type
 ##                                  Num == Number (float? int? double?)
 ##                                  Enum == I think from here:
@@ -102,7 +107,8 @@ drvModbusAsynConfigure("watlow_Glb_Enum_1", "watlow1", 0, 4, 2308,  4, INT32_LE_
 # This configurss the watlow_AI_Num_1 driver to read all of the data related to Analog Input 1. *Page 70
 drvModbusAsynConfigure("watlow_AI_Num_1",   "watlow1", 0, 4,  360, 84, INT32_BE, 2000, "watlow1");
 # This is the same thing, only for Analog Input 2.  Note the different starting address.  *Page 70
-drvModbusAsynConfigure("watlow_AI_Num_2",   "watlow1", 0, 4,  450, 84, INT32_BE, 2000, "watlow1");
+# Disabled because our controller does NOT have a second channel.  
+# drvModbusAsynConfigure("watlow_AI_Num_2",   "watlow1", 0, 4,  450, 84, INT32_BE, 2000, "watlow1");
 
 # This configures the watlow_Al_Num_1 driver to read all of the alarms data for Instances 1-4.  
 drvModbusAsynConfigure("watlow_Al_Num_1",   "watlow1", 0, 4, 1880, 46, INT32_BE, 2000, "watlow1");
@@ -110,10 +116,8 @@ drvModbusAsynConfigure("watlow_Al_Num_2",   "watlow1", 0, 4, 1940, 46, INT32_BE,
 drvModbusAsynConfigure("watlow_Al_Num_3",   "watlow1", 0, 4, 2000, 46, INT32_BE, 2000, "watlow1");
 drvModbusAsynConfigure("watlow_Al_Num_4",   "watlow1", 0, 4, 2060, 46, INT32_BE, 2000, "watlow1");
 
-###  Address 720 is Clear Limit, which the manual says is Write, uint  *Page 75
-###  Address 728 is Limit Sides, which the manual says is Read, Write, EEPROM, User Set, uint  *Page 114
-# drvModbusAsynConfigure("watlow_Lim_Num_1",  "watlow1", 0, 4,  720, 20, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_Lim_Enum_1", "watlow1", 0, 4,  728, 24, INT32_LE_BS, 2000, "watlow1");
+# This configures the watlow_Lim_Num_1 driver to read all of the limits data.
+drvModbusAsynConfigure("watlow_Lim_Num_1",  "watlow1", 0, 4,  720, 50, INT32_BE, 2000, "watlow1");
 
 ###  Address 3562 is Linearization Source Function, which the manual says is Read, Write, EEPROM, Users Set, un-signed 8-bits  *Page 103
 ###  Address 3568 is Linearization, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 103
@@ -125,19 +129,12 @@ drvModbusAsynConfigure("watlow_Al_Num_4",   "watlow1", 0, 4, 2060, 46, INT32_BE,
 # drvModbusAsynConfigure("watlow_Lin_Num_2",  "watlow1", 0, 4, 3632, 52, INT32_BE, 2000, "watlow1");
 # drvModbusAsynConfigure("watlow_Lin_Enum_2", "watlow1", 0, 4, 3638, 52, INT32_LE_BS, 2000, "watlow1");
 
-###  Address 2370 is Heat Proportional Band, which the manual says is Read, Write, EEPROM, Users Set, float  *Page 78
-###  Address 2360 is Control Mode, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 77
-###  Address 2640 is Set Point, which the manual says is Read, Write, EEPROM, Users Set, float  *Page 78
-###  Address 2662 is Auto-to-Manual Power, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 121
-drvModbusAsynConfigure("watlow_CL_Num_1",   "watlow1", 0, 4, 2370, 46, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Enum_1",  "watlow1", 0, 4, 2360, 54, INT32_LE_BS, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Num_2",   "watlow1", 0, 4, 2640, 50, INT32_BE, 2000, "watlow1");
-drvModbusAsynConfigure("watlow_CL_Enum_2",  "watlow1", 0, 4, 2662, 22, INT32_LE_BS, 2000, "watlow1");
+# This configures watlow_CL_Num_1 and 2 to load all of the Control Loop commands.
+# drvModbusAsynConfigure("watlow_CL_Num_1",   "watlow1", 0, 4, 2360, 56, INT32_BE, 2000, "watlow1");
+# drvModbusAsynConfigure("watlow_CL_Num_2",   "watlow1", 0, 4, 2430, 56, INT32_BE, 2000, "watlow1");
 
-###  Address 852 is Calibration Offset, which the manual says is Read, Write, EEPROM, Users Set, float  *Page 128
-###  Address 840 is Output Process Type, which the manual says is Read, Write, EEPROM, Users Set, uint  *Page 126
-# drvModbusAsynConfigure("watlow_AO_Num_1",   "watlow1", 0, 4,  852, 24, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_AO_Enum_1",  "watlow1", 0, 4,  840,  8, INT32_LE_BS, 2000, "watlow1");
+# This configures watlow_AO_Num_1 and 2 to load all of the Analog Output commands.
+drvModbusAsynConfigure("watlow_AO_Num_1",   "watlow1", 0, 4,  840, 24, INT32_BE, 2000, "watlow1");
 
 ###  Address 1034 is not in my manual.
 ###  Address 1038 is not in my manual.
