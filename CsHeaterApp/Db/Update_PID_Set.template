@@ -10,7 +10,6 @@
 # 
 #
 # Macros:
-# s - Beam Line
 # ta	- Target Area
 # ss	- Device Name
 # i	- Channel or Index
@@ -30,44 +29,44 @@
 # ///
 # /// Record for the Boolean Button
 # ///
-record(bi, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update")
+record(bi, "$(ta):$(ss):PID:Set$(W):Update")
 {
 	field(ZNAM,	"Update")
 	field(ONAM,	"Updating")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcUpdate")
+	field(FLNK,	"$(ta):$(ss):PID:Set$(W):CalcUpdate")
 }
 
 
 # ///
 # /// Is this the active PID Set?
 # ///
-record(calcout, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):CalcUpdate")
+record(calcout, "$(ta):$(ss):PID:Set$(W):CalcUpdate")
 {
 	field(DESC,	"Is this the active PID set")
-	field(INPA,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update.VAL MS")
+	field(INPA,	"$(ta):$(ss):PID:Set$(W):Update.VAL MS")
 	field(CALC,	"A")
 	field(OOPT,	"Transition To Non-zero")
-	field(OUT,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):UpdtSet.PROC")
+	field(OUT,	"$(ta):$(ss):PID:Set$(W):UpdtSet.PROC")
 	field(DOPT,	"Use CALC")
 }
 
 # ///
 # /// Sequence record to trigger the update to the PID Set. 
 # ///
-record(seq, "$(s):$(ta):$(ss):$(mod):PID:Set$(W):UpdtSet")
+record(seq, "$(ta):$(ss):PID:Set$(W):UpdtSet")
 {
 	field(DESC,     "Update PID Set Values")
 	field(DOL1,     "$(P_LINK)RB")
-	field(LNK1,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):PSet.VAL PP")
+	field(LNK1,     "$(ta):$(ss):PID:Updt$(W):PSet.VAL PP")
 	field(DLY1,     "0.1")
 	field(DOL2,     "$(I_LINK)RB")
-	field(LNK2,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):ISet.VAL PP")
+	field(LNK2,     "$(ta):$(ss):PID:Updt$(W):ISet.VAL PP")
 	field(DLY2,     "0.1")
 	field(DOL3,     "$(D_LINK)RB")
-	field(LNK3,     "$(s):$(ta):$(ss):$(mod):PID:Updt$(W):DSet.VAL PP")
+	field(LNK3,     "$(ta):$(ss):PID:Updt$(W):DSet.VAL PP")
 	field(DLY3,     "0.1")
 	field(DOL4,	"0")
-	field(LNK4,	"$(s):$(ta):$(ss):$(mod):PID:Set$(W):Update PP")
+	field(LNK4,	"$(ta):$(ss):PID:Set$(W):Update PP")
 }
 
 

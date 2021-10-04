@@ -6,35 +6,35 @@
 
 #=========== Lock/Factory Menu ===========
 
-## Operations Security
-#record(ao, "$(ta):$(ss):OperationsSecurity")
-#{
-#	field(SCAN,	"Passive")
-#	field(DTYP,	"asynInt32")
-#	field(OUT,	"@asyn(watlow_Glb_Num_1,2302,2000)INT32_BE")
-#	field(DRVL,	"1")
-#	field(DRVH,	"3")
-#}
+# Operations Security
+record(ao, "$(ta):$(ss):OperationsSecurity")
+{
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynInt32")
+	field(OUT,	"@asyn(watlow_Glb_Num_2,2,2000)INT32_BE")
+	field(DRVL,	"1")
+	field(DRVH,	"3")
+}
 
-## Read Lock
-#record(ao, "$(ta):$(ss):ReadLock")
-#{
-#	field(SCAN,	"Passive")
-#	field(DTYP,	"asynInt32")
-#	field(OUT,	"@asyn(watlow_Glb_Num_1,2318,2000)INT32_BE")
-#	field(DRVL,	"1")
-#	field(DRVH,	"5")
-#}
+# Read Lock
+record(ao, "$(ta):$(ss):ReadLock")
+{
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynInt32")
+	field(OUT,	"@asyn(watlow_Glb_Num_2,18,2000)INT32_BE")
+	field(DRVL,	"1")
+	field(DRVH,	"5")
+}
 
-## Write Lock
-#record(ao, "$(ta):$(ss):WriteLock")
-#{
-#	field(SCAN,	"Passive")
-#	field(DTYP,	"asynInt32")
-#	field(OUT,	"@asyn(watlow_Glb_Num_1,2314,2000)INT32_BE")
-#	field(DRVL,	"0")
-#	field(DRVH,	"5")
-#}
+# Write Lock
+record(ao, "$(ta):$(ss):WriteLock")
+{
+	field(SCAN,	"Passive")
+	field(DTYP,	"asynInt32")
+	field(OUT,	"@asyn(watlow_Glb_Num_2,14,2000)INT32_BE")
+	field(DRVL,	"0")
+	field(DRVH,	"5")
+}
 
 # Software Revision
 record(ai, "$(ta):$(ss):SoftwareRev")

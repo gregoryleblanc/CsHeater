@@ -1,5 +1,4 @@
 ####  Macro Definitions  ####
-# (s)	- Beam Line
 # (ta)	- Target Area
 # (ss)	- Device Name
 # (i)	- Channel or Index
@@ -34,12 +33,12 @@
 #=========== Linearization Menu ===========
 # =========== Inputs
 # Source Value A
-record(ai, "$(s):$(ta):$(ss):$(mod):SrcValueA$(ch)") 
+record(ai, "$(ta):$(ss):SrcValueA$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),6,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),6,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(ADEL,	"0.1")
@@ -48,12 +47,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):SrcValueA$(ch)")
 
 ### Uncertain where this record was founded
 ## Output Value
-#record(ai, "$(s):$(ta):$(ss):$(mod):OutputValue$(ch)") 
+#record(ai, "$(ta):$(ss):OutputValue$(ch)") 
 #{
 #	field(SCAN,	"1 second")
 #	field(PINI,	"YES")
 #	field(DTYP,	"asynFloat64")
-#	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),6,2000)FLOAT32_BE")
+#	field(INP,	"@asyn(watlow_Lin_Num_$(ch),6,2000)FLOAT32_BE")
 #	field(EGU,	"°")
 #	field(PREC,	"3")
 #	field(ADEL,	"0.1")
@@ -61,12 +60,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):SrcValueA$(ch)")
 #}
 
 # Linearization Error
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LinError$(ch)") 
+record(mbbi, "$(ta):$(ss):LinError$(ch)") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lin_Enum_$(ch).$(mod),46,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Lin_Enum_$(ch),46,0xFF,2000)UINT16")
 	field(ZRST,	"None")
 	field(ZRVL,	"61")
 	field(ONST,	"Open")
@@ -97,22 +96,22 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):LinError$(ch)")
 
 # =========== Read Backs
 # Offset
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOffset$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOffset$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),8,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),8,2000)FLOAT32_BE")
 	field(EGU,	"")
 	field(PREC,	"3")
 }
 
 # Function
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LinearizationFunction$(ch)RB") 
+record(mbbi, "$(ta):$(ss):LinearizationFunction$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lin_Enum_$(ch).$(mod),0,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_Lin_Enum_$(ch),0,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Interpolated")
@@ -120,12 +119,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):LinearizationFunction$(ch)RB")
 }
 
 # Linearization Units
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LinUnits$(ch)RB") 
+record(mbbi, "$(ta):$(ss):LinUnits$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lin_Enum_$(ch).$(mod),48,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_Lin_Enum_$(ch),48,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"None")
 	field(ZRVL,	"61")
 	field(ONST,	"Source")
@@ -143,212 +142,212 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):LinUnits$(ch)RB")
 }
 
 # Input Point 1
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput1_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput1_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),12,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),12,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 1
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput1_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput1_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),32,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),32,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Input Point 2
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput2_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput2_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),14,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),14,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 2
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput2_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput2_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),34,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),34,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Input Point 3
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput3_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput3_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),16,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),16,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 3
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput3_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput3_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),36,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),36,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Input Point 4
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput4_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput4_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),18,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),18,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 4
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput4_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput4_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),38,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),38,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Input Point 5
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput5_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput5_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),20,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),20,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 5
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput5_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput5_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),40,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),40,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Input Point 6
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput6_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput6_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),22,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),22,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 6
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput6_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput6_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),42,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),42,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Input Point 7
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput7_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput7_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),24,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),24,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 7
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput7_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput7_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),44,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),44,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Input Point 8
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput8_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput8_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),26,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),26,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 8
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput8_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput8_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),46,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),46,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Input Point 9
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput9_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput9_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),28,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),28,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 9
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput9_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput9_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),48,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),48,2000)FLOAT32_BE")
 	field(PREC,"3")
 }
 
 # Input Point 10
-record(ai, "$(s):$(ta):$(ss):$(mod):LinInput10_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinInput10_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),30,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),30,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 # Output Point 10
-record(ai, "$(s):$(ta):$(ss):$(mod):LinOutput10_$(ch)RB") 
+record(ai, "$(ta):$(ss):LinOutput10_$(ch)RB") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lin_Num_$(ch).$(mod),50,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lin_Num_$(ch),50,2000)FLOAT32_BE")
 	field(PREC,	"3")
 }
 
 
 # =========== Outputs
 # Offset
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOffset$(ch)") 
+record(ao, "$(ta):$(ss):LinOffset$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(oFS=3570),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(oFS=3570),2000)FLOAT32_BE")
 	field(EGU,	"")
 	field(PREC,	"3")
 	field(ADEL,	"0.1")
@@ -356,11 +355,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOffset$(ch)")
 }
 
 # Function
-record(mbbo, "$(s):$(ta):$(ss):$(mod):LinearizationFunction$(ch)") 
+record(mbbo, "$(ta):$(ss):LinearizationFunction$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(LFn=3568),0xFFFF,2000)INT32_BE")
+	field(OUT,	"@asynMask(watlow.enum.w,$(LFn=3568),0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"Interpolated")
@@ -369,11 +368,11 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):LinearizationFunction$(ch)")
 }
 
 # Linearization Units
-record(mbbo, "$(s):$(ta):$(ss):$(mod):LinUnits$(ch)") 
+record(mbbo, "$(ta):$(ss):LinUnits$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(LUn=3616),0xFFFF,2000)INT32_BE")
+	field(OUT,	"@asynMask(watlow.enum.w,$(LUn=3616),0xFFFF,2000)INT32_BE")
 	field(ZRST,	"None")
 	field(ZRVL,	"61")
 	field(ONST,	"Source")
@@ -392,11 +391,11 @@ record(mbbo, "$(s):$(ta):$(ss):$(mod):LinUnits$(ch)")
 }
 
 # Input Point 1
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput1_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput1_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip1=3574),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip1=3574),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -404,12 +403,12 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput1_$(ch)")
 }
 
 # Output Point 1
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput1_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput1_$(ch)") 
 {
 field(SCAN,	"Passive")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop1=3594),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop1=3594),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -417,11 +416,11 @@ field(SCAN,	"Passive")
 }
 
 # Input Point 2
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput2_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput2_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip2=3576),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip2=3576),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -429,11 +428,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput2_$(ch)")
 }
 
 # Output Point 2
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput2_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput2_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop2=3596),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop2=3596),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -441,11 +440,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput2_$(ch)")
 }
 
 # Input Point 3
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput3_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput3_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip3=3578),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip3=3578),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -453,11 +452,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput3_$(ch)")
 }
 
 # Output Point 3
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput3_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput3_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop3=3598),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop3=3598),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -465,11 +464,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput3_$(ch)")
 }
 
 # Input Point 4
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput4_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput4_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip4=3580),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip4=3580),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -477,11 +476,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput4_$(ch)")
 }
 
 # Output Point 4
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput4_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput4_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop4=3600),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop4=3600),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -489,11 +488,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput4_$(ch)")
 }
 
 # Input Point 5
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput5_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput5_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip5=3582),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip5=3582),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -501,11 +500,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput5_$(ch)")
 }
 
 # Output Point 5
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput5_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput5_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop5=3602),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop5=3602),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -513,11 +512,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput5_$(ch)")
 }
 
 # Input Point 6
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput6_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput6_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip6=3584),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip6=3584),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -525,11 +524,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput6_$(ch)")
 }
 
 # Output Point 6
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput6_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput6_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop6=3604),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop6=3604),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -537,11 +536,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput6_$(ch)")
 }
 
 # Input Point 7
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput7_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput7_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip7=3586),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip7=3586),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -549,11 +548,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput7_$(ch)")
 }
 
 # Output Point 7
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput7_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput7_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop7=3606),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop7=3606),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -561,11 +560,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput7_$(ch)")
 }
 
 # Input Point 8
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput8_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput8_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip8=3588),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip8=3588),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -573,11 +572,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput8_$(ch)")
 }
 
 # Output Point 8
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput8_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput8_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop8=3608),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop8=3608),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -585,11 +584,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput8_$(ch)")
 }
 
 # Input Point 9
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput9_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput9_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lip9=3590),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lip9=3590),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -597,11 +596,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput9_$(ch)")
 }
 
 # Output Point 9
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput9_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput9_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Lop9=3610),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(Lop9=3610),2000)FLOAT32_BE")
 	field(PREC,"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -609,11 +608,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput9_$(ch)")
 }
 
 # Input Point 10
-record(ao, "$(s):$(ta):$(ss):$(mod):LinInput10_$(ch)") 
+record(ao, "$(ta):$(ss):LinInput10_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(LipA=3592),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(LipA=3592),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
@@ -621,11 +620,11 @@ record(ao, "$(s):$(ta):$(ss):$(mod):LinInput10_$(ch)")
 }
 
 # Output Point 10
-record(ao, "$(s):$(ta):$(ss):$(mod):LinOutput10_$(ch)") 
+record(ao, "$(ta):$(ss):LinOutput10_$(ch)") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(LopA=3612),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w,$(LopA=3612),2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH, "9999")

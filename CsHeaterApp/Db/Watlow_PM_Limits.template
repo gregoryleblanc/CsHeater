@@ -1,6 +1,5 @@
 #### Macro Definitions ####
 #### Watlow_PM_Limits Definitions ####
-# (s)	- Beam Line
 # (ta)	- Target Area
 # (ss)	- Device Name
 
@@ -9,12 +8,12 @@
 #=========== Limits Menu ===========
 # =========== Inputs
 # Limits State
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitState") 
+record(mbbi, "$(ta):$(ss):LimitState") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lim_Enum_1.$(mod),2,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Lim_Num_1,10,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"None")
@@ -29,12 +28,12 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitState")
 }
 
 # Limit Status
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitStatus") 
+record(mbbi, "$(ta):$(ss):LimitStatus") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lim_Enum_1.$(mod),16,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_Lim_Num_1,24,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"Fail")
 	field(ZRVL,	"32")
 	field(ONST,	"Safe")
@@ -42,27 +41,30 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitStatus")
 }
 
 # Limit Output
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitOutput") 
-{
-	field(SCAN,	"10 second")
-	field(PINI,	"YES")
-	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lim_Enum_1.$(mod),4,0xFFFF,2000)INT32_BE")
-	field(ZRST,	"Off")
-	field(ZRVL,	"62")
-	field(ONST,	"On")
-	field(ONVL,	"63")
-}
+# offset of 4 from original starting value of 728 should indicate a modbus address of 732.
+# Address 732 does not exist in my manual, nor does any description of the limit output function.
+# Commenting this out, but also changing it to read from the Num driver, and the new offset (12).
+# record(mbbi, "$(ta):$(ss):LimitOutput") 
+# {
+# 	field(SCAN,	"10 second")
+# 	field(PINI,	"YES")
+# 	field(DTYP,	"asynUInt32Digital")
+# 	field(INP,	"@asynMask(watlow_Lim_Num_1,12,0xFFFF,2000)INT32_BE")
+# 	field(ZRST,	"Off")
+# 	field(ZRVL,	"62")
+# 	field(ONST,	"On")
+# 	field(ONVL,	"63")
+# }
 
 # =========== From the Analog Database Inputs
 # Must read this input to show the value the Limit is functioning on.
 # Analog Input #
-record(ai, "$(s):$(ta):$(ss):$(mod):AnalogInput2") 
+record(ai, "$(ta):$(ss):AnalogInput2") 
 {
 	field(SCAN,	"1 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_AI_Num_1.$(mod),$(Ain=0),2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_AI_Num_1,$(Ain),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(ADEL,	"0.1")
@@ -72,36 +74,36 @@ record(ai, "$(s):$(ta):$(ss):$(mod):AnalogInput2")
 
 # =========== Read Backs
 # Low Trip Setpoint
-record(ai, "$(s):$(ta):$(ss):$(mod):LowTripSPRB") 
+record(ai, "$(ta):$(ss):LowTripSPRB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lim_Num_1.$(mod),4,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lim_Num_1,4,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(EGU,	"°")
 	field(MDEL,	"0.1")
 }
 
 # High Trip Setpoint
-record(ai, "$(s):$(ta):$(ss):$(mod):HighTripSPRB") 
+record(ai, "$(ta):$(ss):HighTripSPRB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lim_Num_1.$(mod),6,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lim_Num_1,6,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(EGU,	"°")
 	field(MDEL,	"0.1")
 }
 
 # Limits Sides
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitSidesRB") 
+record(mbbi, "$(ta):$(ss):LimitSidesRB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lim_Enum_1.$(mod),0,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_Lim_Num_1,8,0xFF,2000)UINT16")
 	field(ZRST,	"Both")
 	field(ZRVL,	"13")
 	field(ONST,	"High")
@@ -111,46 +113,46 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitSidesRB")
 }
 
 # Limit Hysteresis
-record(ai, "$(s):$(ta):$(ss):$(mod):LimitHysteresisRB") 
+record(ai, "$(ta):$(ss):LimitHysteresisRB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lim_Num_1.$(mod),2,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lim_Num_1,2,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Maximum Setpoint
-record(ai, "$(s):$(ta):$(ss):$(mod):MaxLimitSPRB") 
+record(ai, "$(ta):$(ss):MaxLimitSPRB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 ##	Need method for dynamically defining the minimum and maximum limits based upon sample environment configuration
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lim_Num_1.$(mod),16,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lim_Num_1,16,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Minimum Setpoint
-record(ai, "$(s):$(ta):$(ss):$(mod):MinLimitSPRB") 
+record(ai, "$(ta):$(ss):MinLimitSPRB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_Lim_Num_1.$(mod),18,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_Lim_Num_1,18,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
 }
 
 # Source Function A
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitSourceFnARB") 
+record(mbbi, "$(ta):$(ss):LimitSourceFnARB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lim_Enum_1.$(mod),20,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_Lim_Num_1,48,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"None")
 	field(ZRVL,	"61")
 	field(ONST,	"Digital I/O")
@@ -160,21 +162,21 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitSourceFnARB")
 }
 
 # Source Instance A
-#record(ai, "$(s):$(ta):$(ss):$(mod):LimitSrcInstanceRB") 
+#record(ai, "$(ta):$(ss):LimitSrcInstanceRB") 
 #{
 #	field(SCAN,	"1 second")
 #	field(DTYP,	"asynInt32")
 ## No address defined in manual ##
-#	field(INP,	"@asyn(watlow_Lim_Num_1.$(mod),750,2000)INT32_BE")
+#	field(INP,	"@asyn(watlow_Lim_Num_1,750,2000)INT32_BE")
 #}
 
 # Limits Integrate
-record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitIntegrateRB") 
+record(mbbi, "$(ta):$(ss):LimitIntegrateRB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_Lim_Enum_1.$(mod),6,0xFFFF,2000)INT32_BE")
+	field(INP,	"@asynMask(watlow_Lim_Num_1,14,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
@@ -184,7 +186,7 @@ record(mbbi, "$(s):$(ta):$(ss):$(mod):LimitIntegrateRB")
 
 # =========== Outputs
 # Process Clear Limit Error
-record(bi, "$(s):$(ta):$(ss):$(mod):ClearLimitButton")
+record(bi, "$(ta):$(ss):ClearLimitButton")
 {
 	field(DESC,	"Begins process to Clears Limit Errors")
 	field(PINI,	"YES")
@@ -192,163 +194,163 @@ record(bi, "$(s):$(ta):$(ss):$(mod):ClearLimitButton")
 	field(ZNAM,	"Clear Error")
 	field(ONAM,	"Clearing Error")
 	field(ASG,	"ALWAYS")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):ClearLimitCalc PP")
+	field(FLNK,	"$(ta):$(ss):ClearLimitCalc PP")
 }
 
-record(calcout, "$(s):$(ta):$(ss):$(mod):ClearLimitCalc")
+record(calcout, "$(ta):$(ss):ClearLimitCalc")
 {
-	field(INPA,	"$(s):$(ta):$(ss):$(mod):ClearLimitButton")
+	field(INPA,	"$(ta):$(ss):ClearLimitButton")
 	field(CALC,	"A=1")
 	field(DOPT,	"Use CALC")
 	field(OOPT,	"Every Time")
-	field(OUT,	"$(s):$(ta):$(ss):$(mod):ProcessClearLimit PP")
+	field(OUT,	"$(ta):$(ss):ProcessClearLimit PP")
 }
 
 
-record(seq, "$(s):$(ta):$(ss):$(mod):ProcessClearLimit") 
+record(seq, "$(ta):$(ss):ProcessClearLimit") 
 {
 	field(DOL1,	"0")
-	field(LNK1,	"$(s):$(ta):$(ss):$(mod):ClearLimitError PP")
+	field(LNK1,	"$(ta):$(ss):ClearLimitError PP")
 	field(DLY2,	"2")
 	field(DOL2,	"255")
-	field(LNK2,	"$(s):$(ta):$(ss):$(mod):ClearLimitError PP")
+	field(LNK2,	"$(ta):$(ss):ClearLimitError PP")
 	field(DOL3,	"0")
-	field(LNK3,	"$(s):$(ta):$(ss):$(mod):ClearLimitButton PP")
+	field(LNK3,	"$(ta):$(ss):ClearLimitButton PP")
 }
 
 
 # Limit Clear Request
-record(ao, "$(s):$(ta):$(ss):$(mod):ClearLimitError") 
+record(ao, "$(ta):$(ss):ClearLimitError") 
 {
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asynMask(watlow.w.$(mod),720,0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.w.1,720,0xFF,2000)UINT16")
 }
 
 
 # Low Trip Setpoint
-record(ao, "$(s):$(ta):$(ss):$(mod):LowTripSP") 
+record(ao, "$(ta):$(ss):LowTripSP") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),724,2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,724,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(EGU,	"°")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):LowTripSPRB")
+	field(FLNK,	"$(ta):$(ss):LowTripSPRB")
 	info(autosaveFields,	"VAL")
 }
 
 # High Trip Setpoint
-record(ao, "$(s):$(ta):$(ss):$(mod):HighTripSP") 
+record(ao, "$(ta):$(ss):HighTripSP") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),726,2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,726,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(EGU,	"°")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):HighTripSPRB")
+	field(FLNK,	"$(ta):$(ss):HighTripSPRB")
 	info(autosaveFields,	"VAL")
 }
 
 # Limits Sides
-record(mbbo, "$(s):$(ta):$(ss):$(mod):LimitSides") 
+record(mbbo, "$(ta):$(ss):LimitSides") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),728,0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,728,0xFF,2000)UINT16")
 	field(ZRST,	"Both")
 	field(ZRVL,	"13")
 	field(ONST,	"High")
 	field(ONVL,	"37")
 	field(TWST,	"Low")
 	field(TWVL,	"53")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):LimitSidesRB")
+	field(FLNK,	"$(ta):$(ss):LimitSidesRB")
 	info(autosaveFields,	"VAL")
 }
 
 # Limit Hysteresis
-record(ao, "$(s):$(ta):$(ss):$(mod):LimitHysteresis") 
+record(ao, "$(ta):$(ss):LimitHysteresis") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),722,2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,722,2000)FLOAT32_BE")
 	field(PREC,	"3")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):LimitHysteresisRB")
+	field(FLNK,	"$(ta):$(ss):LimitHysteresisRB")
 	info(autosaveFields,	"VAL")
 }
 
 # Maximum Setpoint
-record(ao, "$(s):$(ta):$(ss):$(mod):MaxLimitSP") 
+record(ao, "$(ta):$(ss):MaxLimitSP") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 ##	Need method for dynamically defining the minimum and maximum limits based upon sample environment configuration
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),736,2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,736,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):MaxLimitSPRB")
+	field(FLNK,	"$(ta):$(ss):MaxLimitSPRB")
 	info(autosaveFields,	"VAL")
 }
 
 # Minimum Setpoint
-record(ao, "$(s):$(ta):$(ss):$(mod):MinLimitSP") 
+record(ao, "$(ta):$(ss):MinLimitSP") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),738,2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,738,2000)FLOAT32_BE")
 	field(PREC,	"3")
 	field(DRVL,	"-1999")
 	field(DRVH,	"9999")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):MinLimitSPRB")
+	field(FLNK,	"$(ta):$(ss):MinLimitSPRB")
 	info(autosaveFields,	"VAL")
 }
 
 # Source Function A
-record(mbbo, "$(s):$(ta):$(ss):$(mod):LimitSourceFnA") 
+record(mbbo, "$(ta):$(ss):LimitSourceFnA") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),748,0xFFFF,2000)INT32_BE")
+	field(OUT,	"@asynMask(watlow.enum.w,748,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"None")
 	field(ZRVL,	"61")
 	field(ONST,	"Digital I/O")
 	field(ONVL,	"1142")
 	field(TWST,	"Function Key")
 	field(TWVL,	"1001")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):LimitSourceFnARB")
+	field(FLNK,	"$(ta):$(ss):LimitSourceFnARB")
 }
 
 # Source Instance A
-#record(ao, "$(s):$(ta):$(ss):$(mod):LimitSrcInstance") 
+#record(ao, "$(ta):$(ss):LimitSrcInstance") 
 #{
 #	field(SCAN,	"Passive")
 #	field(DTYP,	"asynInt32")
 ## No address defined in manual ##
-#	field(OUT,	"@asyn(watlow.w.$(mod),750,2000)INT32_BE")
+#	field(OUT,	"@asyn(watlow.w.1,750,2000)INT32_BE")
 #	field(DRVL,	"1")
 #	field(DRVH,	"12")
 #}
 
 # Limits Integrate
-record(mbbo, "$(s):$(ta):$(ss):$(mod):LimitIntegrate") 
+record(mbbo, "$(ta):$(ss):LimitIntegrate") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),734,0xFFFF,2000)INT32_BE")
+	field(OUT,	"@asynMask(watlow.enum.w,734,0xFFFF,2000)INT32_BE")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
 	field(ONVL,	"106")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):LimitIntegrateRB")
+	field(FLNK,	"$(ta):$(ss):LimitIntegrateRB")
 	info(autosaveFields,	"VAL")
 }
 

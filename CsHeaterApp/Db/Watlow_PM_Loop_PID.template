@@ -1,5 +1,4 @@
 ####  Macro Definitions  ####
-# (s) - Beam Line
 # (ta)	- Target Area
 # (ss)	- Device Name
 # (i)	- Channel or Index
@@ -24,186 +23,193 @@
 #=========== Watlow Registers ===========
 
 #### Autotune Setpoint
-record(ao, "$(s):$(ta):$(ss):$(mod):ATuneSetpoint$(ch)") 
+record(ao, "$(ta):$(ss):ATuneSetpoint$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(AtSP=2398),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(AtSP),2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(PREC,	"1")
 	field(DRVL,	"50")
 	field(DRVH,	"200")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):ATuneSetpoint$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):ATuneSetpoint$(ch)RB")
 }
+
 ## Autotune Setpoint RB
-record(ai, "$(s):$(ta):$(ss):$(mod):ATuneSetpoint$(ch)RB") 
+record(ai, "$(ta):$(ss):ATuneSetpoint$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),28,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_$(ch).1,28,2000)FLOAT32_BE")
 	field(EGU,	"%")
 	field(PREC,	"1")
 	field(MDEL,	"0.1")
+    field(PROC, "")
 }
 
 
 #### Autotune Request
-record(ao, "$(s):$(ta):$(ss):$(mod):Autotune$(ch)") 
+record(ao, "$(ta):$(ss):Autotune$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(PINI,	"YES")
 	field(DTYP,	"asynInt32")
-	field(OUT,	"@asynMask(watlow.w.$(mod),$(AUt=2400),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.w.1,$(AUt),0xFF,2000)UINT16")
 }
 
 ## Autotune RB
-record(mbbi, "$(s):$(ta):$(ss):$(mod):Autotune$(ch)RB") 
+record(mbbi, "$(ta):$(ss):Autotune$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),40,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Num_$(ch).1,40,0xFF,2000)UINT16")
 	field(ZRST,	"No")
 	field(ZRVL,	"59")
 	field(ONST,	"Yes")
 	field(ONVL,	"106")
+    field(PROC, "")
 }
 
 
 #### Autotune Aggressiveness
-record(mbbo, "$(s):$(ta):$(ss):$(mod):Aggressiveness$(ch)") 
+record(mbbo, "$(ta):$(ss):Aggressiveness$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(tAgr=2396),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(tAgr),0xFF,2000)UINT16")
 	field(ZRST,	"Under Damped")
 	field(ZRVL,	"99")
 	field(ONST,	"Critical Damped")
 	field(ONVL,	"21")
 	field(TWST,	"Over Damped")
 	field(TWVL,	"69")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):Aggressiveness$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):Aggressiveness$(ch)RB")
 }
 ## Autotune Aggressiveness RB
-record(mbbi, "$(s):$(ta):$(ss):$(mod):Aggressiveness$(ch)RB") 
+record(mbbi, "$(ta):$(ss):Aggressiveness$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),36,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Num_$(ch).1,36,0xFF,2000)UINT16")
 	field(ZRST,	"Under Damped")
 	field(ZRVL,	"99")
 	field(ONST,	"Critical Damped")
 	field(ONVL,	"21")
 	field(TWST,	"Over Damped")
 	field(TWVL,	"69")
+    field(PROC, "")
 }
 
 
 #### Heat Algorithm
-record(mbbo, "$(s):$(ta):$(ss):$(mod):HeatMethod$(ch)") 
+record(mbbo, "$(ta):$(ss):HeatMethod$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynUInt32Digital")
-	field(OUT,	"@asynMask(watlow.enum.w.$(mod),$(hAg=2364),0xFF,2000)UINT16")
+	field(OUT,	"@asynMask(watlow.enum.w,$(hAg),0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"PID")
 	field(ONVL,	"71")
 	field(TWST,	"On/Off")
 	field(TWVL,	"64")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):HeatMethod$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):HeatMethod$(ch)RB")
 }
+
 ## Heat Algorithm RB
-record(mbbi, "$(s):$(ta):$(ss):$(mod):HeatMethod$(ch)RB") 
+record(mbbi, "$(ta):$(ss):HeatMethod$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynUInt32Digital")
-	field(INP,	"@asynMask(watlow_CL_Enum_1.$(mod),4,0xFF,2000)UINT16")
+	field(INP,	"@asynMask(watlow_CL_Num_$(ch).1,4,0xFF,2000)UINT16")
 	field(ZRST,	"Off")
 	field(ZRVL,	"62")
 	field(ONST,	"PID")
 	field(ONVL,	"71")
 	field(TWST,	"On/Off")
 	field(TWVL,	"64")
+    field(PROC, "")
 }
 
 
 #### Heat Proportional Band
-record(ao, "$(s):$(ta):$(ss):$(mod):HeatPID_P$(ch)") 
+record(ao, "$(ta):$(ss):HeatPID_P$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(hPb=2370),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(hPb),2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):HeatPID_P$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):HeatPID_P$(ch)RB")
 }
 ## Heat Proportional Band RB
-record(ai, "$(s):$(ta):$(ss):$(mod):HeatPID_P$(ch)RB") 
+record(ai, "$(ta):$(ss):HeatPID_P$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),0,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_$(ch).1,10,2000)FLOAT32_BE")
 	field(EGU,	"°")
 	field(PREC,	"3")
 	field(MDEL,	"0.1")
+    field(PROC, "")
 }
 
 
 #### Time Integral
-record(ao, "$(s):$(ta):$(ss):$(mod):PID_I$(ch)") 
+record(ao, "$(ta):$(ss):PID_I$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Cti=2374),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(Cti),2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(PREC,	"0")
 	field(DRVL,	"0")
 	field(DRVH,	"9999")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID_I$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):PID_I$(ch)RB")
 }
 ## Time Integral RB
-record(ai, "$(s):$(ta):$(ss):$(mod):PID_I$(ch)RB") 
+record(ai, "$(ta):$(ss):PID_I$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),4,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_$(ch).1,14,2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(PREC,	"0")
 	field(MDEL,	"0.1")
+    field(PROC, "")
 }
 
-
 #### Time Derivative
-record(ao, "$(s):$(ta):$(ss):$(mod):PID_D$(ch)") 
+record(ao, "$(ta):$(ss):PID_D$(ch)") 
 {
 	field(ASG,	"$(ASG=BEAMLINE)")
 	field(SCAN,	"Passive")
 	field(DTYP,	"asynFloat64")
-	field(OUT,	"@asyn(watlow.w.$(mod),$(Ctd=2376),2000)FLOAT32_BE")
+	field(OUT,	"@asyn(watlow.w.1,$(Ctd),2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(PREC,	"0")
 	field(DRVL,	"0")
 	field(DRVH,	"9999")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID_D$(ch)RB")
+	field(FLNK,	"$(ta):$(ss):PID_D$(ch)RB")
 }
 ## Time Derivative RB
-record(ai, "$(s):$(ta):$(ss):$(mod):PID_D$(ch)RB") 
+record(ai, "$(ta):$(ss):PID_D$(ch)RB") 
 {
 	field(SCAN,	"10 second")
 	field(PINI,	"YES")
 	field(DTYP,	"asynFloat64")
-	field(INP,	"@asyn(watlow_CL_Num_1.$(mod),6,2000)FLOAT32_BE")
+	field(INP,	"@asyn(watlow_CL_Num_$(ch).1,16,2000)FLOAT32_BE")
 	field(EGU,	"s")
 	field(PREC,	"0")
 	field(MDEL,	"0.1")
@@ -216,12 +222,12 @@ record(ai, "$(s):$(ta):$(ss):$(mod):PID_D$(ch)RB")
 # The input PV is set to the Loop input PV, whatever that is
 # on the controller.
 
-substitute "PV=$(s):$(ta):$(ss):$(mod):ActiveSV$(ch)"
+substitute "PV=$(ta):$(ss):ActiveSV$(ch)"
 substitute "UNITS=K"
 
-substitute "P_LINK=$(s):$(ta):$(ss):$(mod):HeatPID_P$(ch)"
-substitute "I_LINK=$(s):$(ta):$(ss):$(mod):PID_I$(ch)"
-substitute "D_LINK=$(s):$(ta):$(ss):$(mod):PID_D$(ch)"
+substitute "P_LINK=$(ta):$(ss):HeatPID_P$(ch)"
+substitute "I_LINK=$(ta):$(ss):PID_I$(ch)"
+substitute "D_LINK=$(ta):$(ss):PID_D$(ch)"
 
 substitute "P=0"
 substitute "I=0"
@@ -267,7 +273,7 @@ include "Update_PID_Set.template"
 # ///
 # /// Record to enable/disable the table
 # ///
-record(bo, "$(s):$(ta):$(ss):$(mod):PID:TableControl")
+record(bo, "$(ta):$(ss):PID:TableControl")
 {
 	field(PINI,	"YES")
 	field(VAL,	"0")
@@ -275,37 +281,37 @@ record(bo, "$(s):$(ta):$(ss):$(mod):PID:TableControl")
 	field(ONAM,	"Table Disabled")
 	field(ZSV,	"NO_ALARM")
 	field(OSV,	"MAJOR")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:TableControlSet")
+	field(FLNK,	"$(ta):$(ss):PID:TableControlSet")
 	info(autosaveFields, "VAL")
 }
 
-record(dfanout, "$(s):$(ta):$(ss):$(mod):PID:TableControlSet")
+record(dfanout, "$(ta):$(ss):PID:TableControlSet")
 {
 	field(OMSL,	"closed_loop")
-	field(DOL,	"$(s):$(ta):$(ss):$(mod):PID:TableControl")
-	field(OUTA,	"$(s):$(ta):$(ss):$(mod):PID:Set1:Disable PP")
-	field(OUTB,	"$(s):$(ta):$(ss):$(mod):PID:Set2:Disable PP")
-	field(OUTC,	"$(s):$(ta):$(ss):$(mod):PID:Set3:Disable PP")
-	field(OUTD,	"$(s):$(ta):$(ss):$(mod):PID:Set4:Disable PP")
-	field(OUTE,	"$(s):$(ta):$(ss):$(mod):PID:Set5:Disable PP")
-	field(OUTF,	"$(s):$(ta):$(ss):$(mod):PID:Set6:Disable PP")
-	field(OUTG,	"$(s):$(ta):$(ss):$(mod):PID:Set7:Disable PP")
-	field(OUTH,	"$(s):$(ta):$(ss):$(mod):PID:Set8:Disable PP")
-	field(FLNK,	"$(s):$(ta):$(ss):$(mod):PID:TableControlSet2")
+	field(DOL,	"$(ta):$(ss):PID:TableControl")
+	field(OUTA,	"$(ta):$(ss):PID:Set1:Disable PP")
+	field(OUTB,	"$(ta):$(ss):PID:Set2:Disable PP")
+	field(OUTC,	"$(ta):$(ss):PID:Set3:Disable PP")
+	field(OUTD,	"$(ta):$(ss):PID:Set4:Disable PP")
+	field(OUTE,	"$(ta):$(ss):PID:Set5:Disable PP")
+	field(OUTF,	"$(ta):$(ss):PID:Set6:Disable PP")
+	field(OUTG,	"$(ta):$(ss):PID:Set7:Disable PP")
+	field(OUTH,	"$(ta):$(ss):PID:Set8:Disable PP")
+	field(FLNK,	"$(ta):$(ss):PID:TableControlSet2")
 }
 
-record(dfanout, "$(s):$(ta):$(ss):$(mod):PID:TableControlSet2")
+record(dfanout, "$(ta):$(ss):PID:TableControlSet2")
 {
 	field(OMSL,	"closed_loop")
-	field(DOL,	"$(s):$(ta):$(ss):$(mod):PID:TableControl")
-	field(OUTA,	"$(s):$(ta):$(ss):$(mod):PID:Set9:Disable PP")
-	field(OUTB,	"$(s):$(ta):$(ss):$(mod):PID:Set10:Disable PP")
-	field(OUTC,	"$(s):$(ta):$(ss):$(mod):PID:Set11:Disable PP")
-	field(OUTD,	"$(s):$(ta):$(ss):$(mod):PID:Set12:Disable PP")
-	field(OUTE,	"$(s):$(ta):$(ss):$(mod):PID:Set13:Disable PP")
-	field(OUTF,	"$(s):$(ta):$(ss):$(mod):PID:Set14:Disable PP")
-	field(OUTG,	"$(s):$(ta):$(ss):$(mod):PID:Set15:Disable PP")
-	field(OUTH,	"$(s):$(ta):$(ss):$(mod):PID:Set16:Disable PP")
+	field(DOL,	"$(ta):$(ss):PID:TableControl")
+	field(OUTA,	"$(ta):$(ss):PID:Set9:Disable PP")
+	field(OUTB,	"$(ta):$(ss):PID:Set10:Disable PP")
+	field(OUTC,	"$(ta):$(ss):PID:Set11:Disable PP")
+	field(OUTD,	"$(ta):$(ss):PID:Set12:Disable PP")
+	field(OUTE,	"$(ta):$(ss):PID:Set13:Disable PP")
+	field(OUTF,	"$(ta):$(ss):PID:Set14:Disable PP")
+	field(OUTG,	"$(ta):$(ss):PID:Set15:Disable PP")
+	field(OUTH,	"$(ta):$(ss):PID:Set16:Disable PP")
 }
 
 
