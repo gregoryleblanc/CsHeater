@@ -18,15 +18,13 @@ dbLoadRecords("db/Watlow_PM_Analog_Input.db")
 dbLoadRecords("db/Watlow_PM_General.db")
 dbLoadRecords("db/Watlow_PM_Limits.db")
 
-# Loop commands are not working.  Something is askew, but I think these commands might not be supported by
-# my controller.  
-# dbLoadRecords("db/Watlow_PM_Loop.db")
-# dbLoadRecords("db/Watlow_PM_Loop_PID.db")
+dbLoadRecords("db/Watlow_PM_Loop.db")
+dbLoadRecords("db/Watlow_PM_Loop_PID.db")
 
-dbLoadRecords("db/Watlow_PM_Output_1.db")
+# dbLoadRecords("db/Watlow_PM_Output_1.db")
 
-# Outputs 2 and 3 need more work and some testing.
-# dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
+# # Outputs 2 and 3 need more work and some testing.
+# # dbLoadRecords("db/Watlow_PM_Output_2_and_3.db")
 
 dbLoadRecords("db/Watlow_PM_Monitor.db")
 
@@ -101,6 +99,7 @@ drvModbusAsynConfigure("watlow.enum.w", "watlow1", 0, 6, -1, 2, 0, 2000, "watlow
 
 # This configures the watlow_Glb_Num_1 to read information from the "factory page".  *Page 174
 drvModbusAsynConfigure("watlow_Glb_Num_1",  "watlow1", 0, 4,    0, 16, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_Glb_Num_2",  "watlow1", 0, 4, 2300, 24, INT32_BE, 2000, "watlow1");
 
 # This configures watlow_Glb_Enum_1 to read the global "display units" parameter. *Page 142
 # This isn't actually configured in any of the template files.
@@ -109,6 +108,7 @@ drvModbusAsynConfigure("watlow_Glb_Num_1",  "watlow1", 0, 4,    0, 16, INT32_BE,
 
 # This configurss the watlow_AI_Num_1 driver to read all of the data related to Analog Input 1. *Page 70
 drvModbusAsynConfigure("watlow_AI_Num_1",   "watlow1", 0, 4,  360, 84, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_AI_Enum_1",   "watlow1", 0, 4,  360, 84, INT32_LE_BS, 2000, "watlow1");
 # This is the same thing, only for Analog Input 2.  Note the different starting address.  *Page 70
 # Disabled because our controller does NOT have a second channel.  
 # drvModbusAsynConfigure("watlow_AI_Num_2",   "watlow1", 0, 4,  450, 84, INT32_BE, 2000, "watlow1");
@@ -128,8 +128,8 @@ drvModbusAsynConfigure("watlow_Lim_Num_1",  "watlow1", 0, 4,  720, 50, INT32_BE,
 # drvModbusAsynConfigure("watlow_Lin_Enum_2", "watlow1", 0, 4, 3638, 52, INT32_LE_BS, 2000, "watlow1");
 
 # This configures watlow_CL_Num_1 and 2 to load all of the Control Loop commands.
-# drvModbusAsynConfigure("watlow_CL_Num_1",   "watlow1", 0, 4, 2360, 56, INT32_BE, 2000, "watlow1");
-# drvModbusAsynConfigure("watlow_CL_Num_2",   "watlow1", 0, 4, 2430, 56, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Num_1.1",   "watlow1", 0, 4, 2360, 56, INT32_BE, 2000, "watlow1");
+drvModbusAsynConfigure("watlow_CL_Num_1.2",   "watlow1", 0, 4, 2640, 56, INT32_BE, 2000, "watlow1");
 
 # This configures watlow_AO_Num_1 and 2 to load all of the Analog Output commands.
 drvModbusAsynConfigure("watlow_AO_Num_1",   "watlow1", 0, 4,  840, 24, INT32_BE, 2000, "watlow1");

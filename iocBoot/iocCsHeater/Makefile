@@ -1,7 +1,7 @@
 TOP = ../..
 include $(TOP)/configure/CONFIG
 ARCH = $(EPICS_HOST_ARCH)
-TARGETS = envPaths
+TARGETS = envPaths st.cmd.brief
 include $(TOP)/configure/RULES.ioc
 
 st.cmd.brief: st.cmd
