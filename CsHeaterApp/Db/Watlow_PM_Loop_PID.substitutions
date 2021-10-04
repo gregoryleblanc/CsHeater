@@ -1,5 +1,47 @@
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
+###  Loop Definitions  ###
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (i)	- Channel or Index
+# (rEn)	- Remote Enable
+# (rty)	- Remote Setpoint Type
+# (CnM)	- Control Mode
+# (CSP)	- Write Setpoint
+# (idS)	- Idle Setpoint
+# (hhy)	- Heat Hysteresis
+# (CPb)	- Cool Proportional Band
+# (Chy)	- Cool Hysteresis
+# (Cdb)	- Dead Band
+# (oSP)	- Manual Output
+# (oLE)	- Open Loop Error Status
+# (oLC)	- Open Loop Error Clear Request
+# (oPr)	- Output Power
+# (CAg)	- Cool Algorithm
+# (CCr)	- Cool Output Curve
+# (PdL)	- Peltier Delay
+# (UFA)	- User Failure Action
+# (FAiL)- Input Error Failure
+# (MAn)	- Fixed Power
+# (LdE)	- Open Loop Detect Enable
+# (Ldt)	- Open Loop Detect Time
+# (Ldd)	- Open Loop Detect Deviation
+# (rPA)	- Ramp Action
+# (rSC)	- Ramp Scale
+# (rrt)	- Ramp Rate
+# (LSP)	- Minimum Setpoint
+# (hSP)	- Maximum Setpoint
+# (SPL)	- Minimum Manual Power
+# (SPh)	- Maximum Manual Power
+
 file Watlow_PM_Loop_PID.template
 {
-pattern	{  s, ta,      ss, mod, ch}
-        { '', SE,  Watlow,   1,  1}
+pattern	{       ta,          ss, ch, AtSP,  AUt, tAgr,  hAg,  hPb,  Cti,  Ctd}
+        {SP_Cesium, Oven_Heater,  1, 2398, 2400, 2396, 2364, 2370, 2374, 2376}
+#        {SP_Cesium, Oven_Heater,  2}
 }

@@ -1,22 +1,24 @@
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
 file Watlow_PM_IOC_Alarm.template
 {
-pattern	{  s, ta,      ss}
-        { '', SE,  Watlow}
+pattern	{       ta,          ss}
+        {SP_Cesium, Oven_Heater}
 }
 
-file save_restoreStatus.db
-{
-pattern {P}
-        {:CS:Watlow:}
-}
+# file save_restoreStatus.db
+# {
+# pattern {P}
+#         {:CS:Watlow:}
+# }
 
-file ioc_sns.db
-{
-pattern {IOCNAME}
-        {:CS:Watlow}
-}
-
-
-
-
-
+# file ioc_sns.db
+# {
+# pattern {IOCNAME}
+#         {:CS:Watlow}
+# }

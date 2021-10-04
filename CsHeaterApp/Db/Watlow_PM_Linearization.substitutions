@@ -1,0 +1,41 @@
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
+### Linearization ###
+# (SvA)	- Source Value A
+# (oFS)	- Offset
+# (Lov)	- Output Value
+# (LEr)	- Linearization Error
+# (LFn)	- Function
+# (LUn)	- Linearization Units
+# (Lip1)- Input Point 1
+# (Lop1)- Output Point 1
+# (Lip2)- Input Point 2
+# (Lop2)- Output Point 2
+# (Lip3)- Input Point 3
+# (Lop3)- Output Point 3
+# (Lip4)- Input Point 4
+# (Lop4)- Output Point 4
+# (Lip5)- Input Point 5
+# (Lop5)- Output Point 5
+# (Lip6)- Input Point 6
+# (Lop6)- Output Point 6
+# (Lip7)- Input Point 7
+# (Lop7)- Output Point 7
+# (Lip8)- Input Point 8
+# (Lop8)- Output Point 8
+# (Lip9)- Input Point 9
+# (Lop9)- Output Point 9
+# (LipA)- Input Point 10
+# (LopA)- Output Point 10
+
+file Watlow_PM_Linearization.template
+{
+pattern {       ta,          ss, ch, SvA,  oFS, Lov, LEr,  LFn,  LUn, Lip1, Lop1, Lip2, Lop2, Lip3, Lop3, Lip4, Lop4, Lip5, Lop5, Lip6, Lop6, Lip7, Lop7, Lip8, Lop8, Lip9, Lop9, LipA, LopA}
+        {SP_Cesium, Oven_Heater,   1,   0, 3570,   6,   0, 3568, 3616, 3574 ,3594, 3576, 3596, 3578, 3598, 3580, 3600, 3582, 3602, 3584, 3604, 3586, 3606, 3588, 3608, 3590, 3610, 3592, 3612}
+        {SP_Cesium, Oven_Heater,   2,  70, 3640,  76,  70, 3638, 3686, 3644, 3664, 3646, 3666, 3648, 3668, 3650, 3670, 3652, 3672, 3654, 3674, 3656, 3676, 3658, 3678, 3660, 3680, 3662, 3682}
+}

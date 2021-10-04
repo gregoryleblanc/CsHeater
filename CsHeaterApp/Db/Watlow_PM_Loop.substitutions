@@ -1,6 +1,47 @@
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
+###  Loop Definitions  ###
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (i)	- Channel or Index
+# (rEn)	- Remote Enable
+# (rty)	- Remote Setpoint Type
+# (CnM)	- Control Mode
+# (CSP)	- Write Setpoint
+# (idS)	- Idle Setpoint
+# (hhy)	- Heat Hysteresis
+# (CPb)	- Cool Proportional Band
+# (Chy)	- Cool Hysteresis
+# (Cdb)	- Dead Band
+# (oSP)	- Manual Output
+# (oLE)	- Open Loop Error Status
+# (oLC)	- Open Loop Error Clear Request
+# (oPr)	- Output Power
+# (CAg)	- Cool Algorithm
+# (CCr)	- Cool Output Curve
+# (PdL)	- Peltier Delay
+# (UFA)	- User Failure Action
+# (FAiL)- Input Error Failure
+# (MAn)	- Fixed Power
+# (LdE)	- Open Loop Detect Enable
+# (Ldt)	- Open Loop Detect Time
+# (Ldd)	- Open Loop Detect Deviation
+# (rPA)	- Ramp Action
+# (rSC)	- Ramp Scale
+# (rrt)	- Ramp Rate
+# (LSP)	- Minimum Setpoint
+# (hSP)	- Maximum Setpoint
+# (SPL)	- Minimum Manual Power
+# (SPh)	- Maximum Manual Power
+
 file Watlow_PM_Loop.template
 {
-pattern {  s, ta,      ss, mod, ch,  rEn,  rty,  CnM, AtSP,  AUt,  CSP,  idS,  hPb,  hhy,  CPb,  Chy,  Cti,  Ctd,  Cdb, oSP, olE,  oLC, oPr,  hAg,  CAg,  CCr,  PdL, tAgr,  UFA, FAiL,  MAn,  LdE,  Ldt,  Ldd,  rPA,  rSC,  rrt,  LSP,  hSP,  SPL,  SPh}
-        { '', SE,  Watlow,   1,  1, 2680, 2682, 2360, 2398, 2400, 2640, 2656, 2370, 2380, 2372, 2382, 2374, 2376, 2378, 2642,  0, 2410,   0, 2364, 2366, 2368, 2414, 2396, 2662, 2664, 2660, 2402, 2404, 2406, 2666, 2668, 2672, 2644, 2646, 2648, 2650}
-#       { '', SE,  Watlow,   1,  2, 2760, 2762, 2430, 2468, 2470, 2720, 2736, 2440, 2450, 2442, 2522, 2444, 2446, 2448, 2722, 70, 2480,  70, 2434, 2436, 2438, 2484, 2466, 2742, 2744, 2740, 2472, 2474, 2476, 2746, 2478, 2752, 2724, 2726, 2728, 2730}
+pattern {       ta,          ss,  ch,  rEn,  rty,  CnM, AtSP,  AUt,  CSP,  idS,  hPb,  hhy,  CPb,  Chy,  Cti,  Ctd,  Cdb, oSP, olE,  oLC, oPr,  hAg,  CAg,  CCr,  PdL, tAgr,  UFA, FAiL,  MAn,  LdE,  Ldt,  Ldd,  rPA,  rSC,  rrt,  LSP,  hSP,  SPL,  SPh}
+        {SP_Cesium, Oven_Heater,   1, 2680, 2682, 2360, 2398, 2400, 2640, 2656, 2370, 2380, 2372, 2382, 2374, 2376, 2378, 2642,  0, 2410,   0, 2364, 2366, 2368, 2414, 2396, 2662, 2664, 2660, 2402, 2404, 2406, 2666, 2668, 2672, 2644, 2646, 2648, 2650}
+#        {SP_Cesium, Oven_Heater,   2, 2760, 2762, 2430, 2468, 2470, 2720, 2736, 2440, 2450, 2442, 2522, 2444, 2446, 2448, 2722, 70, 2480,  70, 2434, 2436, 2438, 2484, 2466, 2742, 2744, 2740, 2472, 2474, 2476, 2746, 2478, 2752, 2724, 2726, 2728, 2730}
 }

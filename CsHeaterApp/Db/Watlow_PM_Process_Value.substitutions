@@ -1,0 +1,24 @@
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
+### Process Value ###
+# (PSvA)- Process Source Value A
+# (PSvB)- Process Source Value B
+# (PoFS)- Process Offset
+# (Pov)	- Process Output Value
+# (PoE)	- Process Output Error
+# (PFn)	- Process Function
+# (Punt)- Pressure Units
+# (Aunt)- Altitude Units
+# (bPr)	- Barometric Pressure
+# (PvF)	- Process Value Filter
+
+file Watlow_PM_Process_Value.template
+{
+pattern {       ta,          ss, ch, PSvA, PSvB, PoFS,  Pov,  PoE,  PFn, Punt, Aunt,  bPr,  PvF}
+        {SP_Cesium, Oven_Heater,  1,    0,    2, 3324,   12,    0, 3320, 3334, 3336, 3338, 3330}
+}

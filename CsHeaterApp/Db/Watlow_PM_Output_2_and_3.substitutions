@@ -1,7 +1,26 @@
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
+###  Watlow_PM_Output_2_and_3 Definitions  ###
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (i)	- Channel or Index
+# (DFn)	- Default Output Digtial Function
+# (Fnd)	- Output Digitial Function
+# (Fi)	- Function Instance
+# (oCt)	- Output Control
+# (otB)	- Output Time Base
+# (dLo)	- Output Low Power Scale
+# (dhi)	- Output High Power Scale
+# (oty)	- Output Type
+
 file Watlow_PM_Output_2_and_3.template
 {
-pattern {  s, ta,      ss, mod, ch,  Fnd,  Fid,  oCt,  otB,  dLo,  dhi}
-        { '', SE,  Watlow,   1,  2, 1038, 1040, 1032, 1034, 1046, 1048}
-        { '', SE,  Watlow,   1,  3, 1068, 1070, 1062, 1064, 1076, 1078}
+pattern {       ta,          ss, ch,  Fnd,  Fid,  oCt,  otB,  dLo,  dhi}
+        {SP_Cesium, Oven_Heater,  2, 1038, 1040, 1032, 1034, 1046, 1048}
+        {SP_Cesium, Oven_Heater,  3, 1068, 1070, 1062, 1064, 1076, 1078}
 }
-

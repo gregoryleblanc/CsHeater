@@ -1,6 +1,21 @@
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
+###  Monitor Definitions  ###
+# (CMA)	- Control Mode Active
+# (hPr)	- Heat Power
+# (CPr)	- Cool Power
+# (PvA)	- Filtered Process Value
+# (CLS)	- Read Closed Loop Setpoint
+# (AtS)	- Autotune Status
+
+
 file Watlow_PM_Monitor.template
 {
-pattern {  s, ta,      ss, mod, ch, CMA, hPr, CPr, PvA, CLS, AtS}
-        { '', SE,  Watlow,   1,  1,   0,   0,   2,  42,   0,   4}
-#        { '', SE,  Watlow,   1,  2,   0,   0,   2, 132,   0,   4}
+pattern {       ta,          ss, ch, CMA, hPr, CPr, PvA, CLS, AtS}
+        {SP_Cesium, Oven_Heater,  1,   0,   0,   2,  42,   0,   4}
 }

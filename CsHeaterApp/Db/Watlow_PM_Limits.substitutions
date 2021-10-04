@@ -1,5 +1,12 @@
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
 file Watlow_PM_Limits.template
 {
-pattern	{  s, ta,      ss, mod}
-        { '', SE,  Watlow,   1}
+pattern	{       ta,          ss, Ain}
+        {SP_Cesium, Oven_Heater,   0}
 }

@@ -1,34 +1,36 @@
-# # This file contains the offsets for each Analog Input.  Set up the base address in the st.cmd file.
+####Macro Definitions####
 
-# ####Macro Definitions####
-# # (ta)	- Target Area
-# # (ss)	- Device Name
-# # (i)	- Channel or Index
-# # (Ain)	- Analog Input
-# # (iEr)	- Analog Input Error
-# # (iCA)	- Calibration Offset
-# # (SEn)	- Sensor Type
-# # (DSEn)- Default Sensor Type
-# # (Lin)	- TC Linearization (Type)
-# # (DLin)- Default TC Linearization (Type)
-# # (rtL)	- RTD Leads
-# # (Unt)	- Units
-# # (DUnt)- Default Units
-# # (SLo)	- Scale Low
-# # (Shi)	- Scale High
-# # (rLo)	- Range Low
-# # (rhi)	- Range High
-# # (PEE)	- Process Error Enable
-# # (PEL)	- Process Error Low
-# # (tC)	- Thermistor Curve (Not part of this module)
-# # (rr)	- Resistance Range (Not part of this module)
-# # (FiL)	- Filter
-# # (iEL)	- Error Latching
-# # (dEC)	- Display Precision
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
 
-# file Watlow_PM_Analog_Input.template
-# {
-# pattern {       ta,           ss, ch, Ain, iEr, iCA, SEn, Lin, rtL, Unt, SLo, Shi, rLo, rhi, PEE, PEL, FiL, iEL, dEC}
-#         {SP_Cesium,  Oven_Heater,  1,   0,   0, 382, 368, 370, 372, 442, 388, 390, 392, 394, 418, 420, 386, 414, 398}
-# #        {SP_Cesium,  Oven_Heater,  2,   0,   0, 472, 458, 460, 462, 532, 478, 480, 482, 484, 508, 510, 476, 504, 488}
-# }
+### Analog Inputs ###
+# (Ain)	- Analog Input
+# (iEr)	- Analog Input Error
+# (iCA)	- Calibration Offset
+# (SEn)	- Sensor Type
+# (DSEn)- Default Sensor Type
+# (Lin)	- TC Linearization (Type)
+# (DLin)- Default TC Linearization (Type)
+# (rtL)	- RTD Leads
+# (Unt)	- Units
+# (DUnt)- Default Units
+# (SLo)	- Scale Low
+# (Shi)	- Scale High
+# (rLo)	- Range Low
+# (rhi)	- Range High
+# (PEE)	- Process Error Enable
+# (PEL)	- Process Error Low
+# (tC)	- Thermistor Curve (Not part of this module)
+# (rr)	- Resistance Range (Not part of this module)
+# (FiL)	- Filter
+# (iEL)	- Error Latching
+# (dEC)	- Display Precision
+
+file Watlow_PM_Analog_Input.template
+{
+pattern {       ta,          ss, ch, iCA, SEn, Lin, rtL, Unt, SLo, Shi, rLo, rhi, PEE, PEL, FiL, iEL, dEC}
+        {SP_Cesium, Oven_Heater,  1, 382, 368, 370, 372, 442, 388, 390, 392, 394, 418, 420, 386, 414, 398}
+#        {SP_Cesium, Oven_Heater,  2  472, 458, 460, 462, 532, 478, 480, 482, 484, 508, 510, 476, 504, 488}
+}

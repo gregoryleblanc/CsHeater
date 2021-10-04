@@ -1,5 +1,12 @@
-# file Watlow_PM_General.template
-# {
-# pattern {  s, ta,      ss, mod, ch}
-#         { '', SE,  Watlow,   1,  1}
-# }
+####Macro Definitions####
+
+#### Global ####
+# (ta)	- Target Area
+# (ss)	- Device Name
+# (ch)	- Channel
+
+file Watlow_PM_General.template
+{
+pattern	{       ta,          ss, ch}
+        {SP_Cesium, Oven_Heater,  1}
+}
