@@ -22,10 +22,18 @@ CsHeater_DBD += drvAsynIPPort.dbd
 CsHeater_DBD += modbusApp.dbd
 CsHeater_DBD += modbusSupport.dbd
 
+# Include stuff to make PVs work
+CsHeater_DBD += PVAServerRegister.dbd
+CsHeater_DBD += qsrv.dbd
+
 # Add all the support libraries needed by this IOC
 #CsHeater_LIBS += xxx
 CsHeater_LIBS += asyn
 CsHeater_LIBS += modbus
+
+# add libraries for PVs
+CsHeater_LIBS += qsrv
+CsHeater_LIBS += $(EPICS_BASE_PVA_CORE_LIBS)
 
 # CsHeater_registerRecordDeviceDriver.cpp derives from CsHeater.dbd
 CsHeater_SRCS += CsHeater_registerRecordDeviceDriver.cpp
